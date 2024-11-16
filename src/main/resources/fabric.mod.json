@@ -1,0 +1,36 @@
+{
+    "schemaVersion": 1,
+    "id": "reconfigure",
+    "version": "${version}",
+    "name": "Reconfigure",
+    "description": "replaceitem's config library",
+    "authors": [
+        "replaceitem"
+    ],
+    "contact": {
+        "homepage": "https://modrinth.com/mod/symbol-chat",
+        "issues": "https://github.com/replaceitem/symbol-chat/issues",
+        "sources": "https://github.com/replaceitem/symbol-chat"
+    },
+    "license": "MIT",
+    "icon": "assets/reconfigure/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "net.replaceitem.reconfigure.Reconfigure"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/etTDQAVSgt"
+            }
+        },
+        "badges": [ "library" ]
+    }
+}

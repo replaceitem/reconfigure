@@ -1,0 +1,40 @@
+{
+    "schemaVersion": 1,
+    "id": "reconfigure-testmod",
+    "version": "${version}",
+    "name": "reconfigure testmod",
+    "description": "Testmod for reconfigure",
+    "authors": [
+        "replaceitem"
+    ],
+    "contact": {},
+    "license": "MIT",
+    "icon": "assets/reconfigure-testmod/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "net.replaceitem.reconfigure.testmod.Testmod"
+        ],
+        "modmenu": [
+            "net.replaceitem.reconfigure.testmod.ModMenuApiImpl"
+        ]
+    },
+    "mixins": [
+        "reconfigure-testmod.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}",
+        "reconfigure":  "${version}"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/etTDQAVSgt"
+            },
+            "update_checker": false,
+            "parent": "reconfigure"
+        }
+    }
+}
