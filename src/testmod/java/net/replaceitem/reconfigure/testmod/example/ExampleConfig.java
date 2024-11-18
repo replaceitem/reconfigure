@@ -53,5 +53,5 @@ public class ExampleConfig {
             .build();
 
     Void TEXT = MAIN_TAB.createHeadline(Text.literal("Text"));
-    public final Property<String> TEXT_BOX = MAIN_TAB.createStringProperty("box").asEditBox().build();
+    public final Property<String> TEXT_BOX = MAIN_TAB.createStringProperty("box").asEditBox().placeholder("Enter some text").build();
 }
