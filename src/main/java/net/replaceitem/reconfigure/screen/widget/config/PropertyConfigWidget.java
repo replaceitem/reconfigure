@@ -26,7 +26,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
 
     protected void renderName(DrawContext context) {
-        int textPadding = NAME_HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
+        int textPadding = HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
         int textY = y + textPadding;
         context.drawTextWithShadow(this.parent.getTextRenderer(), displayName, x + textPadding, textY, Colors.WHITE);
     }
