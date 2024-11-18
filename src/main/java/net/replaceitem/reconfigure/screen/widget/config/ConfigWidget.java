@@ -1,4 +1,4 @@
-package net.replaceitem.reconfigure.screen.widget;
+package net.replaceitem.reconfigure.screen.widget.config;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
@@ -7,17 +7,19 @@ import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.util.Colors;
 import net.minecraft.util.math.ColorHelper;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
+import net.replaceitem.reconfigure.screen.widget.PositioningEntryWidget;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class ConfigWidget extends PositioningEntryWidget {
+public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> {
     
     protected final List<ClickableWidget> children = new ArrayList<>();
     protected final ConfigWidgetList parent;
 
-    public ConfigWidget(ConfigWidgetList parent) {
+    public ConfigWidget(ConfigWidgetList parent, int height) {
+        super(height);
         this.parent = parent;
     }
 

@@ -1,4 +1,4 @@
-package net.replaceitem.reconfigure.screen.widget;
+package net.replaceitem.reconfigure.screen.widget.config;
 
 import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.text.Text;
@@ -11,14 +11,13 @@ public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boo
         setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).build());
     }
     
-    @Override
     protected int getWidgetHeight() {
         return CheckboxWidget.getCheckboxSize(this.parent.getTextRenderer());
     }
 
     @Override
     protected void refreshPosition() {
-        this.widget.setPosition(x + width - getWidgetHeight() - PADDING_RIGHT, y + (height-getWidgetHeight())/2);
+        this.widget.setPosition(x + width - getWidgetHeight() - PADDING, y + (height-getWidgetHeight())/2);
     }
 
     @Override

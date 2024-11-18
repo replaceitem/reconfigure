@@ -4,7 +4,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.replaceitem.reconfigure.config.PropertyBuilder;
 import net.replaceitem.reconfigure.config.WidgetBuilder;
-import net.replaceitem.reconfigure.screen.widget.SliderConfigWidget;
+import net.replaceitem.reconfigure.screen.widget.config.SliderConfigWidget;
 
 import java.util.function.DoubleFunction;
 import java.util.function.Function;

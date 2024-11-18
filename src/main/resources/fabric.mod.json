@@ -20,6 +20,9 @@
             "net.replaceitem.reconfigure.Reconfigure"
         ]
     },
+    "mixins": [
+        "reconfigure.mixins.json"
+    ],
     "accessWidener": "reconfigure.accesswidener",
     "depends": {
         "fabricloader": ">=${loader_version}",

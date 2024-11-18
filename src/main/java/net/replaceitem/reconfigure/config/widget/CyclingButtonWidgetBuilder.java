@@ -5,9 +5,8 @@ import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.WidgetBuilder;
 import net.replaceitem.reconfigure.config.property.BooleanPropertyBuilder;
 import net.replaceitem.reconfigure.config.PropertyBuilder;
-import net.replaceitem.reconfigure.screen.widget.CyclingButtonConfigWidget;
+import net.replaceitem.reconfigure.screen.widget.config.CyclingButtonConfigWidget;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;

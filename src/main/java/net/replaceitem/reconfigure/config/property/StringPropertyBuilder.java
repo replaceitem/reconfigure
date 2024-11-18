@@ -3,6 +3,7 @@ package net.replaceitem.reconfigure.config.property;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.config.Property;
 import net.replaceitem.reconfigure.config.PropertyBuilder;
+import net.replaceitem.reconfigure.config.widget.EditBoxWidgetBuilder;
 import net.replaceitem.reconfigure.config.widget.TextFieldWidgetBuilder;
 
 import java.util.function.Consumer;
@@ -15,5 +16,9 @@ public class StringPropertyBuilder extends PropertyBuilder<StringPropertyBuilder
 
     public TextFieldWidgetBuilder asTextField() {
         return new TextFieldWidgetBuilder(this);
+    }
+    
+    public EditBoxWidgetBuilder asEditBox() {
+        return new EditBoxWidgetBuilder(this);
     }
 }

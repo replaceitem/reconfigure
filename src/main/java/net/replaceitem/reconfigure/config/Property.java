@@ -3,7 +3,7 @@ package net.replaceitem.reconfigure.config;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
-import net.replaceitem.reconfigure.screen.widget.ConfigWidget;
+import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 
 public class Property<T> extends Binding<T> implements ConfigTab.TabItem {
     private final Identifier id;

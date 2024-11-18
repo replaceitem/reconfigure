@@ -4,7 +4,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.config.property.*;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
-import net.replaceitem.reconfigure.screen.widget.*;
+import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 
 import java.util.ArrayList;
 import java.util.Arrays;

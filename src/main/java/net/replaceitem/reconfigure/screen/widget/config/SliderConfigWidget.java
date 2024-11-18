@@ -1,4 +1,4 @@
-package net.replaceitem.reconfigure.screen.widget;
+package net.replaceitem.reconfigure.screen.widget.config;
 
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;

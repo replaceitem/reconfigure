@@ -2,8 +2,8 @@ package net.replaceitem.reconfigure.config;
 
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
-import net.replaceitem.reconfigure.screen.widget.ConfigWidget;
-import net.replaceitem.reconfigure.screen.widget.HeadlineConfigWidget;
+import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
+import net.replaceitem.reconfigure.screen.widget.config.HeadlineConfigWidget;
 
 public class Headline implements ConfigTab.TabItem {
     private final Text text;

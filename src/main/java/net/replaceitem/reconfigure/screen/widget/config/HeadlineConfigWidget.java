@@ -1,4 +1,4 @@
-package net.replaceitem.reconfigure.screen.widget;
+package net.replaceitem.reconfigure.screen.widget.config;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
@@ -10,7 +10,7 @@ public class HeadlineConfigWidget extends ConfigWidget {
     private final Text text;
     
     public HeadlineConfigWidget(ConfigWidgetList listWidget, Text text) {
-        super(listWidget);
+        super(listWidget, 30);
         this.text = text;
     }
 
