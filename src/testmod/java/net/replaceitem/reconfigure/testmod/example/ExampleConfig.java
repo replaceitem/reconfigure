@@ -10,6 +10,7 @@ import java.time.DayOfWeek;
 import java.time.Month;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class ExampleConfig {
     
     public final Config CONFIG = Config.builder("reconfigure-test").build();

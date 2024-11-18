@@ -20,14 +20,14 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
         this.displayName = displayName;
     }
 
-    protected void renderName(DrawContext context, int index, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+    @Override
+    public void renderWidgets(DrawContext context, int index, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        this.renderName(context);
+    }
+
+    protected void renderName(DrawContext context) {
         int textPadding = NAME_HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
         int textY = y + textPadding;
         context.drawTextWithShadow(this.parent.getTextRenderer(), displayName, x + textPadding, textY, Colors.WHITE);
-    }
-
-    @Override
-    public void renderWidgets(DrawContext context, int index, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        this.renderName(context, index, mouseX, mouseY, hovered, tickDelta);
     }
 }
