@@ -1,8 +1,9 @@
 {
     "reconfigure.title.reconfigure-test": "Title",
-    "reconfigure.tab.reconfigure-test.main": "Main",
+    "reconfigure.tab.reconfigure-test.simple": "Simple",
     
-    "reconfigure.headline.reconfigure-test.basic_headline": "Basic Configurations",
+    "reconfigure.headline.reconfigure-test.strings": "Strings",
+    "reconfigure.headline.reconfigure-test.booleans": "Booleans",
     "reconfigure.property.reconfigure-test.title": "Title",
     "reconfigure.property.reconfigure-test.enabled": "Enabled",
     "reconfigure.property.reconfigure-test.autojump": "Autojump",

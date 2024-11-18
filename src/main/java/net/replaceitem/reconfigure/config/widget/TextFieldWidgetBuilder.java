@@ -10,6 +10,6 @@ public class TextFieldWidgetBuilder extends AbstractTextFieldWidgetBuilder<TextF
 
     @Override
     protected ConfigWidgetFactory<String> buildWidgetFactory() {
-        return (parent, property) -> new TextFieldConfigWidget(parent, property, displayName);
+        return (parent, property) -> new TextFieldConfigWidget(parent, property, displayName, placeholder);
     }
 }
