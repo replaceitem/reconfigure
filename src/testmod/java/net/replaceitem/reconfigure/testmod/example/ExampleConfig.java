@@ -50,4 +50,7 @@ public class ExampleConfig {
             .displayName(Text.literal("Month"))
             .values(List.of(Month.JANUARY, Month.JUNE, Month.DECEMBER))
             .build();
+
+    Void TEXT = MAIN_TAB.createHeadline(Text.literal("Text"));
+    public final Property<String> TEXT_BOX = MAIN_TAB.createStringProperty("box").asEditBox().build();
 }

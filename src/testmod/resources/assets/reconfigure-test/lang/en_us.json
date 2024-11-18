@@ -7,6 +7,7 @@
     "reconfigure.property.reconfigure-test.enabled": "Enabled",
     "reconfigure.property.reconfigure-test.autojump": "Autojump",
     "reconfigure.property.reconfigure-test.size": "Size",
+    "reconfigure.property.reconfigure-test.box": "Box",
     
     "reconfigure.property.reconfigure-test.day_of_week.enum.monday": "Monday",
     "reconfigure.property.reconfigure-test.day_of_week.enum.tuesday": "Tuesday",
