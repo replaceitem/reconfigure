@@ -2,20 +2,22 @@ package net.replaceitem.reconfigure.screen.widget;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.ScreenRect;
-import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.gui.widget.Widget;
 
-public abstract class PositioningEntryWidget extends ElementListWidget.Entry<ConfigWidget> implements Widget {
+public abstract class PositioningEntryWidget<E extends VariableHeightElementListWidget.Entry<E>> extends VariableHeightElementListWidget.Entry<E> implements Widget {
 
-    protected int x, y, width, height;
-    
+    protected int x, y, width;
+
+    public PositioningEntryWidget(int height) {
+        super(height);
+    }
+
     @Override
     public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        if(this.x != x || this.y != y || this.width != entryWidth || this.height != entryHeight) {
+        if(this.x != x || this.y != y || this.width != entryWidth) {
             this.x = x;
             this.y = y;
             this.width = entryWidth;
-            this.height = entryHeight;
             this.refreshPosition();
         }
     }
@@ -49,11 +51,6 @@ public abstract class PositioningEntryWidget extends ElementListWidget.Entry<Con
     @Override
     public int getWidth() {
         return this.width;
-    }
-
-    @Override
-    public int getHeight() {
-        return this.height;
     }
     
     @Override

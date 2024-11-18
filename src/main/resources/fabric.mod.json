@@ -20,6 +20,7 @@
             "net.replaceitem.reconfigure.Reconfigure"
         ]
     },
+    "accessWidener": "reconfigure.accesswidener",
     "depends": {
         "fabricloader": ">=${loader_version}",
         "fabric": "*",

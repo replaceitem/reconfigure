@@ -21,6 +21,7 @@ sourceSets {
 }
 
 loom {
+    accessWidenerPath = file("src/main/resources/reconfigure.accesswidener")
     createRemapConfigurations(sourceSets.testmod)
     runs {
         testmod {
