@@ -30,4 +30,11 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
         int textY = y + textPadding;
         context.drawTextWithShadow(this.parent.getTextRenderer(), displayName, x + textPadding, textY, Colors.WHITE);
     }
+
+    @Override
+    protected void onSave() {
+        this.property.set(this.getSaveValue());
+    }
+
+    protected abstract P getSaveValue();
 }

@@ -21,7 +21,7 @@ public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boo
     }
 
     @Override
-    protected void onSave() {
-        this.property.set(this.widget.isChecked());
+    protected Boolean getSaveValue() {
+        return this.widget.isChecked();
     }
 }

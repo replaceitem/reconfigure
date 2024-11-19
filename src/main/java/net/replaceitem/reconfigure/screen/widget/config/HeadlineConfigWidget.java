@@ -24,7 +24,4 @@ public class HeadlineConfigWidget extends ConfigWidget {
         int textY = y + textPadding;
         context.drawCenteredTextWithShadow(this.parent.getTextRenderer(), this.text, x + width / 2, textY, Colors.WHITE);
     }
-
-    @Override
-    protected void onSave() {}
 }

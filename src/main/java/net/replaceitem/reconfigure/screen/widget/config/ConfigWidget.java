@@ -56,5 +56,7 @@ public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> 
         
     }
     
-    protected abstract void onSave();
+    protected void onSave() {
+        
+    }
 }

@@ -16,7 +16,8 @@ public class SliderConfigWidget<T extends Number> extends SimpleConfigWidget<Sli
     public SliderConfigWidget(ConfigWidgetList listWidget, Property<T> property, Text displayName, DoubleFunction<T> controlToValue, Function<T, Double> valueToControl, Function<T, Text> valueToText) {
         super(listWidget, property, displayName);
         this.controlToValue = controlToValue;
-        setWidget(new SliderWidget(0, 0, 0, 0, valueToText.apply(property.get()), valueToControl.apply(property.get())) {
+        this.sliderValue = valueToControl.apply(property.get());
+        setWidget(new SliderWidget(0, 0, 0, 0, valueToText.apply(property.get()), sliderValue) {
             @Override
             protected void updateMessage() {
                 this.setMessage(valueToText.apply(controlToValue.apply(value)));
@@ -30,8 +31,7 @@ public class SliderConfigWidget<T extends Number> extends SimpleConfigWidget<Sli
     }
 
     @Override
-    protected void onSave() {
-        this.property.set(controlToValue.apply(sliderValue));
+    protected T getSaveValue() {
+        return this.controlToValue.apply(this.sliderValue);
     }
-
 }

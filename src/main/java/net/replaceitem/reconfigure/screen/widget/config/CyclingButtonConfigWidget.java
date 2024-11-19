@@ -8,8 +8,8 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import java.util.Collection;
 import java.util.function.Function;
 
-public class CyclingButtonConfigWidget<T> extends SimpleConfigWidget<CyclingButtonWidget<T>, T> {
-    public CyclingButtonConfigWidget(ConfigWidgetList listWidget, Property<T> property, Text displayName, Function<T, Text> valueToText, Collection<T> values) {
+public class CyclingButtonConfigWidget<P> extends SimpleConfigWidget<CyclingButtonWidget<P>, P> {
+    public CyclingButtonConfigWidget(ConfigWidgetList listWidget, Property<P> property, Text displayName, Function<P, Text> valueToText, Collection<P> values) {
         super(listWidget, property, displayName);
         setWidget(CyclingButtonWidget.builder(valueToText)
                 .omitKeyText()
@@ -19,8 +19,7 @@ public class CyclingButtonConfigWidget<T> extends SimpleConfigWidget<CyclingButt
     }
 
     @Override
-    protected void onSave() {
-        this.property.set(this.widget.getValue());
+    protected P getSaveValue() {
+        return this.widget.getValue();
     }
-    
 }

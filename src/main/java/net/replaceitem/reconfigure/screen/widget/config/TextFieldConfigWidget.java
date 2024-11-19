@@ -18,7 +18,7 @@ public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, S
     }
 
     @Override
-    protected void onSave() {
-        this.property.set(this.widget.getText());
+    protected String getSaveValue() {
+        return this.widget.getText();
     }
 }

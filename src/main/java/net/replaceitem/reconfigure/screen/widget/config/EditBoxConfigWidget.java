@@ -31,7 +31,7 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
     }
 
     @Override
-    protected void onSave() {
-
+    protected String getSaveValue() {
+        return this.widget.getText();
     }
 }
