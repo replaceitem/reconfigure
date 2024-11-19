@@ -7,7 +7,7 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.DynamicEditBoxWidget;
 
 public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, String> {
-    public static final int BOX_HEIGHT = 60;
+    public static final int BOX_HEIGHT = 65;
     public static final int HEIGHT = BOX_HEIGHT + SimpleConfigWidget.HEIGHT;
 
     public EditBoxConfigWidget(

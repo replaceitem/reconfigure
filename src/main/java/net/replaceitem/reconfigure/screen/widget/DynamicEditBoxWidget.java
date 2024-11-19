@@ -19,6 +19,17 @@ public class DynamicEditBoxWidget extends EditBoxWidget {
         this.setChangeListener(s -> setWidth(totalWidth));
     }
     
+    
+    // To fix an ArithmeticException: / by zero crash when the scrollbar's height
+    // gets calculated as the exact height. Even when overflows() returns true,
+    // the scrollbar height can be 100% of the widgets height because only one padding
+    // is accounted for, where it should be two. 
+    @Override
+    protected int getScrollbarThumbHeight() {
+        int scrollbarHeight = super.getScrollbarThumbHeight();
+        return scrollbarHeight == height ? scrollbarHeight - 1 : scrollbarHeight;
+    }
+
     // Why isn't this the way it's done in vanilla?
     @Override
     public void setDimensions(int width, int height) {
