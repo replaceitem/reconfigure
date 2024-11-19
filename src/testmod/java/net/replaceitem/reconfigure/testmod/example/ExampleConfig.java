@@ -45,6 +45,7 @@ public class ExampleConfig {
             .asCyclingButton()
             .valueToText(s -> Text.literal(s).styled(style -> style.withColor(Formatting.AQUA)))
             .displayName(Text.literal("Ice cream type"))
+            .tooltip(Text.of("Select the one you like"))
             .build();
     public final Property<Month> LIMITED_OPTIONS = SIMPLE_TAB
             .createEnumProperty("string_enum", Month.class)

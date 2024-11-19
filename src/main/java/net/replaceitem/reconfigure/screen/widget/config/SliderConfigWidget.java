@@ -2,6 +2,7 @@ package net.replaceitem.reconfigure.screen.widget.config;
 
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;
+import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.Property;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
@@ -13,8 +14,8 @@ public class SliderConfigWidget<T extends Number> extends SimpleConfigWidget<Sli
     private double sliderValue;
     private final DoubleFunction<T> controlToValue;
     
-    public SliderConfigWidget(ConfigWidgetList listWidget, Property<T> property, Text displayName, DoubleFunction<T> controlToValue, Function<T, Double> valueToControl, Function<T, Text> valueToText) {
-        super(listWidget, property, displayName);
+    public SliderConfigWidget(ConfigWidgetList listWidget, Property<T> property, BaseSettings baseSettings, DoubleFunction<T> controlToValue, Function<T, Double> valueToControl, Function<T, Text> valueToText) {
+        super(listWidget, property, baseSettings);
         this.controlToValue = controlToValue;
         this.sliderValue = valueToControl.apply(property.get());
         setWidget(new SliderWidget(0, 0, 0, 0, valueToText.apply(property.get()), sliderValue) {

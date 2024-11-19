@@ -38,10 +38,6 @@ public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> 
         children.forEach(consumer);
     }
 
-    protected int getNameWidth() {
-        return width / 2;
-    }
-
     @Override
     public final void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
         super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);

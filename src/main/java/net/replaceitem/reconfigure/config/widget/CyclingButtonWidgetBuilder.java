@@ -2,6 +2,7 @@ package net.replaceitem.reconfigure.config.widget;
 
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
+import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.WidgetBuilder;
 import net.replaceitem.reconfigure.config.property.BooleanPropertyBuilder;
 import net.replaceitem.reconfigure.config.PropertyBuilder;
@@ -56,7 +57,7 @@ public class CyclingButtonWidgetBuilder<T> extends WidgetBuilder<CyclingButtonWi
     }
 
     @Override
-    protected ConfigWidgetFactory<T> buildWidgetFactory() {
-        return (parent, property) -> new CyclingButtonConfigWidget<>(parent, property, displayName, valueToText, values);
+    protected ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings) {
+        return (parent, property) -> new CyclingButtonConfigWidget<>(parent, property, baseSettings, valueToText, values);
     }
 }

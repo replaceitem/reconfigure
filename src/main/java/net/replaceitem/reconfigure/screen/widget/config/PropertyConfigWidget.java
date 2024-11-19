@@ -1,8 +1,7 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
+import net.minecraft.client.gui.widget.TextWidget;
+import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.Property;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
@@ -11,24 +10,31 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     public static final int NAME_HEIGHT = 20;
     public static final int HEIGHT = NAME_HEIGHT + 2*PADDING;
     
-    protected final Property<P> property;
-    private final Text displayName;
+    protected final int textPadding;
 
-    public PropertyConfigWidget(ConfigWidgetList listWidget, int height, Property<P> property, Text displayName) {
+    protected final Property<P> property;
+    protected final TextWidget nameWidget;
+
+    public PropertyConfigWidget(ConfigWidgetList listWidget, int height, Property<P> property, BaseSettings baseSettings) {
         super(listWidget, height);
         this.property = property;
-        this.displayName = displayName;
+        this.nameWidget = new TextWidget(baseSettings.displayName(), this.parent.getTextRenderer());
+        this.nameWidget.setTooltip(baseSettings.tooltip());
+        this.nameWidget.alignLeft();
+        this.children.add(nameWidget);
+        this.textPadding = HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
     }
 
     @Override
-    public void renderWidgets(DrawContext context, int index, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        this.renderName(context);
+    protected void refreshPosition() {
+        super.refreshPosition();
+        this.positionName();
     }
-
-    protected void renderName(DrawContext context) {
-        int textPadding = HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
-        int textY = y + textPadding;
-        context.drawTextWithShadow(this.parent.getTextRenderer(), displayName, x + textPadding, textY, Colors.WHITE);
+    
+    protected void positionName() {
+        int maxNameWidth = this.width / 2 - 2 * textPadding;
+        this.nameWidget.setWidth(Math.min(this.nameWidget.getWidth(), maxNameWidth));
+        this.nameWidget.setPosition(x + textPadding, y + textPadding);
     }
 
     @Override

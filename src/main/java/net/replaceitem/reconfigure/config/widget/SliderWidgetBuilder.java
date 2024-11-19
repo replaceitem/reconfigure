@@ -2,6 +2,7 @@ package net.replaceitem.reconfigure.config.widget;
 
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
+import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.PropertyBuilder;
 import net.replaceitem.reconfigure.config.WidgetBuilder;
 import net.replaceitem.reconfigure.screen.widget.config.SliderConfigWidget;
@@ -52,9 +53,9 @@ public abstract class SliderWidgetBuilder<SELF extends SliderWidgetBuilder<SELF,
     }
 
     @Override
-    protected ConfigWidgetFactory<T> buildWidgetFactory() {
+    protected ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings) {
         return (parent, property) ->
-                new SliderConfigWidget<>(parent, property, displayName, controlToValue, valueToControl, valueToText);
+                new SliderConfigWidget<>(parent, property, baseSettings, controlToValue, valueToControl, valueToText);
     }
 
     protected abstract DoubleFunction<T> controlToNumber();

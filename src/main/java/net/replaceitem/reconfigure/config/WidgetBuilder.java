@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.config;
 
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
@@ -9,6 +10,7 @@ import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 public abstract class WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
     
     protected Text displayName;
+    protected Tooltip tooltip;
     protected final PropertyBuilder<?, T> propertyBuilder;
 
     protected WidgetBuilder(PropertyBuilder<?, T> propertyBuilder) {
@@ -19,6 +21,14 @@ public abstract class WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
     public SELF displayName(Text displayName) {
         this.displayName = displayName;
         return self();
+    }
+    
+    public SELF tooltip(Tooltip tooltip) {
+        this.tooltip = tooltip;
+        return self();
+    }
+    public SELF tooltip(Text tooltipText) {
+        return tooltip(Tooltip.of(tooltipText));
     }
     
     protected Identifier getPropertyId() {
@@ -47,14 +57,14 @@ public abstract class WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
     }
 
     protected Property<T> buildImpl() {
-        return propertyBuilder.asCustomWidget(buildWidgetFactory());
+        return propertyBuilder.asCustomWidget(buildWidgetFactory(getBaseSettings()));
     }
     
-    protected abstract ConfigWidgetFactory<T> buildWidgetFactory();
-    
-    public record Context() {
-        
+    private BaseSettings getBaseSettings() {
+        return new BaseSettings(displayName, tooltip);
     }
+    
+    protected abstract ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings);
 
     @SuppressWarnings("unchecked")
     protected SELF self() {
