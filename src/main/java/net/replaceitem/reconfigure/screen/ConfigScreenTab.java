@@ -15,7 +15,12 @@ public class ConfigScreenTab implements Tab {
 
     public ConfigScreenTab(ConfigTab tab, MinecraftClient client) {
         this.tab = tab;
-        this.list = new ConfigWidgetList(tab, client, 0, 0, 0, 30);
+        this.list = new ConfigWidgetList(tab, client, 0, 0, 0, 30) {
+            @Override
+            public int getRowWidth() {
+                return Math.min(this.width - 40, 400);
+            }
+        };
     }
 
     @Override
