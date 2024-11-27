@@ -32,7 +32,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
     
     protected void positionName() {
-        int maxNameWidth = this.width / 2 - 2 * textPadding;
+        int maxNameWidth = this.width / 2 - textPadding;
         this.nameWidget.setWidth(Math.min(this.nameWidget.getWidth(), maxNameWidth));
         this.nameWidget.setPosition(x + textPadding, y + textPadding);
     }

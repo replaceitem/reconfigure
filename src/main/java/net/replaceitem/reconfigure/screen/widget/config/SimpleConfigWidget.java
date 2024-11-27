@@ -25,7 +25,7 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     @Override
     protected void refreshPosition() {
         super.refreshPosition();
-        int maxNameWidth = this.width / 2 - 2 * textPadding;
-        this.widget.setDimensionsAndPosition(width - maxNameWidth - 2 * PADDING, NAME_HEIGHT, x + maxNameWidth, y + PADDING);
+        int maxNameWidth = this.width / 2 - textPadding;
+        this.widget.setDimensionsAndPosition(width - maxNameWidth - PADDING - textPadding, NAME_HEIGHT, x + textPadding + maxNameWidth, y + PADDING);
     }
 }
