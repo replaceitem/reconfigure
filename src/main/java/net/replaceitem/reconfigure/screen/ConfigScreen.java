@@ -4,14 +4,17 @@ import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tab.Tab;
 import net.minecraft.client.gui.tab.TabManager;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.DirectionalLayoutWidget;
 import net.minecraft.client.gui.widget.TabNavigationWidget;
 import net.minecraft.client.gui.widget.ThreePartsLayoutWidget;
+import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.Config;
 import org.jetbrains.annotations.Nullable;
 
 public class ConfigScreen extends Screen {
     @Nullable private final Screen parent;
-    private Config config;
+    private final Config config;
     private TabNavigationWidget tabNavigation;
     private final TabManager tabManager = new TabManager(this::addDrawableChild, this::remove);
     private final ThreePartsLayoutWidget threePartsLayoutWidget = new ThreePartsLayoutWidget(this);
@@ -31,6 +34,12 @@ public class ConfigScreen extends Screen {
                 .build();
         
         this.tabNavigation.selectTab(0, false);
+
+        DirectionalLayoutWidget directionalLayoutWidget = this.threePartsLayoutWidget.addFooter(DirectionalLayoutWidget.horizontal().spacing(8));
+        directionalLayoutWidget.add(ButtonWidget.builder(Text.translatable("reconfigure.cancel"), button -> close()).build());
+        directionalLayoutWidget.add(ButtonWidget.builder(Text.translatable("reconfigure.save"), button -> System.out.println("Saving")).build());
+
+        this.threePartsLayoutWidget.forEachChild(this::addDrawableChild);
 
         this.addDrawableChild(this.tabNavigation);
         refreshWidgetPositions();
