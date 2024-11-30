@@ -3,7 +3,7 @@ package net.replaceitem.reconfigure.screen.widget.config;
 import net.minecraft.client.gui.widget.EditBoxWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.BaseSettings;
-import net.replaceitem.reconfigure.config.Property;
+import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.DynamicEditBoxWidget;
 
@@ -13,7 +13,7 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
 
     public EditBoxConfigWidget(
             ConfigWidgetList listWidget,
-            Property<String> property,
+            PropertyImpl<String> property,
             BaseSettings baseSettings,
             String placeholder
     ) {

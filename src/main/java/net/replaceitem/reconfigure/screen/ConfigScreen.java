@@ -9,17 +9,17 @@ import net.minecraft.client.gui.widget.DirectionalLayoutWidget;
 import net.minecraft.client.gui.widget.TabNavigationWidget;
 import net.minecraft.client.gui.widget.ThreePartsLayoutWidget;
 import net.minecraft.text.Text;
-import net.replaceitem.reconfigure.config.Config;
+import net.replaceitem.reconfigure.config.ConfigImpl;
 import org.jetbrains.annotations.Nullable;
 
 public class ConfigScreen extends Screen {
     @Nullable private final Screen parent;
-    private final Config config;
+    private final ConfigImpl config;
     private TabNavigationWidget tabNavigation;
     private final TabManager tabManager = new TabManager(this::addDrawableChild, this::remove);
     private final ThreePartsLayoutWidget threePartsLayoutWidget = new ThreePartsLayoutWidget(this);
     
-    public ConfigScreen(Config config, Screen parent) {
+    public ConfigScreen(ConfigImpl config, Screen parent) {
         super(config.getTitle());
         this.config = config;
         this.parent = parent;

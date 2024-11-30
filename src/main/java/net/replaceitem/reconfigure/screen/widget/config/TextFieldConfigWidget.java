@@ -3,13 +3,13 @@ package net.replaceitem.reconfigure.screen.widget.config;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.BaseSettings;
-import net.replaceitem.reconfigure.config.Property;
+import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
 public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, String> {
     public TextFieldConfigWidget(
             ConfigWidgetList listWidget,
-            Property<String> property,
+            PropertyImpl<String> property,
             BaseSettings baseSettings,
             String placeholder
     ) {

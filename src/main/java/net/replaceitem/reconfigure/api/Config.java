@@ -1,0 +1,17 @@
+package net.replaceitem.reconfigure.api;
+
+import net.minecraft.client.gui.screen.Screen;
+import net.replaceitem.reconfigure.config.ConfigBuilderImpl;
+import net.replaceitem.reconfigure.screen.ConfigScreen;
+import org.jetbrains.annotations.Nullable;
+
+public interface Config {
+    static ConfigBuilderImpl builder(String namespace) {
+        return new ConfigBuilderImpl(namespace);
+    }
+
+    ConfigTabBuilder createTab(String name);
+
+    @Deprecated
+    ConfigScreen createScreen(@Nullable Screen parent);
+}

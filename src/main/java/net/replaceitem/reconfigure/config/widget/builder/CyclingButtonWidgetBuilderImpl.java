@@ -1,0 +1,68 @@
+package net.replaceitem.reconfigure.config.widget.builder;
+
+import net.minecraft.screen.ScreenTexts;
+import net.minecraft.text.Text;
+import net.replaceitem.reconfigure.api.widget.CyclingButtonWidgetBuilder;
+import net.replaceitem.reconfigure.config.BaseSettings;
+import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
+import net.replaceitem.reconfigure.config.property.PropertyImpl;
+import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
+import net.replaceitem.reconfigure.config.property.builder.BooleanPropertyBuilderImpl;
+import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
+import net.replaceitem.reconfigure.screen.widget.config.CyclingButtonConfigWidget;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
+
+public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<CyclingButtonWidgetBuilder<T>, T> implements CyclingButtonWidgetBuilder<T> {
+
+    private Collection<T> values;
+    private final Collection<T> allValues;
+    private Function<T, Text> valueToText;
+
+    public CyclingButtonWidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder, Collection<T> values) {
+        super(propertyBuildContext, propertyBuilder);
+        this.values = values;
+        this.allValues = values.stream().toList();
+    }
+
+    private static final List<Boolean> BOOLEAN_VALUES = List.of(Boolean.FALSE, Boolean.TRUE);
+    public static CyclingButtonWidgetBuilderImpl<Boolean> createBoolean(PropertyBuildContext propertyBuildContext, BooleanPropertyBuilderImpl propertyBuilder) {
+        return new CyclingButtonWidgetBuilderImpl<>(propertyBuildContext, propertyBuilder, BOOLEAN_VALUES).valueToText(value -> value ? ScreenTexts.ON : ScreenTexts.OFF);
+    }
+
+
+    @Override
+    public CyclingButtonWidgetBuilderImpl<T> values(Collection<T> values) {
+        this.values = values;
+        return this;
+    }
+
+    @Override
+    public CyclingButtonWidgetBuilderImpl<T> valueToText(Function<T, Text> valueToText) {
+        this.valueToText = valueToText;
+        return this;
+    }
+
+    @Override
+    protected void preBuild(PropertyImpl<T> property) {
+        if(values.stream().anyMatch(Predicate.not(allValues::contains))) {
+            String invalidValues = values.stream().filter(Predicate.not(allValues::contains)).map(Objects::toString).collect(Collectors.joining(", "));
+            String validValues = allValues.stream().map(Objects::toString).collect(Collectors.joining(", "));
+            throw new RuntimeException("The value(s) " + invalidValues + " assigned to the enum widget are not in the values " + validValues + " for its property " + property.getId());
+        }
+        super.preBuild(property);
+        if(valueToText == null) valueToText = (T value) -> Text.translatable(property.getId().toTranslationKey(NAMESPACE + ".property", "enum." + value.toString().toLowerCase()));
+    }
+
+    @Override
+    protected ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings) {
+        return (parent, property) -> new CyclingButtonConfigWidget<>(parent, property, baseSettings, valueToText, values);
+    }
+}

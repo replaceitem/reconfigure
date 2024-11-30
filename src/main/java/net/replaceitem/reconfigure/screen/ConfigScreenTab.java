@@ -5,15 +5,15 @@ import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.tab.Tab;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.text.Text;
-import net.replaceitem.reconfigure.config.ConfigTab;
+import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 
 import java.util.function.Consumer;
 
 public class ConfigScreenTab implements Tab {
     private final ConfigWidgetList list;
-    private final ConfigTab tab;
+    private final ConfigTabImpl tab;
 
-    public ConfigScreenTab(ConfigTab tab, MinecraftClient client) {
+    public ConfigScreenTab(ConfigTabImpl tab, MinecraftClient client) {
         this.tab = tab;
         this.list = new ConfigWidgetList(tab, client, 0, 0, 0, 30) {
             @Override

@@ -3,11 +3,11 @@ package net.replaceitem.reconfigure.screen.widget.config;
 import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.BaseSettings;
-import net.replaceitem.reconfigure.config.Property;
+import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
 public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boolean> {
-    public CheckboxConfigWidget(ConfigWidgetList listWidget, Property<Boolean> property, BaseSettings baseSettings) {
+    public CheckboxConfigWidget(ConfigWidgetList listWidget, PropertyImpl<Boolean> property, BaseSettings baseSettings) {
         super(listWidget, property, baseSettings);
         setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).build());
     }
