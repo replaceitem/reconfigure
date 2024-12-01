@@ -14,4 +14,7 @@ public interface Config {
 
     @Deprecated
     ConfigScreen createScreen(@Nullable Screen parent);
+
+    void save();
+    void load();
 }

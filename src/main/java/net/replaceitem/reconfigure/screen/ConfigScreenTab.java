@@ -6,6 +6,7 @@ import net.minecraft.client.gui.tab.Tab;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
+import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 
 import java.util.function.Consumer;
 
@@ -36,5 +37,9 @@ public class ConfigScreenTab implements Tab {
     @Override
     public void refreshGrid(ScreenRect tabArea) {
         this.list.setDimensionsAndPosition(tabArea.width(), tabArea.height(), tabArea.getLeft(), tabArea.getTop());
+    }
+
+    public void onSave() {
+        this.list.children().forEach(ConfigWidget::onSave);
     }
 }

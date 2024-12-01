@@ -2,7 +2,6 @@ package net.replaceitem.reconfigure.config.widget;
 
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.replaceitem.reconfigure.api.ConfigTab;
 import net.replaceitem.reconfigure.api.ConfigTabBuilder;
 import net.replaceitem.reconfigure.config.ConfigImpl;
 

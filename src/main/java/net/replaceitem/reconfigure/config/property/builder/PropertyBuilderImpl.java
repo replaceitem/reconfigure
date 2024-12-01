@@ -5,6 +5,7 @@ import net.replaceitem.reconfigure.api.property.PropertyBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
+import net.replaceitem.reconfigure.config.serialization.Caster;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.config.widget.builder.CustomWidgetBuilderImpl;
 
@@ -13,7 +14,7 @@ import java.util.function.Function;
 public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>, T> implements PropertyBuilder<SELF, T> {
     protected final PropertyBuildContext propertyBuildContext;
     protected T defaultValue;
-    protected Identifier id;
+    protected final Identifier id;
 
     protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
         this.propertyBuildContext = propertyBuildContext;
@@ -30,6 +31,9 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     public CustomWidgetBuilderImpl<T> asCustomWidget(Function<BaseSettings, ConfigWidgetFactory<T>> widgetFactorySupplier) {
         return new CustomWidgetBuilderImpl<>(propertyBuildContext, this, widgetFactorySupplier);
     }
+    
+    
+    protected abstract Caster<T> getCaster();
 
 
     /**
@@ -55,7 +59,7 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     }
 
     protected PropertyImpl<T> buildImpl() {
-        return new PropertyImpl<>(id, defaultValue);
+        return new PropertyImpl<>(id, defaultValue, this.getCaster());
     }
 
     @SuppressWarnings("unchecked")

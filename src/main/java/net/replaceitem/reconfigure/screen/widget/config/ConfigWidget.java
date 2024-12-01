@@ -52,7 +52,7 @@ public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> 
         
     }
     
-    protected void onSave() {
+    public void onSave() {
         
     }
 }

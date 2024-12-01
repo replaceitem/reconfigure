@@ -16,7 +16,6 @@ public class DynamicEditBoxWidget extends EditBoxWidget {
     public DynamicEditBoxWidget(TextRenderer textRenderer, int x, int y, int width, int height, Text placeholder, Text message) {
         super(textRenderer, x, y, width, height, placeholder, message);
         this.setWidth(width);
-        this.setChangeListener(s -> setWidth(totalWidth));
     }
     
     
@@ -39,9 +38,13 @@ public class DynamicEditBoxWidget extends EditBoxWidget {
 
     @Override
     public void setWidth(int width) {
+        if(this.totalWidth == width) return;
         this.totalWidth = width;
         int scrollbarWidth = overflows() ? getScrollerWidth() : 0;
         super.setWidth(width - scrollbarWidth);
-        ((EditBoxAccessor) ((EditBoxWidgetAccessor) this).getEditBox()).setWidth(width - getPaddingDoubled() - scrollbarWidth);
+        EditBoxAccessor editBox = (EditBoxAccessor) ((EditBoxWidgetAccessor) this).getEditBox();
+        editBox.setWidth(width - getPaddingDoubled() - scrollbarWidth);
+        editBox.callRewrap();
+        this.setScrollY(this.getScrollY());
     }
 }

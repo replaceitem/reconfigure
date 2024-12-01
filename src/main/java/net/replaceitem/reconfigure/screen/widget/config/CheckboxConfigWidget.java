@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.BaseSettings;
@@ -9,17 +10,13 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boolean> {
     public CheckboxConfigWidget(ConfigWidgetList listWidget, PropertyImpl<Boolean> property, BaseSettings baseSettings) {
         super(listWidget, property, baseSettings);
-        setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).build());
-    }
-    
-    protected int getWidgetHeight() {
-        return CheckboxWidget.getCheckboxSize(this.parent.getTextRenderer());
+        setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).checked(property.get()).build());
     }
 
     @Override
-    protected void refreshPosition() {
-        super.refreshPosition();
-        this.widget.setPosition(x + width - getWidgetHeight() - PADDING, y + (height-getWidgetHeight())/2);
+    protected ScreenRect getWidgetPos() {
+        int widgetSize = CheckboxWidget.getCheckboxSize(this.parent.getTextRenderer());
+        return new ScreenRect(x + width - widgetSize - PADDING, y + (height-widgetSize) / 2, widgetSize, widgetSize);
     }
 
     @Override

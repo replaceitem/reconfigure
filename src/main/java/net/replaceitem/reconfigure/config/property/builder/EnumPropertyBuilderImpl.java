@@ -3,6 +3,7 @@ package net.replaceitem.reconfigure.config.property.builder;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.EnumPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
+import net.replaceitem.reconfigure.config.serialization.Caster;
 import net.replaceitem.reconfigure.config.widget.builder.CyclingButtonWidgetBuilderImpl;
 
 import java.util.Collection;
@@ -23,7 +24,12 @@ public class EnumPropertyBuilderImpl<T> extends PropertyBuilderImpl<EnumProperty
     public CyclingButtonWidgetBuilderImpl<T> asCyclingButton() {
         return new CyclingButtonWidgetBuilderImpl<>(propertyBuildContext, this, values);
     }
-    
+
+    @Override
+    protected Caster<T> getCaster() {
+        return Caster.forEnum(values);
+    }
+
     @Override
     protected void preBuild() {
         super.preBuild();

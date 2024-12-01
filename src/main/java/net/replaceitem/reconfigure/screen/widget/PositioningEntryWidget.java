@@ -22,7 +22,7 @@ public abstract class PositioningEntryWidget<E extends VariableHeightElementList
         }
     }
 
-    protected void refreshPosition() {
+    public void refreshPosition() {
 
     }
 

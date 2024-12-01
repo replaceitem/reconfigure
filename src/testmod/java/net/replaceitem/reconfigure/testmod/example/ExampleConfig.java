@@ -5,6 +5,7 @@ import net.minecraft.util.Formatting;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.ConfigTab;
+import net.replaceitem.reconfigure.api.Serializers;
 
 import java.time.DayOfWeek;
 import java.time.Month;
@@ -13,7 +14,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class ExampleConfig {
     
-    public final Config CONFIG = Config.builder("reconfigure-test").build();
+    public final Config CONFIG = Config.builder("reconfigure-test")
+            .serializer(Serializers.JSON)
+            .build();
     
     public final ConfigTab SIMPLE_TAB = CONFIG.createTab("simple").build();
     

@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.widget.EditBoxWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.BaseSettings;
@@ -18,20 +19,21 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
             String placeholder
     ) {
         super(listWidget, HEIGHT, property, baseSettings);
-        setWidget(new DynamicEditBoxWidget(listWidget.getTextRenderer(), 0, 0, 0, 0, Text.of(placeholder), Text.of(property.get())));
+        ScreenRect widgetPos = getWidgetPos();
+        setWidget(new DynamicEditBoxWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), Text.of(placeholder), Text.empty()));
+        this.widget.setText(property.get());
     }
 
     @Override
     protected void positionName() {
         int maxNameWidth = this.width - 2 * this.textPadding;
-        this.nameWidget.setWidth(Math.min(this.nameWidget.getWidth(), maxNameWidth));
+        this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
         this.nameWidget.setPosition(x + textPadding, y + textPadding);
     }
 
     @Override
-    protected void refreshPosition() {
-        super.refreshPosition();
-        this.widget.setDimensionsAndPosition(width - 2 * PADDING, BOX_HEIGHT, x + PADDING, y + PADDING + NAME_HEIGHT);
+    protected ScreenRect getWidgetPos() {
+        return new ScreenRect(x + PADDING, y + PADDING + NAME_HEIGHT, width - 2 * PADDING, BOX_HEIGHT);
     }
 
     @Override

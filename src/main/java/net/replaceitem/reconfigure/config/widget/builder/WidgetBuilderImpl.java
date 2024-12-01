@@ -2,7 +2,6 @@ package net.replaceitem.reconfigure.config.widget.builder;
 
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.widget.WidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;

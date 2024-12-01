@@ -26,19 +26,19 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
 
     @Override
-    protected void refreshPosition() {
+    public void refreshPosition() {
         super.refreshPosition();
         this.positionName();
     }
     
     protected void positionName() {
         int maxNameWidth = this.width / 2 - textPadding;
-        this.nameWidget.setWidth(Math.min(this.nameWidget.getWidth(), maxNameWidth));
+        this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
         this.nameWidget.setPosition(x + textPadding, y + textPadding);
     }
 
     @Override
-    protected void onSave() {
+    public void onSave() {
         this.property.set(this.getSaveValue());
     }
 

@@ -8,6 +8,6 @@ public class Testmod implements ClientModInitializer {
     
     @Override
     public void onInitializeClient() {
-        
+        CONFIG.CONFIG.load();
     }
 }

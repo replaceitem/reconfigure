@@ -4,7 +4,7 @@ import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.NumericPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 
-public class NumericPropertyBuilderImpl<SELF extends NumericPropertyBuilder<SELF, T>, T extends Number> extends PropertyBuilderImpl<SELF, T> implements NumericPropertyBuilder<SELF, T> {
+public abstract class NumericPropertyBuilderImpl<SELF extends NumericPropertyBuilder<SELF, T>, T extends Number> extends PropertyBuilderImpl<SELF, T> implements NumericPropertyBuilder<SELF, T> {
     
     protected T min;
     protected T max;

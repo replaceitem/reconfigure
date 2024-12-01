@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
@@ -23,9 +24,14 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     }
 
     @Override
-    protected void refreshPosition() {
+    public void refreshPosition() {
         super.refreshPosition();
+        ScreenRect widgetPos = getWidgetPos();
+        this.widget.setDimensionsAndPosition(widgetPos.width(), widgetPos.height(), widgetPos.getLeft(), widgetPos.getTop());
+    }
+    
+    protected ScreenRect getWidgetPos() {
         int maxNameWidth = this.width / 2 - textPadding;
-        this.widget.setDimensionsAndPosition(width - maxNameWidth - PADDING - textPadding, NAME_HEIGHT, x + textPadding + maxNameWidth, y + PADDING);
+        return new ScreenRect(x + textPadding + maxNameWidth, y + PADDING, width - maxNameWidth - PADDING - textPadding, NAME_HEIGHT);
     }
 }

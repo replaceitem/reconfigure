@@ -1,10 +1,12 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
+import net.replaceitem.reconfigure.screen.widget.DynamicTextFieldWidget;
 
 public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, String> {
     public TextFieldConfigWidget(
@@ -14,7 +16,9 @@ public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, S
             String placeholder
     ) {
         super(listWidget, property, baseSettings);
-        setWidget(new TextFieldWidget(listWidget.getTextRenderer(), 0, 0, Text.literal(property.get())));
+        ScreenRect widgetPos = getWidgetPos();
+        setWidget(new DynamicTextFieldWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), Text.empty()));
+        this.widget.setText(property.get());
         if (placeholder != null) this.widget.setPlaceholder(Text.literal(placeholder));
     }
 
