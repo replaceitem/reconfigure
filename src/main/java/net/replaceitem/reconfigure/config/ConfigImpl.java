@@ -26,11 +26,11 @@ public class ConfigImpl implements Config {
     private final String namespace;
     private final Text title;
     private final List<ConfigTabImpl> tabs = new ArrayList<>();
-    private final Serializer serializer;
+    @Nullable private final Serializer serializer;
 
     protected final Map<Identifier, PropertyImpl<?>> properties = new LinkedHashMap<>();
 
-    protected ConfigImpl(String namespace, Text title, Serializer serializer) {
+    protected ConfigImpl(String namespace, Text title, @Nullable Serializer serializer) {
         this.namespace = namespace;
         this.title = title;
         this.serializer = serializer;
@@ -74,21 +74,20 @@ public class ConfigImpl implements Config {
         return new ConfigScreen(this, parent);
     }
     
-    private File getConfigFile() throws IOException {
-        if(this.serializer == null) return null;
+    private static File getConfigFile(String namespace, Serializer serializer) throws IOException {
         Path configDir = FabricLoader.getInstance().getConfigDir().normalize();
         Files.createDirectories(configDir);
-        return configDir.resolve(this.namespace + "." + this.serializer.getFileExtension()).normalize().toFile();
+        return configDir.resolve(namespace + "." + serializer.getFileExtension()).normalize().toFile();
     }
     
     @Override
     public void save() {
         try {
-            File configFile = getConfigFile();
-            if(configFile == null) {
+            if(this.serializer == null) {
                 Reconfigure.LOGGER.warn("Not saving config {} because no serializer is defined", this.namespace);
                 return;
             }
+            File configFile = getConfigFile(this.namespace, this.serializer);
             try (FileOutputStream fileOutputStream = new FileOutputStream(configFile)) {
                 this.serializer.write(this, fileOutputStream);
             }
@@ -100,11 +99,11 @@ public class ConfigImpl implements Config {
     @Override
     public void load() {
         try {
-            File configFile = getConfigFile();
-            if(configFile == null) {
+            if(this.serializer == null) {
                 Reconfigure.LOGGER.warn("Not loading config {} because no serializer is defined", this.namespace);
                 return;
             }
+            File configFile = getConfigFile(this.namespace, this.serializer);
             if (configFile.exists()) {
                 try(FileInputStream fileInputStream = new FileInputStream(configFile)) {
                     this.serializer.read(this, fileInputStream);

@@ -9,8 +9,7 @@ import net.replaceitem.reconfigure.config.widget.builder.CyclingButtonWidgetBuil
 
 public class BooleanPropertyBuilderImpl extends PropertyBuilderImpl<BooleanPropertyBuilder, Boolean> implements BooleanPropertyBuilder {
     public BooleanPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
-        super(propertyBuildContext, id);
-        defaultValue = false;
+        super(propertyBuildContext, id, false);
     }
 
     @Override

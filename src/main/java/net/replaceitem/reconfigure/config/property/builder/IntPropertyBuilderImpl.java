@@ -8,8 +8,7 @@ import net.replaceitem.reconfigure.config.widget.builder.SliderWidgetBuilderImpl
 
 public class IntPropertyBuilderImpl extends NumericPropertyBuilderImpl<IntPropertyBuilder, Integer> implements IntPropertyBuilder {
     public IntPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
-        super(propertyBuildContext, id);
-        defaultValue = 0;
+        super(propertyBuildContext, id, 0);
     }
 
     @Override
@@ -19,6 +18,8 @@ public class IntPropertyBuilderImpl extends NumericPropertyBuilderImpl<IntProper
 
     @Override
     public SliderWidgetBuilderImpl.IntSliderWidgetBuilder asSlider() {
+        assert min != null;
+        assert max != null;
         return SliderWidgetBuilderImpl.createInt(propertyBuildContext, this).min(this.min).max(this.max);
     }
 }

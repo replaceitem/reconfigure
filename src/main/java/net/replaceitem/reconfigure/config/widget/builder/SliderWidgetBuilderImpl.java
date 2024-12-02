@@ -9,18 +9,19 @@ import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.widget.config.SliderConfigWidget;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.DoubleFunction;
 import java.util.function.Function;
 
 public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderImpl<SELF, T>, T extends Number & Comparable<T>> extends WidgetBuilderImpl<SELF, T> implements SliderWidgetBuilder<SELF, T> {
 
-    protected T min;
-    protected T max;
-    protected T step;
-    private DoubleFunction<T> controlToValue;
-    private Function<T, Double> valueToControl;
-    private Function<T, Text> valueToText;
+    @Nullable protected T min;
+    @Nullable protected T max;
+    @Nullable protected T step;
+    @Nullable private DoubleFunction<T> controlToValue;
+    @Nullable private Function<T, Double> valueToControl;
+    @Nullable private Function<T, Text> valueToText;
 
     protected SliderWidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder) {
         super(propertyBuildContext, propertyBuilder);
@@ -49,20 +50,22 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
         super.preBuild(property);
         if(min == null) throw new RuntimeException("Missing min value for slider widget " + property.getId());
         if(max == null) throw new RuntimeException("Missing max value for slider widget " + property.getId());
-        if(controlToValue == null) controlToValue = controlToNumber();
-        if(valueToControl == null) valueToControl = numberToControl();
-        if(valueToText == null) valueToText = numberToText();
+        if(controlToValue == null) controlToValue = defaultControlToNumber(min, max);
+        if(valueToControl == null) valueToControl = defaultNumberToControl(min, max);
+        if(valueToText == null) valueToText = defaultNumberToText(min, max);
     }
 
     @Override
     protected ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings) {
+        assert valueToControl != null;
+        assert valueToText != null;
         return (parent, property) ->
                 new SliderConfigWidget<>(parent, property, baseSettings, controlToValue, valueToControl, valueToText);
     }
 
-    protected abstract DoubleFunction<T> controlToNumber();
-    protected abstract Function<T, Double> numberToControl();
-    protected abstract Function<T, Text> numberToText();
+    protected abstract DoubleFunction<T> defaultControlToNumber(T min, T max);
+    protected abstract Function<T, Double> defaultNumberToControl(T min, T max);
+    protected abstract Function<T, Text> defaultNumberToText(T min, T max);
     
     
     public static IntSliderWidgetBuilder createInt(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, Integer> propertyBuilder) {
@@ -79,20 +82,20 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
         }
 
         @Override
-        protected DoubleFunction<Integer> controlToNumber() {
+        protected DoubleFunction<Integer> defaultControlToNumber(Integer min, Integer max) {
             int multiple = step == null ? 1 : step;
             int diff = SliderWidgetBuilderImpl.floorToMultiple(max-min, multiple);
             return value -> min + SliderWidgetBuilderImpl.roundToMultiple(value * diff, multiple);
         }
 
         @Override
-        protected Function<Integer, Double> numberToControl() {
+        protected Function<Integer, Double> defaultNumberToControl(Integer min, Integer max) {
             int diff = max - min;
             return value -> ((double) (MathHelper.clamp(value, min, max) - min)) / diff;
         }
 
         @Override
-        protected Function<Integer, Text> numberToText() {
+        protected Function<Integer, Text> defaultNumberToText(Integer min, Integer max) {
             return number -> Text.literal(number.toString());
         }
     }
@@ -105,7 +108,7 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
         private static final int RELEVANT_DIGITS = 4;
 
         @Override
-        protected DoubleFunction<Double> controlToNumber() {
+        protected DoubleFunction<Double> defaultControlToNumber(Double min, Double max) {
             if(step == null) {
                 double diff = max-min;
                 return value -> min + value * diff;
@@ -115,13 +118,13 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
         }
 
         @Override
-        protected Function<Double, Double> numberToControl() {
+        protected Function<Double, Double> defaultNumberToControl(Double min, Double max) {
             double diff = max - min;
             return value -> (MathHelper.clamp(value, min, max) - min) / diff;
         }
 
         @Override
-        protected Function<Double, Text> numberToText() {
+        protected Function<Double, Text> defaultNumberToText(Double min, Double max) {
             int decimalDigits = Math.max(1, RELEVANT_DIGITS - ((int) Math.floor(Math.log10(Math.max(Math.abs(min), Math.abs(max))))));
             String formatString = "%." + decimalDigits + "f";
             return number -> Text.literal(String.format(formatString, number));

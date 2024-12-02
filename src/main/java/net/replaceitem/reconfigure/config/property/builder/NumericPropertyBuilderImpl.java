@@ -3,14 +3,15 @@ package net.replaceitem.reconfigure.config.property.builder;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.NumericPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class NumericPropertyBuilderImpl<SELF extends NumericPropertyBuilder<SELF, T>, T extends Number> extends PropertyBuilderImpl<SELF, T> implements NumericPropertyBuilder<SELF, T> {
     
-    protected T min;
-    protected T max;
+    @Nullable protected T min;
+    @Nullable protected T max;
 
-    public NumericPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
-        super(propertyBuildContext, id);
+    public NumericPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, T defaultValue) {
+        super(propertyBuildContext, id, defaultValue);
     }
     
     
@@ -31,5 +32,10 @@ public abstract class NumericPropertyBuilderImpl<SELF extends NumericPropertyBui
         return min(min).max(max);
     }
 
-
+    @Override
+    protected void preBuild() {
+        super.preBuild();
+        if(this.min == null) throw new RuntimeException("Missing min value for property " + id);
+        if(this.max == null) throw new RuntimeException("Missing max value for property " + id);
+    }
 }

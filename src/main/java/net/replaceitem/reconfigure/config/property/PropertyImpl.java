@@ -5,6 +5,7 @@ import net.replaceitem.reconfigure.Reconfigure;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.config.serialization.Caster;
 import net.replaceitem.reconfigure.config.serialization.CastingException;
+import org.jetbrains.annotations.Nullable;
 
 public class PropertyImpl<T> implements Property<T> {
     protected T value;
@@ -29,7 +30,7 @@ public class PropertyImpl<T> implements Property<T> {
         this.value = value;
     }
     
-    public void setFromObject(Object val) {
+    public void setFromObject(@Nullable Object val) {
         if(val == null) {
             Reconfigure.LOGGER.error("Could not set property {} to null", id);
             return;

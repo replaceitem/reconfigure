@@ -47,6 +47,8 @@ dependencies {
 
     modTestmodImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
     
+    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    
     testmodImplementation sourceSets.main.output
 }
 

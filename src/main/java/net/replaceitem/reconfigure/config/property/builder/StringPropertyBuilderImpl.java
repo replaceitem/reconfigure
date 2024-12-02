@@ -9,8 +9,7 @@ import net.replaceitem.reconfigure.config.widget.builder.TextFieldWidgetBuilderI
 
 public class StringPropertyBuilderImpl extends PropertyBuilderImpl<StringPropertyBuilder, String> implements StringPropertyBuilder {
     public StringPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
-        super(propertyBuildContext, id);
-        defaultValue = "";
+        super(propertyBuildContext, id, "");
     }
 
     @Override

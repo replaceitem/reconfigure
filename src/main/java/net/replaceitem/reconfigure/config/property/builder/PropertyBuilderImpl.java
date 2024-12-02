@@ -16,9 +16,10 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     protected T defaultValue;
     protected final Identifier id;
 
-    protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
+    protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, T defaultValue) {
         this.propertyBuildContext = propertyBuildContext;
         this.id = id;
+        this.defaultValue = defaultValue;
     }
 
     @Override
@@ -38,10 +39,9 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
 
     /**
      * This is run before calling {@link #buildImpl()}.
-     * Can be used to fill in missing default values.
+     * Can be used to fill in missing default values or validate values.
      */
     protected void preBuild() {
-        if(defaultValue == null) throw new IllegalStateException("defaultValue not set");
     }
 
     /**

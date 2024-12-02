@@ -8,8 +8,7 @@ import net.replaceitem.reconfigure.config.widget.builder.SliderWidgetBuilderImpl
 
 public class DoublePropertyBuilderImpl extends NumericPropertyBuilderImpl<DoublePropertyBuilder, Double> implements DoublePropertyBuilder {
     public DoublePropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
-        super(propertyBuildContext, id);
-        defaultValue = 0.0;
+        super(propertyBuildContext, id, 0.0);
     }
 
     @Override
@@ -19,6 +18,8 @@ public class DoublePropertyBuilderImpl extends NumericPropertyBuilderImpl<Double
 
     @Override
     public SliderWidgetBuilderImpl<?, Double> asSlider() {
+        assert min != null;
+        assert max != null;
         return SliderWidgetBuilderImpl.createDouble(propertyBuildContext, this).min(min).max(max);
     }
 }

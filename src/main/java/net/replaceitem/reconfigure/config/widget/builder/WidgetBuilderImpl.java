@@ -9,14 +9,15 @@ import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.config.widget.Widget;
+import org.jetbrains.annotations.Nullable;
 
 import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 
 public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> implements WidgetBuilder<SELF, T> {
     private final PropertyBuildContext propertyBuildContext;
-    protected Text displayName;
-    protected Tooltip tooltip;
     protected final PropertyBuilderImpl<?, T> propertyBuilder;
+    @Nullable protected Text displayName;
+    @Nullable protected Tooltip tooltip;
 
     protected WidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder) {
         this.propertyBuildContext = propertyBuildContext;
@@ -65,11 +66,9 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
     }
 
     protected Widget<T> buildImpl(PropertyImpl<T> property) {
-        return new Widget<>(property, buildWidgetFactory(getBaseSettings()));
-    }
-    
-    private BaseSettings getBaseSettings() {
-        return new BaseSettings(displayName, tooltip);
+        assert displayName != null;
+        assert tooltip != null;
+        return new Widget<>(property, buildWidgetFactory(new BaseSettings(displayName, tooltip)));
     }
     
     protected abstract ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings);

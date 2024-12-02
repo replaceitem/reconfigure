@@ -4,13 +4,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.ConfigTabBuilder;
 import net.replaceitem.reconfigure.config.ConfigImpl;
+import org.jetbrains.annotations.Nullable;
 
 import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 
 public class ConfigTabBuilderImpl implements ConfigTabBuilder {
     private final ConfigImpl config;
     private final String name;
-    private Text title;
+    @Nullable private Text title;
 
     public ConfigTabBuilderImpl(ConfigImpl config, String name) {
         this.config = config;

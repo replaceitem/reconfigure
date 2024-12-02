@@ -10,6 +10,7 @@ import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.property.builder.BooleanPropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.widget.config.CyclingButtonConfigWidget;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.List;
@@ -24,7 +25,7 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
 
     private Collection<T> values;
     private final Collection<T> allValues;
-    private Function<T, Text> valueToText;
+    @Nullable private Function<T, Text> valueToText;
 
     public CyclingButtonWidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder, Collection<T> values) {
         super(propertyBuildContext, propertyBuilder);
@@ -63,6 +64,7 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
 
     @Override
     protected ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings) {
+        assert valueToText != null;
         return (parent, property) -> new CyclingButtonConfigWidget<>(parent, property, baseSettings, valueToText, values);
     }
 }

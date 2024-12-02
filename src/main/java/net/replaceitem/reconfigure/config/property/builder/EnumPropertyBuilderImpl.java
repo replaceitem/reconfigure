@@ -14,10 +14,11 @@ public class EnumPropertyBuilderImpl<T> extends PropertyBuilderImpl<EnumProperty
     private final Collection<T> values;
 
     public EnumPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, Collection<T> values) {
-        super(propertyBuildContext, id);
-        if(values.isEmpty()) throw new IllegalArgumentException("EnumProperty cannot have no values, must be at least one.");
+        super(propertyBuildContext, id, values.stream()
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("EnumProperty " + id + " cannot have no values, must be at least one."))
+        );
         this.values = values;
-        this.defaultValue = values.stream().findFirst().orElseThrow();
     }
 
     @Override
