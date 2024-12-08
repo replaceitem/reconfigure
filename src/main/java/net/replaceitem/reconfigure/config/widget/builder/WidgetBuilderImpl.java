@@ -4,11 +4,11 @@ import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.api.widget.WidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
+import net.replaceitem.reconfigure.config.PropertyHolder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
-import net.replaceitem.reconfigure.config.widget.Widget;
 import org.jetbrains.annotations.Nullable;
 
 import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
@@ -42,33 +42,33 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
     }
 
     /**
-     * This is run before calling {@link #buildImpl(PropertyImpl)}.
+     * This is run before calling {@link #buildImpl(PropertyHolder)}.
      * Can be used to fill in missing default values.
      */
-    protected void preBuild(PropertyImpl<T> property) {
+    protected void preBuild(PropertyHolder<T> property) {
         if(displayName == null) displayName(Text.translatable(property.getId().toTranslationKey(NAMESPACE + ".property")));
     }
 
     /**
-     * This is run after {@link #buildImpl(PropertyImpl)} to add the created Property to the tab.
+     * This is run after {@link #buildImpl(PropertyHolder)} to add the created Property to the tab.
      */
-    protected void postBuild(Widget<T> widget) {
-        this.propertyBuildContext.addWidget(widget);
+    protected void postBuild(PropertyHolder<T> property) {
+        this.propertyBuildContext.addProperty(property);
     }
 
     @Override
     public final PropertyImpl<T> build() {
-        PropertyImpl<T> property = this.propertyBuilder.build();
+        PropertyHolder<T> property = this.propertyBuilder.build();
         this.preBuild(property);
-        Widget<T> widget = this.buildImpl(property);
+        PropertyHolder<T> widget = this.buildImpl(property);
         this.postBuild(widget);
-        return property;
+        return property.getProperty();
     }
 
-    protected Widget<T> buildImpl(PropertyImpl<T> property) {
+    protected PropertyHolder<T> buildImpl(PropertyHolder<T> property) {
         assert displayName != null;
         assert tooltip != null;
-        return new Widget<>(property, buildWidgetFactory(new BaseSettings(displayName, tooltip)));
+        return property.withWidgetFactory(buildWidgetFactory(new BaseSettings(displayName, tooltip)));
     }
     
     protected abstract ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings);

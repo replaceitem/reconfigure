@@ -3,9 +3,10 @@ package net.replaceitem.reconfigure.config.property.builder;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.PropertyBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
+import net.replaceitem.reconfigure.config.PropertyHolder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
-import net.replaceitem.reconfigure.config.serialization.Caster;
+import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.config.widget.builder.CustomWidgetBuilderImpl;
 
@@ -34,7 +35,7 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     }
     
     
-    protected abstract Caster<T> getCaster();
+    protected abstract TypeAdapter<T, ?> getTypeAdapter();
 
 
     /**
@@ -47,19 +48,19 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     /**
      * This is run after {@link #buildImpl()} to add the created Property to the tab.
      */
-    protected void postBuild(PropertyImpl<T> property) {
-        this.propertyBuildContext.addProperty(property);
+    protected void postBuild(PropertyHolder<T> property) {
     }
 
-    public final PropertyImpl<T> build() {
+    public final PropertyHolder<T> build() {
         this.preBuild();
-        PropertyImpl<T> property = this.buildImpl();
+        PropertyHolder<T> property = this.buildImpl();
         this.postBuild(property);
         return property;
     }
 
-    protected PropertyImpl<T> buildImpl() {
-        return new PropertyImpl<>(id, defaultValue, this.getCaster());
+    protected PropertyHolder<T> buildImpl() {
+        PropertyImpl<T> property = new PropertyImpl<>(id, defaultValue);
+        return new PropertyHolder<>(property, this.getTypeAdapter(), null);
     }
 
     @SuppressWarnings("unchecked")

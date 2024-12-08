@@ -7,16 +7,13 @@ import net.replaceitem.reconfigure.api.property.BooleanPropertyBuilder;
 import net.replaceitem.reconfigure.api.property.EnumPropertyBuilder;
 import net.replaceitem.reconfigure.api.property.StringPropertyBuilder;
 import net.replaceitem.reconfigure.config.ConfigImpl;
+import net.replaceitem.reconfigure.config.PropertyHolder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
-import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.config.property.builder.*;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 
@@ -88,17 +85,12 @@ public class ConfigTabImpl implements ConfigTab, PropertyBuildContext {
     }
 
     @Override
-    public void addProperty(PropertyImpl<?> property) {
-        this.config.addProperty(property);
+    public void addProperty(PropertyHolder<?> holder) {
+        this.entries.add(holder);
+        this.config.addProperty(holder);
     }
-
-    @Override
-    public void addWidget(Widget<?> widget) {
-        this.entries.add(widget);
-    }
-
 
     public interface TabItem {
-        ConfigWidget createWidget(ConfigWidgetList parent);
+        Optional<ConfigWidget> createWidget(ConfigWidgetList parent);
     }
 }

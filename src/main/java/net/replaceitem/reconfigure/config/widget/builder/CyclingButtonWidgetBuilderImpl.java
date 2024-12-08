@@ -4,10 +4,10 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.api.widget.CyclingButtonWidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
+import net.replaceitem.reconfigure.config.PropertyHolder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
-import net.replaceitem.reconfigure.config.property.PropertyImpl;
-import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.property.builder.BooleanPropertyBuilderImpl;
+import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.widget.config.CyclingButtonConfigWidget;
 import org.jetbrains.annotations.Nullable;
@@ -52,7 +52,7 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
     }
 
     @Override
-    protected void preBuild(PropertyImpl<T> property) {
+    protected void preBuild(PropertyHolder<T> property) {
         if(values.stream().anyMatch(Predicate.not(allValues::contains))) {
             String invalidValues = values.stream().filter(Predicate.not(allValues::contains)).map(Objects::toString).collect(Collectors.joining(", "));
             String validValues = allValues.stream().map(Objects::toString).collect(Collectors.joining(", "));

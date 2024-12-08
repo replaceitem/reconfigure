@@ -3,7 +3,8 @@ package net.replaceitem.reconfigure.config.property.builder;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.StringPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
-import net.replaceitem.reconfigure.config.serialization.Caster;
+import net.replaceitem.reconfigure.config.serialization.Intermediary;
+import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
 import net.replaceitem.reconfigure.config.widget.builder.EditBoxWidgetBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.builder.TextFieldWidgetBuilderImpl;
 
@@ -13,8 +14,8 @@ public class StringPropertyBuilderImpl extends PropertyBuilderImpl<StringPropert
     }
 
     @Override
-    protected Caster<String> getCaster() {
-        return Caster.STRING;
+    protected TypeAdapter<String, Intermediary.IntermediaryString> getTypeAdapter() {
+        return TypeAdapter.STRING;
     }
 
     @Override

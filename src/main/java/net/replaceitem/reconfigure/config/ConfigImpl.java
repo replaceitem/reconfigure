@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.Reconfigure;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.ConfigTabBuilder;
-import net.replaceitem.reconfigure.config.property.PropertyImpl;
+import net.replaceitem.reconfigure.config.serialization.SerializationTarget;
 import net.replaceitem.reconfigure.config.serialization.Serializer;
 import net.replaceitem.reconfigure.config.widget.ConfigTabBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
@@ -22,13 +22,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class ConfigImpl implements Config {
+public class ConfigImpl implements Config, SerializationTarget {
     private final String namespace;
     private final Text title;
     private final List<ConfigTabImpl> tabs = new ArrayList<>();
-    @Nullable private final Serializer serializer;
+    @Nullable private final Serializer<?> serializer;
 
-    protected final Map<Identifier, PropertyImpl<?>> properties = new LinkedHashMap<>();
+    protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
     protected ConfigImpl(String namespace, Text title, @Nullable Serializer serializer) {
         this.namespace = namespace;
@@ -41,6 +41,7 @@ public class ConfigImpl implements Config {
         return new ConfigTabBuilderImpl(this, name);
     }
 
+    @Override
     public String getNamespace() {
         return namespace;
     }
@@ -52,16 +53,27 @@ public class ConfigImpl implements Config {
     public List<ConfigTabImpl> getTabs() {
         return Collections.unmodifiableList(tabs);
     }
-    
-    public Map<Identifier, PropertyImpl<?>> getProperties() {
-        return properties;
+
+    @Override
+    public @Nullable PropertyHolder<?> getProperty(Identifier key) {
+        return this.properties.get(key);
+    }
+
+    @Override
+    public @Nullable PropertyHolder<?> getProperty(String key) {
+        return this.getProperty(Identifier.of(this.namespace, key));
+    }
+
+    @Override
+    public Collection<PropertyHolder<?>> getProperties() {
+        return properties.values();
     }
 
     public void addTab(ConfigTabImpl configTab) {
         this.tabs.add(configTab);
     }
 
-    public void addProperty(PropertyImpl<?> property) {
+    public void addProperty(PropertyHolder<?> property) {
         if(this.properties.containsKey(property.getId())) {
             throw new RuntimeException("Config " + namespace + " already contains a property with id " + property.getId());
         }
@@ -74,7 +86,7 @@ public class ConfigImpl implements Config {
         return new ConfigScreen(this, parent);
     }
     
-    private static File getConfigFile(String namespace, Serializer serializer) throws IOException {
+    private static File getConfigFile(String namespace, Serializer<?> serializer) throws IOException {
         Path configDir = FabricLoader.getInstance().getConfigDir().normalize();
         Files.createDirectories(configDir);
         return configDir.resolve(namespace + "." + serializer.getFileExtension()).normalize().toFile();

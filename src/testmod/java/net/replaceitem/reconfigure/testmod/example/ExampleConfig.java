@@ -57,7 +57,32 @@ public class ExampleConfig {
             .displayName(Text.literal("Month"))
             .values(List.of(Month.JANUARY, Month.JUNE, Month.DECEMBER))
             .build();
+    public final Property<NumberValue> NON_ENUM = SIMPLE_TAB
+            .createEnumProperty("non_enum", List.of(NumberValue.A, NumberValue.B))
+            .asCyclingButton()
+            .valueToText(s -> Text.literal(s.toString()))
+            .displayName(Text.literal("Non enum"))
+            .build();
 
     Void TEXT = SIMPLE_TAB.createHeadline(Text.literal("Text"));
     public final Property<String> TEXT_BOX = SIMPLE_TAB.createStringProperty("box").asEditBox().placeholder("Enter some text").build();
+    
+    
+    public static class NumberValue {
+        public int num;
+        public String name;
+
+        public NumberValue(int num, String name) {
+            this.num = num;
+            this.name = name;
+        }
+        
+        public static final NumberValue A = new NumberValue(2, "Two");
+        public static final NumberValue B = new NumberValue(3, "Three");
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
 }

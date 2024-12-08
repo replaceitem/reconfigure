@@ -5,6 +5,8 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 import net.replaceitem.reconfigure.screen.widget.config.HeadlineConfigWidget;
 
+import java.util.Optional;
+
 public class Headline implements ConfigTabImpl.TabItem {
     private final Text text;
 
@@ -13,7 +15,7 @@ public class Headline implements ConfigTabImpl.TabItem {
     }
 
     @Override
-    public ConfigWidget createWidget(ConfigWidgetList parent) {
-        return new HeadlineConfigWidget(parent, text);
+    public Optional<ConfigWidget> createWidget(ConfigWidgetList parent) {
+        return Optional.of(new HeadlineConfigWidget(parent, text));
     }
 }

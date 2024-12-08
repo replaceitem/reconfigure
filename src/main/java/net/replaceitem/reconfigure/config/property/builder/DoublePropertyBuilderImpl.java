@@ -3,7 +3,8 @@ package net.replaceitem.reconfigure.config.property.builder;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.DoublePropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
-import net.replaceitem.reconfigure.config.serialization.Caster;
+import net.replaceitem.reconfigure.config.serialization.Intermediary;
+import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
 import net.replaceitem.reconfigure.config.widget.builder.SliderWidgetBuilderImpl;
 
 public class DoublePropertyBuilderImpl extends NumericPropertyBuilderImpl<DoublePropertyBuilder, Double> implements DoublePropertyBuilder {
@@ -12,8 +13,8 @@ public class DoublePropertyBuilderImpl extends NumericPropertyBuilderImpl<Double
     }
 
     @Override
-    protected Caster<Double> getCaster() {
-        return Caster.DOUBLE;
+    protected TypeAdapter<Double, Intermediary.IntermediaryDouble> getTypeAdapter() {
+        return TypeAdapter.DOUBLE;
     }
 
     @Override

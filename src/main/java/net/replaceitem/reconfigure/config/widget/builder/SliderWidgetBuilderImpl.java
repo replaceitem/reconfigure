@@ -4,8 +4,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.replaceitem.reconfigure.api.widget.SliderWidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
+import net.replaceitem.reconfigure.config.PropertyHolder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
-import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.widget.config.SliderConfigWidget;
@@ -46,7 +46,7 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
     }
 
     @Override
-    protected void preBuild(PropertyImpl<T> property) {
+    protected void preBuild(PropertyHolder<T> property) {
         super.preBuild(property);
         if(min == null) throw new RuntimeException("Missing min value for slider widget " + property.getId());
         if(max == null) throw new RuntimeException("Missing max value for slider widget " + property.getId());

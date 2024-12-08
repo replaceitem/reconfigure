@@ -1,8 +1,7 @@
 package net.replaceitem.reconfigure.config.property;
 
-import net.replaceitem.reconfigure.config.widget.Widget;
+import net.replaceitem.reconfigure.config.PropertyHolder;
 
 public interface PropertyBuildContext {
-    void addProperty(PropertyImpl<?> property);
-    void addWidget(Widget<?> widget);
+    void addProperty(PropertyHolder<?> property);
 }
