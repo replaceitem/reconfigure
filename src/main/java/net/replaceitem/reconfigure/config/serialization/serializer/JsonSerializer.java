@@ -67,26 +67,26 @@ public class JsonSerializer extends CharSerializer<JsonElement> {
         }
 
         @Override
-        protected String unmarshallString(JsonElement value) {
-            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isString()) throw new RuntimeException("Expected a string");
+        protected String unmarshallString(JsonElement value) throws SerializationException {
+            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isString()) throw new SerializationException("Expected a string");
             return value.getAsString();
         }
 
         @Override
-        protected Integer unmarshallInteger(JsonElement value) {
-            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber()) throw new RuntimeException("Expected an integer");
+        protected Integer unmarshallInteger(JsonElement value) throws SerializationException {
+            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber()) throw new SerializationException("Expected an integer");
             return value.getAsInt();
         }
 
         @Override
-        protected Double unmarshallDouble(JsonElement value) {
-            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber()) throw new RuntimeException("Expected a double");
+        protected Double unmarshallDouble(JsonElement value) throws SerializationException {
+            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber()) throw new SerializationException("Expected a double");
             return value.getAsDouble();
         }
 
         @Override
-        protected Boolean unmarshallBoolean(JsonElement value) {
-            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isBoolean()) throw new RuntimeException("Expected a boolean");
+        protected Boolean unmarshallBoolean(JsonElement value) throws SerializationException {
+            if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isBoolean()) throw new SerializationException("Expected a boolean");
             return value.getAsBoolean();
         }
     }
