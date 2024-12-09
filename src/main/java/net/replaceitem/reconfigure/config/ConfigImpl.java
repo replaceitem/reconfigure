@@ -14,10 +14,7 @@ import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 import net.replaceitem.reconfigure.screen.ConfigScreen;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -30,7 +27,7 @@ public class ConfigImpl implements Config, SerializationTarget {
 
     protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
-    protected ConfigImpl(String namespace, Text title, @Nullable Serializer serializer) {
+    protected ConfigImpl(String namespace, Text title, @Nullable Serializer<?> serializer) {
         this.namespace = namespace;
         this.title = title;
         this.serializer = serializer;
