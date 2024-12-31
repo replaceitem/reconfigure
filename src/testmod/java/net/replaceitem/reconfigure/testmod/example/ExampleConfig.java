@@ -6,6 +6,7 @@ import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.ConfigTab;
 import net.replaceitem.reconfigure.api.Serializers;
+import net.replaceitem.reconfigure.config.property.PropertyImpl;
 
 import java.time.DayOfWeek;
 import java.time.Month;
@@ -66,6 +67,9 @@ public class ExampleConfig {
 
     Void TEXT = SIMPLE_TAB.createHeadline(Text.literal("Text"));
     public final Property<String> TEXT_BOX = SIMPLE_TAB.createStringProperty("box").asEditBox().placeholder("Enter some text").build();
+    
+    Void LIST = SIMPLE_TAB.createHeadline(Text.literal("List"));
+    public final PropertyImpl<List<String>> CHIP_LIST = SIMPLE_TAB.createListProperty("chiplist").asChipList().build();
     
     
     public static class NumberValue {

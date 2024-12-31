@@ -97,7 +97,7 @@ public class JsonSerializer extends CharSerializer<JsonElement> {
         @Override
         protected List<String> unmarshallList(JsonElement value) throws SerializationException {
             if(!value.isJsonArray()) throw new SerializationException("Expected a list");
-            return new ArrayList<>(value.getAsJsonArray().asList().stream().map(JsonElement::toString).toList());
+            return new ArrayList<>(value.getAsJsonArray().asList().stream().map(JsonElement::getAsString).toList());
         }
     }
 }

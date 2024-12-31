@@ -26,9 +26,7 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
 
     @Override
     protected void positionName() {
-        int maxNameWidth = this.width - 2 * this.textPadding;
-        this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
-        this.nameWidget.setPosition(x + textPadding, y + textPadding);
+        positionNameFullWidth();
     }
 
     @Override

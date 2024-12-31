@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,8 @@ public class PropertiesSerializer extends CharSerializer<String> {
     
     private static class PropertiesMarshaller extends Marshaller<String> {
 
+        private static final String ESCAPED_COMMA_REPLACEMENT = Matcher.quoteReplacement("\\,");
+
         @Override
         public String marshall(Intermediary<?> intermediary) {
             return switch (intermediary) {
@@ -55,7 +58,7 @@ public class PropertiesSerializer extends CharSerializer<String> {
                 case Intermediary.IntermediaryInteger intermediaryInteger -> Integer.toString(intermediaryInteger.getValue());
                 case Intermediary.IntermediaryDouble intermediaryDouble -> Double.toString(intermediaryDouble.getValue());
                 case Intermediary.IntermediaryBoolean intermediaryBoolean -> Boolean.toString(intermediaryBoolean.getValue());
-                case Intermediary.IntermediaryList intermediaryList -> intermediaryList.getValue().stream().map(s -> s.replaceAll(",", "\\,")).collect(Collectors.joining(","));
+                case Intermediary.IntermediaryList intermediaryList -> intermediaryList.getValue().stream().map(s -> s.replaceAll(",", ESCAPED_COMMA_REPLACEMENT)).collect(Collectors.joining(","));
             };
         }
 

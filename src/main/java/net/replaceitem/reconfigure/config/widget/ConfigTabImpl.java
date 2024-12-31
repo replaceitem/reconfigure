@@ -83,6 +83,11 @@ public class ConfigTabImpl implements ConfigTab, PropertyBuildContext {
     public <T> EnumPropertyBuilder<T> createEnumProperty(String name, List<T> values) {
         return new EnumPropertyBuilderImpl<>(this, getPropertyId(name), values);
     }
+    
+    @Override
+    public ListPropertyBuilderImpl createListProperty(String name) {
+        return new ListPropertyBuilderImpl(this, getPropertyId(name), new ArrayList<>());
+    }
 
     @Override
     public void addProperty(PropertyHolder<?> holder) {
