@@ -10,4 +10,5 @@ public class IntermediaryType<M extends Intermediary<?>> {
     public static final IntermediaryType<Intermediary.IntermediaryInteger> INTEGER = new IntermediaryType<>();
     public static final IntermediaryType<Intermediary.IntermediaryDouble> DOUBLE = new IntermediaryType<>();
     public static final IntermediaryType<Intermediary.IntermediaryBoolean> BOOLEAN = new IntermediaryType<>();
+    public static final IntermediaryType<Intermediary.IntermediaryList> LIST = new IntermediaryType<>();
 }

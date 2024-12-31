@@ -5,6 +5,8 @@ import net.minecraft.nbt.*;
 import net.replaceitem.reconfigure.config.serialization.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NbtSerializer extends Serializer<NbtElement> {
     
@@ -49,6 +51,7 @@ public class NbtSerializer extends Serializer<NbtElement> {
                 case Intermediary.IntermediaryInteger intermediaryInteger -> NbtInt.of(intermediaryInteger.getValue());
                 case Intermediary.IntermediaryDouble intermediaryDouble -> NbtDouble.of(intermediaryDouble.getValue());
                 case Intermediary.IntermediaryBoolean intermediaryBoolean -> NbtByte.of(intermediaryBoolean.getValue());
+                case Intermediary.IntermediaryList intermediaryList -> createStringList(intermediaryList.getValue());
             };
         }
 
@@ -74,6 +77,18 @@ public class NbtSerializer extends Serializer<NbtElement> {
         protected Boolean unmarshallBoolean(NbtElement value) throws SerializationException {
             if (!(value instanceof NbtByte nbtNumber)) throw new SerializationException("Expected a byte");
             return nbtNumber.byteValue() != 0;
+        }
+
+        @Override
+        protected List<String> unmarshallList(NbtElement value) throws SerializationException {
+            if (!(value instanceof NbtList nbtList)) throw new SerializationException("Expected a list");
+            return new ArrayList<>(nbtList.stream().map(NbtElement::toString).toList());
+        }
+
+        private static NbtList createStringList(List<String> strings) {
+            NbtList nbtList = new NbtList();
+            nbtList.addAll(strings.stream().map(NbtString::of).toList());
+            return nbtList;
         }
     }
 }

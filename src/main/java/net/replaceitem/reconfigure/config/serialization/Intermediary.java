@@ -1,10 +1,8 @@
 package net.replaceitem.reconfigure.config.serialization;
 
-public abstract sealed class Intermediary<T> permits
-        Intermediary.IntermediaryString,
-        Intermediary.IntermediaryInteger,
-        Intermediary.IntermediaryDouble,
-        Intermediary.IntermediaryBoolean
+import java.util.List;
+
+public abstract sealed class Intermediary<T> permits Intermediary.IntermediaryBoolean, Intermediary.IntermediaryDouble, Intermediary.IntermediaryInteger, Intermediary.IntermediaryList, Intermediary.IntermediaryString
 {
     private final T value;
 
@@ -36,6 +34,12 @@ public abstract sealed class Intermediary<T> permits
 
     public static final class IntermediaryBoolean extends Intermediary<Boolean> {
         public IntermediaryBoolean(Boolean value) {
+            super(value);
+        }
+    }
+    
+    public static final class IntermediaryList extends Intermediary<List<String>> {
+        public IntermediaryList(List<String> value) {
             super(value);
         }
     }

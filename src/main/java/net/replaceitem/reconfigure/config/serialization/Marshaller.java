@@ -2,6 +2,8 @@ package net.replaceitem.reconfigure.config.serialization;
 
 import net.replaceitem.reconfigure.Reconfigure;
 
+import java.util.List;
+
 import static net.replaceitem.reconfigure.config.serialization.IntermediaryType.*;
 
 /**
@@ -21,6 +23,7 @@ public abstract class Marshaller<T> {
         if(type == INTEGER) return type.cast(new Intermediary.IntermediaryInteger(this.unmarshallInteger(value)));
         if(type == DOUBLE) return type.cast(new Intermediary.IntermediaryDouble(this.unmarshallDouble(value)));
         if(type == BOOLEAN) return type.cast(new Intermediary.IntermediaryBoolean(this.unmarshallBoolean(value)));
+        if(type == LIST) return type.cast(new Intermediary.IntermediaryList(this.unmarshallList(value)));
         throw new SerializationException("Cannot unmarshall to type " + type);
     }
 
@@ -28,6 +31,7 @@ public abstract class Marshaller<T> {
     protected abstract Integer unmarshallInteger(T value) throws SerializationException;
     protected abstract Double unmarshallDouble(T value) throws SerializationException;
     protected abstract Boolean unmarshallBoolean(T value) throws SerializationException;
+    protected abstract List<String> unmarshallList(T value) throws SerializationException;
 
 
     public <P> void setProperty(SerializationTarget.SerializationProperty<P> holder, T value) {

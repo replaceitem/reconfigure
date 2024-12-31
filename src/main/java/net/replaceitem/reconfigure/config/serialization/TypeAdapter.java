@@ -1,6 +1,7 @@
 package net.replaceitem.reconfigure.config.serialization;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ public abstract class TypeAdapter<T,M extends Intermediary<?>> {
     public static final TypeAdapter<Integer, Intermediary.IntermediaryInteger> INTEGER = simple(IntermediaryType.INTEGER, Intermediary.IntermediaryInteger::new);
     public static final TypeAdapter<Double, Intermediary.IntermediaryDouble> DOUBLE = simple(IntermediaryType.DOUBLE, Intermediary.IntermediaryDouble::new);
     public static final TypeAdapter<Boolean, Intermediary.IntermediaryBoolean> BOOLEAN = simple(IntermediaryType.BOOLEAN, Intermediary.IntermediaryBoolean::new);
+    public static final TypeAdapter<List<String>, Intermediary.IntermediaryList> LIST = simple(IntermediaryType.LIST, Intermediary.IntermediaryList::new);
     
     public static <T> TypeAdapter<T, Intermediary.IntermediaryString> forEnum(Collection<T> values) {
         return new TypeAdapter<>(IntermediaryType.STRING) {

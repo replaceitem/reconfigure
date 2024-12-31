@@ -7,8 +7,12 @@ import net.replaceitem.reconfigure.util.OrderedProperties;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class PropertiesSerializer extends CharSerializer<String> {
     
@@ -51,6 +55,7 @@ public class PropertiesSerializer extends CharSerializer<String> {
                 case Intermediary.IntermediaryInteger intermediaryInteger -> Integer.toString(intermediaryInteger.getValue());
                 case Intermediary.IntermediaryDouble intermediaryDouble -> Double.toString(intermediaryDouble.getValue());
                 case Intermediary.IntermediaryBoolean intermediaryBoolean -> Boolean.toString(intermediaryBoolean.getValue());
+                case Intermediary.IntermediaryList intermediaryList -> intermediaryList.getValue().stream().map(s -> s.replaceAll(",", "\\,")).collect(Collectors.joining(","));
             };
         }
 
@@ -82,6 +87,13 @@ public class PropertiesSerializer extends CharSerializer<String> {
             if(value.equalsIgnoreCase("true")) return true;
             if(value.equalsIgnoreCase("false")) return false;
             throw new SerializationException("Could not parse boolean. Expected 'true' or 'false'");
+        }
+        
+        private static final Pattern SPLIT_LIST_REGEX = Pattern.compile("(?<!\\\\),");
+
+        @Override
+        protected List<String> unmarshallList(String value) {
+            return new ArrayList<>(SPLIT_LIST_REGEX.splitAsStream(value).map(s -> s.replace("\\,", ",")).toList());
         }
     }
 }

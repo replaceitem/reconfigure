@@ -3,11 +3,14 @@ package net.replaceitem.reconfigure.config.serialization.serializer;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.mojang.serialization.JsonOps;
 import net.replaceitem.reconfigure.config.serialization.*;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class JsonSerializer extends CharSerializer<JsonElement> {
@@ -63,6 +66,7 @@ public class JsonSerializer extends CharSerializer<JsonElement> {
                 case Intermediary.IntermediaryInteger intermediaryInteger -> new JsonPrimitive(intermediaryInteger.getValue());
                 case Intermediary.IntermediaryDouble intermediaryDouble -> new JsonPrimitive(intermediaryDouble.getValue());
                 case Intermediary.IntermediaryBoolean intermediaryBoolean -> new JsonPrimitive(intermediaryBoolean.getValue());
+                case Intermediary.IntermediaryList intermediaryList -> JsonOps.INSTANCE.createList(intermediaryList.getValue().stream().map(JsonPrimitive::new));
             };
         }
 
@@ -88,6 +92,12 @@ public class JsonSerializer extends CharSerializer<JsonElement> {
         protected Boolean unmarshallBoolean(JsonElement value) throws SerializationException {
             if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isBoolean()) throw new SerializationException("Expected a boolean");
             return value.getAsBoolean();
+        }
+
+        @Override
+        protected List<String> unmarshallList(JsonElement value) throws SerializationException {
+            if(!value.isJsonArray()) throw new SerializationException("Expected a list");
+            return new ArrayList<>(value.getAsJsonArray().asList().stream().map(JsonElement::toString).toList());
         }
     }
 }
