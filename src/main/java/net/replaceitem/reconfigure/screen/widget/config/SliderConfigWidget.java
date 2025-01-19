@@ -27,6 +27,7 @@ public class SliderConfigWidget<T extends Number> extends SimpleConfigWidget<Sli
             @Override
             protected void applyValue() {
                 sliderValue = this.value;
+                SliderConfigWidget.this.onValueChanged();
             }
         });
     }

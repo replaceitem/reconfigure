@@ -65,12 +65,14 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         Chip chip = new Chip(this.parent.getTextRenderer(), value);
         this.chips.add(chip);
         this.children.add(chip);
+        this.onValueChanged();
         refreshChips();
     }
 
     private void removeChip(Chip chip) {
         this.chips.remove(chip);
         this.children.remove(chip);
+        this.onValueChanged();
         refreshChips();
     }
 

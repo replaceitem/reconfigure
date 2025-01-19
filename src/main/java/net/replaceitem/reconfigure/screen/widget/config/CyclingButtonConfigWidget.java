@@ -22,8 +22,7 @@ public class CyclingButtonConfigWidget<P> extends SimpleConfigWidget<CyclingButt
                 .omitKeyText()
                 .values(values)
                 .initially(property.get())
-                .build(Text.empty(), (button, value) -> {
-                }));
+                .build(Text.empty(), (button, value) -> this.onValueChanged()));
     }
 
     @Override

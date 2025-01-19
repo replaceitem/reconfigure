@@ -10,7 +10,7 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boolean> {
     public CheckboxConfigWidget(ConfigWidgetList listWidget, PropertyImpl<Boolean> property, BaseSettings baseSettings) {
         super(listWidget, property, baseSettings);
-        setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).checked(property.get()).build());
+        setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).callback((checkbox, checked) -> this.onValueChanged()).checked(property.get()).build());
     }
 
     @Override

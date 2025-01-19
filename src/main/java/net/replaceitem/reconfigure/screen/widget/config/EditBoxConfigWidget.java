@@ -21,6 +21,7 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
         super(listWidget, HEIGHT, property, baseSettings);
         ScreenRect widgetPos = getWidgetPos();
         setWidget(new DynamicEditBoxWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), Text.of(placeholder), Text.empty()));
+        this.widget.setChangeListener(s -> this.onValueChanged());
         this.widget.setText(property.get());
     }
 

@@ -1,6 +1,5 @@
 package net.replaceitem.reconfigure.config.widget.builder;
 
-import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.api.widget.WidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
@@ -17,7 +16,7 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
     private final PropertyBuildContext propertyBuildContext;
     protected final PropertyBuilderImpl<?, T> propertyBuilder;
     @Nullable protected Text displayName;
-    @Nullable protected Tooltip tooltip;
+    @Nullable protected Text tooltip;
 
     protected WidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder) {
         this.propertyBuildContext = propertyBuildContext;
@@ -32,13 +31,9 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
     }
     
     @Override
-    public SELF tooltip(Tooltip tooltip) {
+    public SELF tooltip(Text tooltip) {
         this.tooltip = tooltip;
         return self();
-    }
-    @Override
-    public SELF tooltip(Text tooltipText) {
-        return tooltip(Tooltip.of(tooltipText));
     }
 
     /**
