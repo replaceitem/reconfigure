@@ -13,7 +13,8 @@ public interface SerializationTarget {
 
     interface SerializationProperty<T> {
         TypeAdapter<T,?> getTypeAdapter();
-        void set(T value);
+        void setOrDefault(T value);
+
         T get();
         Identifier getId();
     }

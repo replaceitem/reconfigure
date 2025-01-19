@@ -38,7 +38,7 @@ public abstract class Marshaller<T> {
         TypeAdapter<P, ?> typeAdapter = holder.getTypeAdapter();
         try {
             P propertyValue = convertToProperty(typeAdapter, value);
-            holder.set(propertyValue);
+            holder.setOrDefault(propertyValue);
         } catch (SerializationException e) {
             Reconfigure.LOGGER.error("Could not set property {}", holder.getId(), e);
         }

@@ -33,9 +33,17 @@ public class PropertyHolder<T> implements ConfigTabImpl.TabItem, SerializationTa
         return typeAdapter;
     }
 
-    @Override
     public void set(T value) {
         this.property.set(value);
+    }
+    
+    public void setIfValid(T value) {
+        this.property.setIfValid(value);
+    }
+    
+    @Override
+    public void setOrDefault(T value) {
+        this.property.setOrDefault(value);
     }
 
     @Override

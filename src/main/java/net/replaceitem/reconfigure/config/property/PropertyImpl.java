@@ -33,6 +33,16 @@ public class PropertyImpl<T> implements Property<T> {
     }
     
     @Override
+    public void setIfValid(T value) {
+        if(this.validate(value).isValid()) this.value = value;
+    }
+    
+    @Override
+    public void setOrDefault(T value) {
+        this.value = this.validate(value).isValid() ? value : this.defaultValue;
+    }
+    
+    @Override
     public void reset() {
         this.set(defaultValue);
     }
