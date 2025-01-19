@@ -1,11 +1,13 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
 import net.minecraft.util.Identifier;
+import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.api.property.PropertyBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.PropertyHolder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
+import net.replaceitem.reconfigure.config.ValidatorList;
 import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.config.widget.builder.CustomWidgetBuilderImpl;
@@ -16,6 +18,7 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     protected final PropertyBuildContext propertyBuildContext;
     protected T defaultValue;
     protected final Identifier id;
+    protected final ValidatorList<T> validators = new ValidatorList<>();
 
     protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, T defaultValue) {
         this.propertyBuildContext = propertyBuildContext;
@@ -26,6 +29,12 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     @Override
     public SELF defaultValue(T defaultValue) {
         this.defaultValue = defaultValue;
+        return self();
+    }
+    
+    @Override
+    public SELF addValidator(Validator<T> validator) {
+        this.validators.add(validator);
         return self();
     }
     
@@ -59,7 +68,7 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     }
 
     protected PropertyHolder<T> buildImpl() {
-        PropertyImpl<T> property = new PropertyImpl<>(id, defaultValue);
+        PropertyImpl<T> property = new PropertyImpl<>(id, defaultValue, validators);
         return new PropertyHolder<>(property, this.getTypeAdapter(), null);
     }
 
