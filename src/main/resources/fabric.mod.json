@@ -8,9 +8,9 @@
         "replaceitem"
     ],
     "contact": {
-        "homepage": "https://modrinth.com/mod/symbol-chat",
-        "issues": "https://github.com/replaceitem/symbol-chat/issues",
-        "sources": "https://github.com/replaceitem/symbol-chat"
+        "homepage": "https://modrinth.com/mod/reconfigure",
+        "issues": "https://github.com/replaceitem/reconfigure/issues",
+        "sources": "https://github.com/replaceitem/reconfigure"
     },
     "license": "MIT",
     "icon": "assets/reconfigure/icon.png",
