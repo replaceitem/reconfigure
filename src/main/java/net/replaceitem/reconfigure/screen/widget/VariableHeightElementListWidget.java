@@ -19,7 +19,7 @@ public class VariableHeightElementListWidget<E extends VariableHeightElementList
         int centerX = this.getX() + this.width / 2;
         int minX = centerX - halfEntryWidth;
         int maxX = centerX + halfEntryWidth;
-        int elementsY = MathHelper.floor(y - (double)this.getY()) - this.headerHeight + (int)this.getScrollAmount() - GAP;
+        int elementsY = MathHelper.floor(y - (double)this.getY()) - this.headerHeight + (int)this.getScrollY() - GAP;
         if(x < (double) minX || x > (double) maxX || elementsY < 0) return null;
         
         for (E child : this.children()) {
@@ -30,10 +30,9 @@ public class VariableHeightElementListWidget<E extends VariableHeightElementList
         return null;
     }
 
-
     @Override
-    protected int getMaxPosition() {
-        return this.headerHeight + this.children().stream().mapToInt(Entry::getHeight).sum() + GAP * this.getEntryCount();
+    protected int getContentsHeightWithPadding() {
+        return this.headerHeight + this.children().stream().mapToInt(Entry::getHeight).sum() + GAP * (this.getEntryCount()+1);
     }
 
     @Override
@@ -43,19 +42,19 @@ public class VariableHeightElementListWidget<E extends VariableHeightElementList
             if(child == entry) break;
             scroll += child.getHeight() + GAP;
         }
-        this.setScrollAmount(scroll);
+        this.setScrollY(scroll);
     }
 
     @Override
     protected void ensureVisible(E entry) {
         int topScrollOfElement = children().stream().takeWhile(e -> e != entry).mapToInt(Entry::getHeight).map(h -> h + GAP).sum() + this.headerHeight + GAP;
-        if(topScrollOfElement < getScrollAmount()) {
-            this.setScrollAmount(topScrollOfElement);
+        if(topScrollOfElement < getScrollY()) {
+            this.setScrollY(topScrollOfElement);
             return;
         }
         int bottomScrollOfElement = topScrollOfElement + entry.getHeight() + GAP;
-        if(bottomScrollOfElement > getScrollAmount() + height) {
-            this.setScrollAmount(bottomScrollOfElement - height);
+        if(bottomScrollOfElement > getScrollY() + height) {
+            this.setScrollY(bottomScrollOfElement - height);
         }
     }
 
@@ -79,7 +78,7 @@ public class VariableHeightElementListWidget<E extends VariableHeightElementList
 
     @Override
     public int getRowTop(int index) {
-        return this.getY() + GAP - (int)this.getScrollAmount() + this.children().stream().limit(index).mapToInt(Entry::getHeight).map(h -> h + GAP).sum() + this.headerHeight;
+        return this.getY() + GAP - (int)this.getScrollY() + this.children().stream().limit(index).mapToInt(Entry::getHeight).map(h -> h + GAP).sum() + this.headerHeight;
     }
 
     @Override

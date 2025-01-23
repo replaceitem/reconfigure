@@ -40,10 +40,10 @@ public class DynamicEditBoxWidget extends EditBoxWidget {
     public void setWidth(int width) {
         if(this.totalWidth == width) return;
         this.totalWidth = width;
-        int scrollbarWidth = overflows() ? getScrollerWidth() : 0;
+        int scrollbarWidth = overflows() ? SCROLLBAR_WIDTH : 0;
         super.setWidth(width - scrollbarWidth);
         EditBoxAccessor editBox = (EditBoxAccessor) ((EditBoxWidgetAccessor) this).getEditBox();
-        editBox.setWidth(width - getPaddingDoubled() - scrollbarWidth);
+        editBox.setWidth(width - getPadding() - scrollbarWidth);
         editBox.callRewrap();
         this.setScrollY(this.getScrollY());
     }
