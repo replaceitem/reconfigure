@@ -2,10 +2,7 @@ package net.replaceitem.reconfigure.testmod.example;
 
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.replaceitem.reconfigure.api.Config;
-import net.replaceitem.reconfigure.api.Property;
-import net.replaceitem.reconfigure.api.ConfigTab;
-import net.replaceitem.reconfigure.api.Serializers;
+import net.replaceitem.reconfigure.api.*;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 
 import java.time.DayOfWeek;
@@ -22,7 +19,7 @@ public class ExampleConfig {
     public final ConfigTab SIMPLE_TAB = CONFIG.createTab("simple").build();
     
     Void HEADLINE_STRINGS = SIMPLE_TAB.createHeadline("strings");
-    public final Property<String> TITLE = SIMPLE_TAB.createStringProperty("title").asTextField().build();
+    public final Property<String> TITLE = SIMPLE_TAB.createStringProperty("title").addValidator(Validator.ofPredicate(s -> s.length() < 5, "Must be at most 4 characters")).asTextField().build();
     public final Property<String> OTHER_NAME = SIMPLE_TAB.createStringProperty("othername").asTextField().displayName(Text.of("Alt display name")).placeholder("Enter something").build();
     
     Void HEADLINE_BOOLEANS = SIMPLE_TAB.createHeadline("booleans");
