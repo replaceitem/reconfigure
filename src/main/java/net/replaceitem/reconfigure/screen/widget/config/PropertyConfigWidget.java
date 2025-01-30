@@ -12,8 +12,9 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
 public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     public static final int PADDING = 3;
-    public static final int NAME_HEIGHT = 20;
-    public static final int HEIGHT = NAME_HEIGHT + 2*PADDING;
+    public static final int BASIC_WIDGET_SIZE = 20;
+    public static final int NAME_HEIGHT = BASIC_WIDGET_SIZE;
+    public static final int DEFAULT_HEIGHT = NAME_HEIGHT + 2*PADDING;
     
     protected final int textPadding;
 
@@ -31,7 +32,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
         this.nameWidget = new TextWidget(Text.empty(), this.parent.getTextRenderer());
         this.nameWidget.alignLeft();
         this.children.add(nameWidget);
-        this.textPadding = HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
+        this.textPadding = DEFAULT_HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
         this.setNameText();
     }
 
@@ -81,4 +82,8 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
 
     protected abstract P getSaveValue();
+    
+    public int getContentWidth() {
+        return this.width - 2*PADDING;
+    }
 }

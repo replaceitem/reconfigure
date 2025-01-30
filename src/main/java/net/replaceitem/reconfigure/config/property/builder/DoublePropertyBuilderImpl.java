@@ -19,8 +19,8 @@ public class DoublePropertyBuilderImpl extends NumericPropertyBuilderImpl<Double
 
     @Override
     public SliderWidgetBuilderImpl<?, Double> asSlider() {
-        assert min != null;
-        assert max != null;
+        if(this.min == null) throw new RuntimeException("min is required for a slider widget");
+        if(this.max == null) throw new RuntimeException("max is required for a slider widget");
         return SliderWidgetBuilderImpl.createDouble(propertyBuildContext, this).min(min).max(max);
     }
 }

@@ -5,6 +5,8 @@ import net.replaceitem.reconfigure.api.property.IntPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.serialization.Intermediary;
 import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
+import net.replaceitem.reconfigure.api.widget.ColorPickerWidgetBuilder;
+import net.replaceitem.reconfigure.config.widget.builder.ColorPickerWidgetBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.builder.SliderWidgetBuilderImpl;
 
 public class IntPropertyBuilderImpl extends NumericPropertyBuilderImpl<IntPropertyBuilder, Integer> implements IntPropertyBuilder {
@@ -19,8 +21,13 @@ public class IntPropertyBuilderImpl extends NumericPropertyBuilderImpl<IntProper
 
     @Override
     public SliderWidgetBuilderImpl.IntSliderWidgetBuilder asSlider() {
-        assert min != null;
-        assert max != null;
+        if(this.min == null) throw new RuntimeException("min is required for a slider widget");
+        if(this.max == null) throw new RuntimeException("max is required for a slider widget");
         return SliderWidgetBuilderImpl.createInt(propertyBuildContext, this).min(this.min).max(this.max);
+    }
+
+    @Override
+    public ColorPickerWidgetBuilder asColorPicker() {
+        return new ColorPickerWidgetBuilderImpl(propertyBuildContext, this);
     }
 }

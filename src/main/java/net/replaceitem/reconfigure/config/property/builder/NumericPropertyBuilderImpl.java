@@ -31,11 +31,4 @@ public abstract class NumericPropertyBuilderImpl<SELF extends NumericPropertyBui
     public SELF range(T min, T max) {
         return min(min).max(max);
     }
-
-    @Override
-    protected void preBuild() {
-        super.preBuild();
-        if(this.min == null) throw new RuntimeException("Missing min value for property " + id);
-        if(this.max == null) throw new RuntimeException("Missing max value for property " + id);
-    }
 }

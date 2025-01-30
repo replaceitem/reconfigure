@@ -14,7 +14,7 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     }
 
     public SimpleConfigWidget(ConfigWidgetList listWidget, PropertyImpl<P> property, BaseSettings baseSettings) {
-        this(listWidget, HEIGHT, property, baseSettings);
+        this(listWidget, DEFAULT_HEIGHT, property, baseSettings);
     }
 
     protected void setWidget(W widget) {

@@ -34,6 +34,10 @@ public class ExampleConfig {
     public final Property<Double> BIG_DOUBLE = SIMPLE_TAB.createDoubleProperty("size_big_double").range(0.0, 15000.0).asSlider().displayName(Text.literal("big dbl 0-15000")).build();
     public final Property<Double> SMALL_DOUBLE = SIMPLE_TAB.createDoubleProperty("size_small_double").range(0.0, 0.001).asSlider().displayName(Text.literal("small dbl 0-0.001")).build();
 
+    Void HEADLINE_COLORS = SIMPLE_TAB.createHeadline(Text.literal("Colors"));
+    public final Property<Integer> COLOR = SIMPLE_TAB.createIntegerProperty("color").asColorPicker().displayName(Text.literal("Color")).build();
+    
+    
     Void HEADLINE_ENUMS = SIMPLE_TAB.createHeadline(Text.literal("Enums"));
     public final Property<DayOfWeek> DAY_OF_WEEK = SIMPLE_TAB
             .createEnumProperty("day_of_week", DayOfWeek.class)

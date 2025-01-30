@@ -57,4 +57,12 @@ public abstract class PositioningEntryWidget<E extends VariableHeightElementList
     public ScreenRect getNavigationFocus() {
         return Widget.super.getNavigationFocus();
     }
+    
+    public int getRight() {
+        return this.x + this.width;
+    }
+    
+    public int getBottom() {
+        return this.y + this.height;
+    }
 }
