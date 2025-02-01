@@ -21,10 +21,11 @@ public class ColorPreviewWidget extends ClickableWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.fill(getX(), getY(), getRight(), getBottom(), Colors.WHITE);
+        context.fill(getX(), getY(), getRight(), getBottom(), hovered ? Colors.WHITE : Colors.GRAY);
         if(ColorHelper.getAlpha(color) < 255) {
-            RenderSystem.enableBlend();
+            context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, Colors.WHITE);
             DrawUtil.drawCheckerboard(context, getX()+1, getY()+1, getRight()-1, getBottom()-1, 3, Colors.LIGHT_GRAY);
+            RenderSystem.enableBlend();
         }
         context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, color);
         RenderSystem.disableBlend();

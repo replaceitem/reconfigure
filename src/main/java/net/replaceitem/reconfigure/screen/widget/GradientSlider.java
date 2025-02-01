@@ -51,9 +51,9 @@ public class GradientSlider extends SliderWidget {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         context.fill(getX(), getY(), getRight(), getBottom(), Colors.BLACK);
         if(ColorHelper.getAlpha(colorSupplier.get(0)) < 255 || ColorHelper.getAlpha(colorSupplier.get(1)) < 255) {
-            RenderSystem.enableBlend();
             context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, Colors.WHITE);
             DrawUtil.drawCheckerboard(context, getX()+1, getY()+1, getRight()-1, getBottom()-1, 3, Colors.LIGHT_GRAY);
+            RenderSystem.enableBlend();
         }
         
         Consumer<VertexConsumer> drawer = getGradientDrawer(context);
@@ -65,7 +65,7 @@ public class GradientSlider extends SliderWidget {
         RenderSystem.disableBlend();
 
         int handleX = this.getX() + (int) (this.value * (double) (this.width - 8));
-        DrawUtil.renderRectOutline(context, handleX, getY(), handleX+8-1, getBottom()-1, ColorHelper.fromFloats(this.alpha, 0.8f, 0.8f, 0.8f));
+        DrawUtil.renderRectOutline(context, handleX, getY(), handleX+8-1, getBottom()-1, ColorHelper.withAlpha(ColorHelper.channelFromFloat(this.alpha), this.hovered ? Colors.WHITE : Colors.LIGHT_GRAY));
         
         int i = this.active ? 16777215 : 10526880;
         this.drawScrollableText(context, minecraftClient.textRenderer, 2, i | MathHelper.ceil(this.alpha * 255.0F) << 24);
