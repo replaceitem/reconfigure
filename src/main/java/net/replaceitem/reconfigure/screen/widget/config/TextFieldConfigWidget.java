@@ -18,6 +18,7 @@ public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, S
         super(listWidget, property, baseSettings);
         ScreenRect widgetPos = getWidgetPos();
         setWidget(new DynamicTextFieldWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), Text.empty()));
+        this.widget.setMaxLength(10000);
         this.widget.setChangedListener(s -> this.onValueChanged());
         this.widget.setText(property.get());
         if (placeholder != null) this.widget.setPlaceholder(Text.literal(placeholder));
