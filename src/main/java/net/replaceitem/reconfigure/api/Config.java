@@ -11,6 +11,7 @@ public interface Config {
     }
 
     ConfigTabBuilder createTab(String name);
+    ConfigTabBuilder createDefaultTab();
 
     @Deprecated
     ConfigScreen createScreen(@Nullable Screen parent);

@@ -23,6 +23,7 @@ public class ConfigImpl implements Config, SerializationTarget {
     private final String namespace;
     private final Text title;
     private final List<ConfigTabImpl> tabs = new ArrayList<>();
+    private boolean hasSingleDefaultTab = false;
     @Nullable private final Serializer<?> serializer;
 
     protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
@@ -39,6 +40,12 @@ public class ConfigImpl implements Config, SerializationTarget {
     }
 
     @Override
+    public ConfigTabBuilder createDefaultTab() {
+        this.hasSingleDefaultTab = true;
+        return new ConfigTabBuilderImpl(this, "default");
+    }
+
+    @Override
     public String getNamespace() {
         return namespace;
     }
@@ -49,6 +56,10 @@ public class ConfigImpl implements Config, SerializationTarget {
 
     public List<ConfigTabImpl> getTabs() {
         return Collections.unmodifiableList(tabs);
+    }
+
+    public boolean hasSingleDefaultTab() {
+        return hasSingleDefaultTab;
     }
 
     @Override
@@ -67,6 +78,9 @@ public class ConfigImpl implements Config, SerializationTarget {
     }
 
     public void addTab(ConfigTabImpl configTab) {
+        if(this.hasSingleDefaultTab && !this.tabs.isEmpty()) {
+            throw new RuntimeException("Tried adding more than one tab to a config with a default tab. If you use config.createDefaultTab() your config can only have one tab.");
+        }
         this.tabs.add(configTab);
     }
 
