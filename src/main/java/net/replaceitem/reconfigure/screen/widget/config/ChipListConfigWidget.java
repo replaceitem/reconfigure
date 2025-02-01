@@ -1,10 +1,13 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.GridWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.sound.SoundManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.ColorHelper;
@@ -140,6 +143,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         @Override
         public void onClick(double mouseX, double mouseY) {
             if(this.removeButtonHovered((int) mouseX, (int) mouseY)) {
+                playClickSound(MinecraftClient.getInstance().getSoundManager());
                 ChipListConfigWidget.this.removeChip(this);
             } else super.onClick(mouseX, mouseY);
         }
