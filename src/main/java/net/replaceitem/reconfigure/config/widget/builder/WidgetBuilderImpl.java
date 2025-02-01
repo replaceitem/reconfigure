@@ -36,6 +36,12 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
         return self();
     }
 
+    @Override
+    public SELF tooltip() {
+        this.tooltip = Text.translatable(propertyBuilder.getId().toTranslationKey(NAMESPACE + ".property", "tooltip"));
+        return self();
+    }
+
     /**
      * This is run before calling {@link #buildImpl(PropertyHolder)}.
      * Can be used to fill in missing default values.

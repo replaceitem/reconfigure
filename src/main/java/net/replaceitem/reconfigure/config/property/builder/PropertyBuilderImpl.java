@@ -42,8 +42,12 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
     public CustomWidgetBuilderImpl<T> asCustomWidget(Function<BaseSettings, ConfigWidgetFactory<T>> widgetFactorySupplier) {
         return new CustomWidgetBuilderImpl<>(propertyBuildContext, this, widgetFactorySupplier);
     }
-    
-    
+
+
+    public Identifier getId() {
+        return id;
+    }
+
     protected abstract TypeAdapter<T, ?> getTypeAdapter();
 
 

@@ -7,6 +7,7 @@ public interface WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
     SELF displayName(Text displayName);
 
     SELF tooltip(Text tooltip);
+    SELF tooltip();
 
     Property<T> build();
 }
