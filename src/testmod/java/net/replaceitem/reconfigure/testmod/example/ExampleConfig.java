@@ -73,7 +73,7 @@ public class ExampleConfig {
     public final Property<String> TEXT_BOX = SIMPLE_TAB.createStringProperty("box").asEditBox().placeholder("Enter some text").build();
     
     Void LIST = SIMPLE_TAB.createHeadline(Text.literal("List"));
-    public final PropertyImpl<List<String>> CHIP_LIST = SIMPLE_TAB.createListProperty("chiplist").asChipList().build();
+    public final Property<List<String>> CHIP_LIST = SIMPLE_TAB.createListProperty("chiplist").asChipList().build();
     
     
     public static class NumberValue {
