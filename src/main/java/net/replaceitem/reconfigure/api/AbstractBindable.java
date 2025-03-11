@@ -21,4 +21,8 @@ public abstract class AbstractBindable<T> implements Bindable<T> {
     protected void callListeners(T value) {
         this.listeners.forEach(tConsumer -> tConsumer.accept(value));
     }
+    
+    protected boolean hasListeners() {
+        return !this.listeners.isEmpty();
+    }
 }

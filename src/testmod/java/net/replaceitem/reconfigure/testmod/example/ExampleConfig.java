@@ -8,6 +8,7 @@ import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import java.time.DayOfWeek;
 import java.time.Month;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("unused")
 public class ExampleConfig {
@@ -21,6 +22,8 @@ public class ExampleConfig {
     Void HEADLINE_STRINGS = SIMPLE_TAB.createHeadline("strings");
     public final Property<String> TITLE = SIMPLE_TAB.createStringProperty("title").addValidator(Validator.ofPredicate(s -> s.length() < 5, "Must be at most 4 characters")).asTextField().build();
     public final Property<String> OTHER_NAME = SIMPLE_TAB.createStringProperty("othername").asTextField().displayName(Text.of("Alt display name")).placeholder("Enter something").build();
+    public final Property<String> REGEX = SIMPLE_TAB.createStringProperty("regex").asTextField().displayName(Text.of("Regular Expression")).build();
+    public final Bindable<Pattern> COMPILED_REGEX = REGEX.map(Pattern::compile);
     
     Void HEADLINE_BOOLEANS = SIMPLE_TAB.createHeadline("booleans");
     public final Property<Boolean> ENABLED = SIMPLE_TAB.createBooleanProperty("enabled").asCheckbox().build();

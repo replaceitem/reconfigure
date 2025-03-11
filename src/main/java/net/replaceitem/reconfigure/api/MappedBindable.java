@@ -18,7 +18,9 @@ public class MappedBindable<T,U> extends AbstractBindable<T> {
         this.upstream = upstream;
         this.upstream.addListener(u -> {
             invalid = true;
-            this.callListeners(get());
+            if(this.hasListeners()) {
+                this.callListeners(get());
+            }
         });
     }
     

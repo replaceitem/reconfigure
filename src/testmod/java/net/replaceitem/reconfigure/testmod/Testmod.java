@@ -9,5 +9,8 @@ public class Testmod implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         CONFIG.CONFIG.load();
+        
+        CONFIG.TITLE.observe(s -> System.out.println("Observing TITLE as " + s));
+        CONFIG.COMPILED_REGEX.addListener(pattern -> System.out.println("Regex changed. Trying to match 'abc': " + pattern.matcher("abc").matches()));
     }
 }
