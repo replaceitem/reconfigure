@@ -3,7 +3,6 @@ package net.replaceitem.reconfigure.testmod.example;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.replaceitem.reconfigure.api.*;
-import net.replaceitem.reconfigure.config.property.PropertyImpl;
 
 import java.time.DayOfWeek;
 import java.time.Month;
@@ -74,6 +73,50 @@ public class ExampleConfig {
     
     Void LIST = SIMPLE_TAB.createHeadline(Text.literal("List"));
     public final Property<List<String>> CHIP_LIST = SIMPLE_TAB.createListProperty("chiplist").asChipList().build();
+
+
+
+
+
+    class DemoTab {
+        public final ConfigTab DEMO_TAB = CONFIG.createTab("demo").build();
+        Void HEADLINE = DEMO_TAB.createHeadline("demo_headline");
+        public final Property<String> STRING = DEMO_TAB.createStringProperty("demo_string").defaultValue("Hello world").asTextField().displayName(Text.literal("Text field")).build();
+        public final Property<String> STRING_PLACEHOLDER = DEMO_TAB.createStringProperty("demo_string_placeholder").asTextField().displayName(Text.literal("Text field with placeholder")).placeholder("Enter something").build();
+        public final Property<Boolean> CHECKBOX = DEMO_TAB.createBooleanProperty("demo_checkbox").defaultValue(true).asCheckbox().displayName(Text.literal("Checkbox")).build();
+        public final Property<Boolean> TOGGLE_BUTTON = DEMO_TAB.createBooleanProperty("demo_toggle_button").asToggleButton().displayName(Text.literal("Toggle button")).build();
+        public final Property<Integer> SLIDER = DEMO_TAB.createIntegerProperty("demo_slider").defaultValue(4).range(1,10).asSlider().displayName(Text.literal("Slider")).build();
+
+        public final Property<DayOfWeek> CYCLE_BUTTON = DEMO_TAB
+                .createEnumProperty("demo_cycle_button", DayOfWeek.class)
+                .defaultValue(DayOfWeek.FRIDAY)
+                .asCyclingButton()
+                .displayName(Text.literal("Enum cycling button"))
+                .build();
+        
+        public final Property<Integer> COLOR = DEMO_TAB.createIntegerProperty("demo_color").defaultValue(0xff136bc3).asColorPicker().displayName(Text.literal("Color")).build();
+
+        public final Property<String> EDIT_BOX = DEMO_TAB.createStringProperty("demo_box").defaultValue("""
+            This is a multiline text box.
+            It supports scrolling.
+            The it fits a lot of text.
+            You could write a lot here.
+            Like a whole book.
+            But that's not the point of a configuration library.
+            Oh look now it's clipping because of scrolling.
+            This text won't be visible anymore.
+            But you can edit all of this.""").asEditBox().displayName(Text.literal("Multiline Edit Box")).build();
+
+        public final Property<List<String>> CHIP_LIST = DEMO_TAB.createListProperty("demo_chiplist")
+                .defaultValue(List.of("Apple", "Banana", "Orange", "Strawberry", "Cherry", "Raspberry", "Kiwi", "Pineapple"))
+                .asChipList()
+                .displayName(Text.literal("Chip list"))
+                .build();
+
+    }
+    
+    DemoTab demoTab = new DemoTab();
+    
     
     
     public static class NumberValue {
