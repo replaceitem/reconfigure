@@ -11,8 +11,8 @@ public abstract class SerializerBuilderImpl<SELF extends SerializerBuilder<SELF,
     protected @Nullable Consumer<C> preWrite;
     
     @Override
-    public SELF preRead(Consumer<C> preRead) {
-        this.preLoad = preRead;
+    public SELF preLoad(Consumer<C> preLoad) {
+        this.preLoad = preLoad;
         return self();
     }
     
