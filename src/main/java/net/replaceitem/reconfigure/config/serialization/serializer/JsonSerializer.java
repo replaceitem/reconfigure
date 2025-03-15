@@ -5,6 +5,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mojang.serialization.JsonOps;
 import net.replaceitem.reconfigure.config.serialization.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -12,8 +13,9 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
-public class JsonSerializer extends CharSerializer<JsonElement> {
+public class JsonSerializer extends CharSerializer<JsonElement, JsonObject> {
     
     public static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
@@ -23,33 +25,47 @@ public class JsonSerializer extends CharSerializer<JsonElement> {
     
     private static final JsonMarshaller MARSHALLER = new JsonMarshaller();
 
+    public JsonSerializer(@Nullable Consumer<JsonObject> preLoad, @Nullable Consumer<JsonObject> preWrite) {
+        super(preLoad, preWrite);
+    }
+
     @Override
     public Marshaller<JsonElement> getMarshaller() {
         return MARSHALLER;
     }
 
     @Override
-    public void write(SerializationTarget target, Writer writer) throws IOException, JsonParseException {
-        JsonObject jsonObject = new JsonObject();
-        for (SerializationTarget.SerializationProperty<?> property : target.getProperties()) {
-            JsonElement jsonElement = this.getProperty(property);
-            jsonObject.add(property.getId().getPath(), jsonElement);
-        }
-        try(JsonWriter jsonWriter = GSON.newJsonWriter(writer)) {
-            GSON.toJson(jsonObject, jsonWriter);
-        }
-    }
-
-    @Override
-    public void read(SerializationTarget target, Reader reader) throws IOException, JsonParseException {
+    protected JsonObject read(Reader reader) throws IOException, JsonParseException {
         JsonElement jsonElement;
         try(JsonReader jsonReader = GSON.newJsonReader(reader)) {
             jsonElement = JsonParser.parseReader(jsonReader);
         }
         if(!(jsonElement instanceof JsonObject jsonObject)) throw new JsonParseException("Expected a json object");
-        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+        return jsonObject;
+    }
+
+    @Override
+    protected void write(Writer writer, JsonObject compound) throws IOException, JsonParseException {
+        try(JsonWriter jsonWriter = GSON.newJsonWriter(writer)) {
+            GSON.toJson(compound, jsonWriter);
+        }
+    }
+
+    @Override
+    protected void load(SerializationTarget target, JsonObject compound) {
+        for (Map.Entry<String, JsonElement> entry : compound.entrySet()) {
             this.setProperty(target, entry.getKey(), entry.getValue());
         }
+    }
+
+    @Override
+    protected JsonObject save(SerializationTarget target) {
+        JsonObject jsonObject = new JsonObject();
+        for (SerializationTarget.SerializationProperty<?> property : target.getProperties()) {
+            JsonElement jsonElement = this.getProperty(property);
+            jsonObject.add(property.getId().getPath(), jsonElement);
+        }
+        return jsonObject;
     }
 
     @Override

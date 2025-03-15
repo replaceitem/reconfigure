@@ -3,6 +3,7 @@ package net.replaceitem.reconfigure.testmod.example;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.replaceitem.reconfigure.api.*;
+import net.replaceitem.reconfigure.api.serializer.Serializers;
 
 import java.time.DayOfWeek;
 import java.time.Month;

@@ -24,11 +24,11 @@ public class ConfigImpl implements Config, SerializationTarget {
     private final Text title;
     private final List<ConfigTabImpl> tabs = new ArrayList<>();
     private boolean hasSingleDefaultTab = false;
-    @Nullable private final Serializer<?> serializer;
+    @Nullable private final Serializer<?,?> serializer;
 
     protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
-    protected ConfigImpl(String namespace, Text title, @Nullable Serializer<?> serializer) {
+    protected ConfigImpl(String namespace, Text title, @Nullable Serializer<?,?> serializer) {
         this.namespace = namespace;
         this.title = title;
         this.serializer = serializer;
@@ -97,7 +97,7 @@ public class ConfigImpl implements Config, SerializationTarget {
         return new ConfigScreen(this, parent);
     }
     
-    private static File getConfigFile(String namespace, Serializer<?> serializer) throws IOException {
+    private static File getConfigFile(String namespace, Serializer<?, ?> serializer) throws IOException {
         Path configDir = FabricLoader.getInstance().getConfigDir().normalize();
         Files.createDirectories(configDir);
         return configDir.resolve(namespace + "." + serializer.getFileExtension()).normalize().toFile();
@@ -112,7 +112,7 @@ public class ConfigImpl implements Config, SerializationTarget {
             }
             File configFile = getConfigFile(this.namespace, this.serializer);
             try (FileOutputStream fileOutputStream = new FileOutputStream(configFile)) {
-                this.serializer.write(this, fileOutputStream);
+                this.serializer.serialize(this, fileOutputStream);
             }
         } catch (IOException e) {
             Reconfigure.LOGGER.error("Could save config", e);
@@ -129,7 +129,7 @@ public class ConfigImpl implements Config, SerializationTarget {
             File configFile = getConfigFile(this.namespace, this.serializer);
             if (configFile.exists()) {
                 try(FileInputStream fileInputStream = new FileInputStream(configFile)) {
-                    this.serializer.read(this, fileInputStream);
+                    this.serializer.deserialize(this, fileInputStream);
                 }
             } else {
                 this.save();

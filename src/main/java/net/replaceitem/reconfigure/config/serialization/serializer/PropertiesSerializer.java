@@ -3,21 +3,25 @@ package net.replaceitem.reconfigure.config.serialization.serializer;
 import com.google.gson.JsonParseException;
 import net.replaceitem.reconfigure.config.serialization.*;
 import net.replaceitem.reconfigure.util.OrderedProperties;
+import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class PropertiesSerializer extends CharSerializer<String> {
+public class PropertiesSerializer extends CharSerializer<String, Properties> {
     
     private static final PropertiesMarshaller MARSHALLER = new PropertiesMarshaller();
+
+    public PropertiesSerializer(@Nullable Consumer<Properties> preLoad, @Nullable Consumer<Properties> preWrite) {
+        super(preLoad, preWrite);
+    }
 
     @Override
     public Marshaller<String> getMarshaller() {
@@ -25,21 +29,31 @@ public class PropertiesSerializer extends CharSerializer<String> {
     }
 
     @Override
-    public void write(SerializationTarget target, Writer writer) throws IOException, JsonParseException {
+    protected Properties read(Reader reader) throws IOException, JsonParseException {
+        Properties properties = new Properties();
+        properties.load(reader);
+        return properties;
+    }
+
+    @Override
+    protected void write(Writer writer, Properties compound) throws IOException {
+        compound.store(writer, "");
+    }
+
+    @Override
+    protected void load(SerializationTarget target, Properties compound) {
+        for (Map.Entry<Object, Object> entry : compound.entrySet()) {
+            this.setProperty(target, entry.getKey().toString(), entry.getValue().toString());
+        }
+    }
+
+    @Override
+    protected Properties save(SerializationTarget target) {
         Properties properties = new OrderedProperties();
         for (SerializationTarget.SerializationProperty<?> holder : target.getProperties()) {
             properties.setProperty(holder.getId().getPath(), this.getProperty(holder));
         }
-        properties.store(writer, target.getNamespace());
-    }
-
-    @Override
-    public void read(SerializationTarget target, Reader reader) throws IOException, JsonParseException {
-        Properties properties = new Properties();
-        properties.load(reader);
-        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-            this.setProperty(target, entry.getKey().toString(), entry.getValue().toString());
-        }
+        return properties;
     }
 
     @Override

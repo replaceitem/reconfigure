@@ -1,35 +1,49 @@
 package net.replaceitem.reconfigure.config.serialization.serializer;
 
-import com.google.gson.JsonParseException;
 import net.minecraft.nbt.*;
 import net.replaceitem.reconfigure.config.serialization.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class NbtSerializer extends Serializer<NbtElement> {
+public class NbtSerializer extends Serializer<NbtElement, NbtCompound> {
     
     private static final NbtMarshaller MARSHALLER = new NbtMarshaller();
-    
+
+    public NbtSerializer(@Nullable Consumer<NbtCompound> preLoad, @Nullable Consumer<NbtCompound> preWrite) {
+        super(preLoad, preWrite);
+    }
+
     @Override
-    public void write(SerializationTarget target, OutputStream outputStream) throws IOException, JsonParseException {
+    protected void write(OutputStream outputStream, NbtCompound compound) throws IOException {
+        NbtIo.writeCompound(compound, new DataOutputStream(outputStream));
+    }
+
+    @Override
+    protected NbtCompound read(InputStream inputStream) throws IOException {
+        return NbtIo.readCompound(new DataInputStream(inputStream), NbtSizeTracker.ofUnlimitedBytes());
+    }
+
+    @Override
+    protected void load(SerializationTarget target, NbtCompound compound) {
+        for (String key : compound.getKeys()) {
+            NbtElement value = compound.get(key);
+            if(value == null) continue;
+            this.setProperty(target, key, value);
+        }
+    }
+
+    @Override
+    protected NbtCompound save(SerializationTarget target) {
         NbtCompound nbtCompound = new NbtCompound();
         for (SerializationTarget.SerializationProperty<?> property : target.getProperties()) {
             NbtElement value = this.getProperty(property);
             nbtCompound.put(property.getId().getPath(), value);
         }
-        NbtIo.writeCompound(nbtCompound, new DataOutputStream(outputStream));
-    }
-
-    @Override
-    public void read(SerializationTarget target, InputStream inputStream) throws IOException, JsonParseException {
-        NbtCompound nbt = NbtIo.readCompound(new DataInputStream(inputStream), NbtSizeTracker.ofUnlimitedBytes());
-        for (String key : nbt.getKeys()) {
-            NbtElement value = nbt.get(key);
-            if(value == null) continue;
-            this.setProperty(target, key, value);
-        }
+        return nbtCompound;
     }
 
     @Override

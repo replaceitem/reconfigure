@@ -1,24 +1,34 @@
 package net.replaceitem.reconfigure.config.serialization;
 
 import com.google.gson.JsonParseException;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.function.Consumer;
 
-public abstract class CharSerializer<T> extends Serializer<T> {
-    
-    public abstract void write(SerializationTarget target, Writer writer) throws IOException, JsonParseException;
-    public abstract void read(SerializationTarget target, Reader writer) throws IOException, JsonParseException;
+/**
+ * Intermediary serializer class for serialization methods using {@link Reader} or {@link Writer}.
+ * Such serializers should extend this class instead of {@link Serializer}
+ */
+public abstract class CharSerializer<T,C> extends Serializer<T,C> {
+
+    public CharSerializer(@Nullable Consumer<C> preLoad, @Nullable Consumer<C> preWrite) {
+        super(preLoad, preWrite);
+    }
+
+    protected abstract void write(Writer writer, C compound) throws IOException;
+    protected abstract C read(Reader reader) throws IOException, JsonParseException;
     
     @Override
-    public void write(SerializationTarget target, OutputStream outputStream) throws JsonParseException, IOException {
+    protected void write(OutputStream outputStream, C compound) throws IOException {
         Writer writer = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
-        write(target, writer);
+        write(writer, compound);
     }
 
     @Override
-    public void read(SerializationTarget target, InputStream inputStream) throws JsonParseException, IOException {
+    protected C read(InputStream inputStream) throws IOException {
         Reader reader = new BufferedReader(new InputStreamReader(inputStream));
-        read(target, reader);
+        return read(reader);
     }
 }
