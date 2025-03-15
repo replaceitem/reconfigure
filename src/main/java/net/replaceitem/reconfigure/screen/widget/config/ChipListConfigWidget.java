@@ -120,6 +120,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
             this.setText(value);
             this.setCursor(0, false);
             this.setEditable(chipsEditable);
+            this.setChangedListener(s -> ChipListConfigWidget.this.onValueChanged());
         }
         
         private static final Text REMOVE_TEXT = Text.literal("x").styled(style -> style.withColor(Formatting.RED));

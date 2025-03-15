@@ -147,6 +147,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
                 this.textField.setText(String.format("#%08X", color.argb()));
             }
         }
+        this.onValueChanged();
     }
     
     private void setColorFromSliders() {
