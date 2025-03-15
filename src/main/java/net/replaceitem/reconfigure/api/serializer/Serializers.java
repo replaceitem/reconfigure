@@ -21,4 +21,6 @@ public class Serializers {
     public static PropertiesSerializerBuilder buildProperties() {
         return new PropertiesSerializerBuilderImpl();
     }
+    
+    private Serializers() {}
 }
