@@ -10,6 +10,8 @@ import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
+import java.util.Objects;
+
 public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     public static final int PADDING = 3;
     public static final int BASIC_WIDGET_SIZE = 20;
@@ -33,7 +35,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
         this.nameWidget.alignLeft();
         this.children.add(nameWidget);
         this.textPadding = DEFAULT_HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
-        this.setNameText();
+        this.setNameText(this.property.get());
     }
 
     @Override
@@ -64,12 +66,18 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
 
     private void validate() {
-        this.validationResult = this.property.validate(this.getSaveValue());
-        this.setNameText();
+        P saveValue = this.getSaveValue();
+        this.validationResult = this.property.validate(saveValue);
+        this.setNameText(saveValue);
     }
     
-    private void setNameText() {
-        this.nameWidget.setMessage(baseSettings.displayName().copy().formatted(this.validationResult.isValid() ? Formatting.WHITE : Formatting.RED));
+    private void setNameText(P saveValue) {
+        boolean wasChanged = !Objects.equals(saveValue, this.property.get());
+        this.nameWidget.setMessage(baseSettings.displayName().copy().styled(style -> {
+            style = style.withItalic(wasChanged);
+            if(this.validationResult.isInvalid()) style = style.withColor(Formatting.RED);
+            return style;
+        }));
         MutableText tooltipText = Text.empty();
         if(baseSettings.tooltip() != null) {
             tooltipText.append(baseSettings.tooltip());

@@ -9,5 +9,7 @@ public interface Property<T> extends Bindable<T> {
 
     void reset();
     T getDefaultValue();
+    boolean isDefault();
+
     Identifier getId();
 }

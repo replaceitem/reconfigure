@@ -62,6 +62,11 @@ public class PropertyImpl<T> extends AbstractBindable<T> implements Property<T> 
         return defaultValue;
     }
     
+    @Override
+    public boolean isDefault() {
+        return Objects.equals(this.value, this.defaultValue);
+    }
+
     public ValidationResult validate(T value) {
         return this.validators.validate(value);
     }
