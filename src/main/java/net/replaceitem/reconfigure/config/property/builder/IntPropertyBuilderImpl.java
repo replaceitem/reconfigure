@@ -30,4 +30,11 @@ public class IntPropertyBuilderImpl extends NumericPropertyBuilderImpl<IntProper
     public ColorPickerWidgetBuilder asColorPicker() {
         return new ColorPickerWidgetBuilderImpl(propertyBuildContext, this);
     }
+
+    @Override
+    protected void preBuild() {
+        super.preBuild();
+        if(this.min != null) this.defaultValue = Math.max(this.min, this.defaultValue);
+        if(this.max != null) this.defaultValue = Math.min(this.max, this.defaultValue);
+    }
 }

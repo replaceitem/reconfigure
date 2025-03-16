@@ -121,7 +121,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         this.children.add(textField);
         this.children.add(colorPreviewWidget);
         
-        this.setColor(new BiFormatColor(property.get()), null);
+        this.loadValue(property.get());
         this.setOpen(false);
     }
     
@@ -191,8 +191,8 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     public void refreshPosition() {
         super.refreshPosition();
         int topRowY = y + (DEFAULT_HEIGHT -20) / 2;
-        this.textField.setPosition(x + width - PADDING - 20 - textField.getWidth(), topRowY);
-        this.colorPreviewWidget.setPosition(x + width - PADDING - 20, topRowY);
+        this.colorPreviewWidget.setPosition(getRight() - PADDING - this.resetButtonWidget.getWidth() - this.colorPreviewWidget.getWidth(), topRowY);
+        this.textField.setPosition(this.colorPreviewWidget.getX() - textField.getWidth(), topRowY);
         
         int contentWidth = getContentWidth();
         this.colorPlanePickerWidget.setWidth(contentWidth/2);
@@ -208,5 +208,10 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     @Override
     protected Integer getSaveValue() {
         return color;
+    }
+
+    @Override
+    protected void loadValue(Integer value) {
+        this.setColor(new BiFormatColor(value), null);
     }
 }

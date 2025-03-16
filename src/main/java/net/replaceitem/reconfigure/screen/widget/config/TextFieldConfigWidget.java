@@ -28,4 +28,9 @@ public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, S
     protected String getSaveValue() {
         return this.widget.getText();
     }
+
+    @Override
+    protected void loadValue(String value) {
+        this.widget.setText(value);
+    }
 }

@@ -16,11 +16,16 @@ public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boo
     @Override
     protected ScreenRect getWidgetPos() {
         int widgetSize = CheckboxWidget.getCheckboxSize(this.parent.getTextRenderer());
-        return new ScreenRect(x + width - widgetSize - PADDING, y + (height-widgetSize) / 2, widgetSize, widgetSize);
+        return new ScreenRect(getRight() - PADDING - this.resetButtonWidget.getWidth() - PADDING - widgetSize, y + (height-widgetSize) / 2, widgetSize, widgetSize);
     }
 
     @Override
     protected Boolean getSaveValue() {
         return this.widget.isChecked();
+    }
+
+    @Override
+    protected void loadValue(Boolean value) {
+        if(value != this.widget.isChecked()) this.widget.onPress();
     }
 }

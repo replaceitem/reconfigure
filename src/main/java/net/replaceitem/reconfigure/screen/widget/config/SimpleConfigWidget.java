@@ -32,6 +32,6 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     
     protected ScreenRect getWidgetPos() {
         int maxNameWidth = this.width / 2 - textPadding;
-        return new ScreenRect(x + textPadding + maxNameWidth, y + PADDING, width - maxNameWidth - PADDING - textPadding, NAME_HEIGHT);
+        return new ScreenRect(x + textPadding + maxNameWidth, y + PADDING, width - maxNameWidth - PADDING - textPadding - this.resetButtonWidget.getWidth(), NAME_HEIGHT);
     }
 }

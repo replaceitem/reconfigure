@@ -4,10 +4,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.GridWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.sound.SoundManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.ColorHelper;
@@ -50,7 +48,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         
         grid.forEachChild(this.children::add);
 
-        property.get().forEach(this::addChip);
+        this.loadValue(property.get());
     }
 
     private void addChipButtonClicked(ButtonWidget buttonWidget) {
@@ -93,7 +91,20 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     protected List<String> getSaveValue() {
         return chips.stream().map(TextFieldWidget::getText).toList();
     }
-    
+
+    @Override
+    protected void loadValue(List<String> value) {
+        this.chips.forEach(this.children::remove);
+        this.chips.clear();
+        for (String item : value) {
+            Chip chip = new Chip(this.parent.getTextRenderer(), item);
+            this.chips.add(chip);
+            this.children.add(chip);
+        }
+        this.onValueChanged();
+        this.refreshChips();
+    }
+
     @Override
     protected void positionName() {
         this.positionNameFullWidth();
@@ -103,9 +114,9 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     public void refreshPosition() {
         super.refreshPosition();
         int gridWidth = this.getWidth() - 2*PADDING;
-        this.textField.setWidth(gridWidth - PADDING - addButton.getWidth());
+        this.textField.setWidth(gridWidth - addButton.getWidth());
         this.flowSocket.getInner().setFlowWidth(gridWidth);
-        this.grid.setPosition(this.getX() + PADDING, this.getY() + NAME_HEIGHT + PADDING);
+        this.grid.setPosition(this.getX() + PADDING, this.getY() + NAME_HEIGHT + PADDING*2);
         this.grid.refreshPositions();
         this.height = NAME_HEIGHT + PADDING + this.grid.getHeight() + 2*PADDING;
     }
