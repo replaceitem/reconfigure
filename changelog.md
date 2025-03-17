@@ -1,5 +1,2 @@
-* Fixed ListPropertyBuilder returning an implementation type instead of API interface
-* Added mod icon
-* Added readme
-* Added serializer builders
-  * Pre-load and pre-write middleware can now be added
+* The name of a property is now rendered in italics if the value was changed and is not saved
+* Added a reset button to properties in the config screen
