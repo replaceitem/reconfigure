@@ -97,6 +97,14 @@ jar {
     }
 }
 
+javadoc {
+    title = "${project.name} ${project.version}"
+    source = sourceSets.main.allJava
+    options {
+        encoding = 'UTF-8'
+    }
+}
+
 test {
     useJUnitPlatform()
 }
