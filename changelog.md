@@ -1,2 +1,2 @@
-* The name of a property is now rendered in italics if the value was changed and is not saved
-* Added a reset button to properties in the config screen
+* The placeholder for text widgets is now provided as a `Text` instead of `String`
+* The message for a validator is now provided as a `Text` instead of `String`
