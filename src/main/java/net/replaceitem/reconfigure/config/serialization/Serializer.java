@@ -12,6 +12,7 @@ import java.util.function.Consumer;
  * Base class for implementing serialization and deserialization strategies for a config.
  * Serialization and deserialization happen in two stages:
  * <table>
+ *     <caption>Serialization stages</caption>
  *     <tr>
  *         <th>File</th>
  *         <th></th>
@@ -21,16 +22,16 @@ import java.util.function.Consumer;
  *     </tr>
  *     <tr>
  *         <td>O</td>
- *         <td>---{@link #read}---></td>
+ *         <td>---{@link #read}---&gt;</td>
  *         <td>O</td>
- *         <td>---{@link #load}--></td>
+ *         <td>---{@link #load}---&gt;</td>
  *         <td>O</td>
  *     </tr>
  *     <tr>
  *         <td>O</td>
- *         <td><--{@link #write}---</td>
+ *         <td>&lt;--{@link #write}---</td>
  *         <td>O</td>
- *         <td><--{@link #save}---</td>
+ *         <td>&lt;--{@link #save}---</td>
  *         <td>O</td>
  *     </tr>
  * </table>
