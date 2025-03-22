@@ -6,6 +6,7 @@
     "reconfigure.headline.reconfigure-test.strings": "Strings",
     "reconfigure.headline.reconfigure-test.booleans": "Booleans",
     "reconfigure.headline.reconfigure-test.demo_headline": "Headline",
+    
     "reconfigure.property.reconfigure-test.title": "Title",
     "reconfigure.property.reconfigure-test.enabled": "Enabled",
     "reconfigure.property.reconfigure-test.autojump": "Autojump",
@@ -27,5 +28,7 @@
     "reconfigure.property.reconfigure-test.demo_cycle_button.enum.thursday": "Thursday",
     "reconfigure.property.reconfigure-test.demo_cycle_button.enum.friday": "Friday",
     "reconfigure.property.reconfigure-test.demo_cycle_button.enum.saturday": "Saturday",
-    "reconfigure.property.reconfigure-test.demo_cycle_button.enum.sunday": "Sunday"
+    "reconfigure.property.reconfigure-test.demo_cycle_button.enum.sunday": "Sunday",
+    
+    "reconfigure-testmod.validation.max_length": "Must be at most %s characters"
 }

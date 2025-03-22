@@ -102,7 +102,10 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
         }
         if(baseSettings.tooltip() != null && this.validationResult.isInvalid()) tooltipText.append("\n");
         if(this.validationResult.isInvalid()) {
-            tooltipText.append(Text.literal(validationResult.getMessage()).formatted(Formatting.RED));
+            tooltipText.append(validationResult.getMessage().copy().formatted().styled(style -> {
+                if(style.getColor() != null) return style;
+                return style.withFormatting(Formatting.RED);
+            }));
         }
         this.nameWidget.setTooltip(Tooltip.of(tooltipText));
     }

@@ -1,11 +1,13 @@
 package net.replaceitem.reconfigure.api;
 
+import net.minecraft.text.Text;
+
 public class ValidationResult {
-    private static final ValidationResult VALID = new ValidationResult("");
+    private static final ValidationResult VALID = new ValidationResult(Text.empty());
 
-    private final String message;
+    private final Text message;
 
-    private ValidationResult(String message) {
+    private ValidationResult(Text message) {
         this.message = message;
     }
 
@@ -13,8 +15,11 @@ public class ValidationResult {
         return VALID;
     }
 
-    public static ValidationResult invalid(String error) {
+    public static ValidationResult invalid(Text error) {
         return new ValidationResult(error);
+    }
+    public static ValidationResult invalid(String error) {
+        return new ValidationResult(Text.literal(error));
     }
     public boolean isValid() {
         return this == VALID;
@@ -24,7 +29,7 @@ public class ValidationResult {
         return !this.isValid();
     }
 
-    public String getMessage() {
+    public Text getMessage() {
         return message;
     }
 }
