@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.config.property;
 
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.config.ValidatorList;
@@ -12,7 +13,7 @@ public class PropertyImplTest {
     
     static ValidatorList<String> shortStringValidationList() {
         ValidatorList<String> validatorList = new ValidatorList<>();
-        validatorList.add(Validator.ofPredicate(s -> s.length() < 5, "msg"));
+        validatorList.add(Validator.ofPredicate(s -> s.length() < 5, Text.literal("msg")));
         return validatorList;
     }
     
