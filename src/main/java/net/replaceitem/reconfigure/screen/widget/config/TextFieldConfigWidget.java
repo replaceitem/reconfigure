@@ -13,7 +13,7 @@ public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, S
             ConfigWidgetList listWidget,
             PropertyImpl<String> property,
             BaseSettings baseSettings,
-            String placeholder
+            Text placeholder
     ) {
         super(listWidget, property, baseSettings);
         ScreenRect widgetPos = getWidgetPos();
@@ -21,7 +21,7 @@ public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, S
         this.widget.setMaxLength(10000);
         this.widget.setChangedListener(s -> this.onValueChanged());
         this.widget.setText(property.get());
-        if (placeholder != null) this.widget.setPlaceholder(Text.literal(placeholder));
+        if (placeholder != null) this.widget.setPlaceholder(placeholder);
     }
 
     @Override

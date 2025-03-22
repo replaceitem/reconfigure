@@ -16,11 +16,11 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
             ConfigWidgetList listWidget,
             PropertyImpl<String> property,
             BaseSettings baseSettings,
-            String placeholder
+            Text placeholder
     ) {
         super(listWidget, HEIGHT, property, baseSettings);
         ScreenRect widgetPos = getWidgetPos();
-        setWidget(new DynamicEditBoxWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), Text.of(placeholder), Text.empty()));
+        setWidget(new DynamicEditBoxWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), placeholder, Text.empty()));
         this.widget.setChangeListener(s -> this.onValueChanged());
         this.loadValue(property.get());
     }
