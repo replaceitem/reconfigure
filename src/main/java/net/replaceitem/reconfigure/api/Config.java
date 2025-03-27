@@ -6,7 +6,7 @@ import net.replaceitem.reconfigure.screen.ConfigScreen;
 import org.jetbrains.annotations.Nullable;
 
 public interface Config {
-    static ConfigBuilderImpl builder(String namespace) {
+    static ConfigBuilder builder(String namespace) {
         return new ConfigBuilderImpl(namespace);
     }
 

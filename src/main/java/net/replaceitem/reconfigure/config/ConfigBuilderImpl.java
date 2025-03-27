@@ -23,7 +23,8 @@ public class ConfigBuilderImpl implements ConfigBuilder {
         return this;
     }
     
-    public ConfigBuilderImpl serializer(Serializer serializer) {
+    @Override
+    public ConfigBuilderImpl serializer(Serializer<?, ?> serializer) {
         this.serializer = serializer;
         return this;
     }
