@@ -9,7 +9,7 @@ import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 
 import java.util.function.Function;
 
-public class CustomWidgetBuilderImpl<T> extends WidgetBuilderImpl<CyclingButtonWidgetBuilder<T>,T> implements CustomWidgetBuilder<T> {
+public class CustomWidgetBuilderImpl<T> extends WidgetBuilderImpl<CustomWidgetBuilder<T>,T> implements CustomWidgetBuilder<T> {
     
     private final Function<BaseSettings,ConfigWidgetFactory<T>> widgetFactorySupplier;
     
