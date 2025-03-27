@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.replaceitem.reconfigure.api.property.EnumPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
@@ -10,6 +11,8 @@ import net.replaceitem.reconfigure.config.widget.builder.CyclingButtonWidgetBuil
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 
 public class EnumPropertyBuilderImpl<T> extends PropertyBuilderImpl<EnumPropertyBuilder<T>, T> implements EnumPropertyBuilder<T> {
     private final Collection<T> values;
@@ -24,7 +27,8 @@ public class EnumPropertyBuilderImpl<T> extends PropertyBuilderImpl<EnumProperty
 
     @Override
     public CyclingButtonWidgetBuilderImpl<T> asCyclingButton() {
-        return new CyclingButtonWidgetBuilderImpl<>(propertyBuildContext, this, values);
+        return new CyclingButtonWidgetBuilderImpl<>(propertyBuildContext, this, values)
+                .valueToText((T value) -> Text.translatable(id.toTranslationKey(NAMESPACE + ".property", "enum." + value.toString().toLowerCase())));
     }
 
     @Override

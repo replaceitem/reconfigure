@@ -58,8 +58,8 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
             String validValues = allValues.stream().map(Objects::toString).collect(Collectors.joining(", "));
             throw new RuntimeException("The value(s) " + invalidValues + " assigned to the enum widget are not in the values " + validValues + " for its property " + property.getId());
         }
+        if(valueToText == null) throw new RuntimeException("valueToText is required for a cycling button widget");
         super.preBuild(property);
-        if(valueToText == null) valueToText = (T value) -> Text.translatable(property.getId().toTranslationKey(NAMESPACE + ".property", "enum." + value.toString().toLowerCase()));
     }
 
     @Override
