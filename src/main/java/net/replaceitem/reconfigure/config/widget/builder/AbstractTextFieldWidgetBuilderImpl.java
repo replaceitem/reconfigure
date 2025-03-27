@@ -19,10 +19,4 @@ public abstract class AbstractTextFieldWidgetBuilderImpl<SELF extends AbstractTe
         this.placeholder = placeholder;
         return self();
     }
-    
-    @Override
-    public SELF placeholder(String placeholder) {
-        this.placeholder = Text.literal(placeholder);
-        return self();
-    }
 }
