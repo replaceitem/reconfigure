@@ -103,6 +103,7 @@ javadoc {
     options {
         encoding = 'UTF-8'
         (it as StandardJavadocDocletOptions).addStringOption('Xdoclint:none', "-quiet")
+        overview = 'overview.html'
     }
 }
 
