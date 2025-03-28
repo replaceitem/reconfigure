@@ -102,6 +102,7 @@ javadoc {
     source = sourceSets.main.allJava
     options {
         encoding = 'UTF-8'
+        (it as StandardJavadocDocletOptions).addStringOption('Xdoclint:none', "-quiet")
     }
 }
 
