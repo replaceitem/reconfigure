@@ -2,9 +2,17 @@
 
 A config library for my mods
 
+[<img alt="Documentation" height="56" src="https://badges.penpow.dev/badges/documentation/generic/cozy.svg">](https://replaceitem.github.io/reconfigure/)
+[<img alt="Available for fabric" height="56" src="https://badges.penpow.dev/badges/supported/fabric/cozy.svg">](https://fabricmc.net/)
+[<img alt="Requires fabric api" height="56" src="https://badges.penpow.dev/badges/requires/fabric-api/cozy.svg">](https://modrinth.com/mod/fabric-api)
+[<img alt="Available on Modrinth" height="56" src="https://badges.penpow.dev/badges/available/modrinth/cozy.svg">](https://modrinth.com/mod/reconfigure)
+[<img alt="See me on GitHub" height="56" src="https://badges.penpow.dev/badges/social/github-singular/cozy.svg">](https://github.com/replaceitem)
+[<img alt="Chat on Discord" height="56" src="https://badges.penpow.dev/badges/social/discord-singular/cozy.svg">](https://discord.gg/etTDQAVSgt)
+
 ## Design goals
 
 * Uses the builder pattern so all options autocomplete. Just start with `Config.builder()` and autocompletion will guide you through the whole process of creating a configuration
+* Designed to be used in the field initializers of a config class
 * Does not use annotations for flexibility at runtime
 
 ## Preview
