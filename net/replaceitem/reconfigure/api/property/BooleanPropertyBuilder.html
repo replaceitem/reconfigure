@@ -111,12 +111,16 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../config/widget/builder/CheckboxWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CheckboxWidgetBuilderImpl</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../widget/CheckboxWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CheckboxWidgetBuilder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asCheckbox()" class="member-name-link">asCheckbox</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the boolean property and starts building a checkbox widget for it.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../widget/CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asToggleButton()" class="member-name-link">asToggleButton</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the boolean property and starts building a cycling button widget for it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -137,13 +141,30 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <li>
 <section class="detail" id="asCheckbox()">
 <h3>asCheckbox</h3>
-<div class="member-signature"><span class="return-type"><a href="../../config/widget/builder/CheckboxWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CheckboxWidgetBuilderImpl</a></span>&nbsp;<span class="element-name">asCheckbox</span>()</div>
+<div class="member-signature"><span class="return-type"><a href="../widget/CheckboxWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CheckboxWidgetBuilder</a></span>&nbsp;<span class="element-name">asCheckbox</span>()</div>
+<div class="block">Finishes building the boolean property and starts building a checkbox widget for it.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The checkbox widget builder</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="asToggleButton()">
 <h3>asToggleButton</h3>
 <div class="member-signature"><span class="return-type"><a href="../widget/CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</span>&nbsp;<span class="element-name">asToggleButton</span>()</div>
+<div class="block">Finishes building the boolean property and starts building a cycling button widget for it.
+ A cycling button widget is a button that cycles between two values for true and false when clicked.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The cycling button widget builder</dd>
+</dl>
 </section>
 </li>
 </ul>

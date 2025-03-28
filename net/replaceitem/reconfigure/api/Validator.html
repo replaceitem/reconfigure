@@ -110,7 +110,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static &lt;T&gt;&nbsp;<a href="Validator.html" title="interface in net.replaceitem.reconfigure.api">Validator</a><wbr>&lt;T&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#ofPredicate(java.util.function.Predicate,net.minecraft.text.Text)" class="member-name-link">ofPredicate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;T&gt;&nbsp;predicate,
  net.minecraft.text.Text&nbsp;errorMessage)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Creates a validator from a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link"><code>Predicate</code></a> and an error message.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="ValidationResult.html" title="class in net.replaceitem.reconfigure.api">ValidationResult</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#validate(T)" class="member-name-link">validate</a><wbr>(<a href="Validator.html" title="type parameter in Validator">T</a>&nbsp;value)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
@@ -132,6 +134,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="validate(T)">
 <h3 id="validate(java.lang.Object)">validate</h3>
 <div class="member-signature"><span class="return-type"><a href="ValidationResult.html" title="class in net.replaceitem.reconfigure.api">ValidationResult</a></span>&nbsp;<span class="element-name">validate</span><wbr><span class="parameters">(<a href="Validator.html" title="type parameter in Validator">T</a>&nbsp;value)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - The value to validate</dd>
+<dt>Returns:</dt>
+<dd>The validation result for the provided value</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -139,6 +147,15 @@ loadScripts(document, 'script');</script>
 <h3>ofPredicate</h3>
 <div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="Validator.html" title="interface in net.replaceitem.reconfigure.api">Validator</a>&lt;T&gt;</span>&nbsp;<span class="element-name">ofPredicate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;T&gt;&nbsp;predicate,
  net.minecraft.text.Text&nbsp;errorMessage)</span></div>
+<div class="block">Creates a validator from a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link"><code>Predicate</code></a> and an error message.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>predicate</code> - The predicate for checking whether a value is valid.
+                     Should return <code>true</code> for valid values</dd>
+<dd><code>errorMessage</code> - The error message for invalid values</dd>
+<dt>Returns:</dt>
+<dd>The validator</dd>
+</dl>
 </section>
 </li>
 </ul>

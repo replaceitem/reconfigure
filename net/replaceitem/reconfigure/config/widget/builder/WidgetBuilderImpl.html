@@ -154,7 +154,9 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="../../property/PropertyImpl.html" title="class in net.replaceitem.reconfigure.config.property">PropertyImpl</a><wbr>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Builds the widget and the property.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../PropertyHolder.html" title="class in net.replaceitem.reconfigure.config">PropertyHolder</a><wbr>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildImpl(net.replaceitem.reconfigure.config.PropertyHolder)" class="member-name-link">buildImpl</a><wbr>(<a href="../../PropertyHolder.html" title="class in net.replaceitem.reconfigure.config">PropertyHolder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;&nbsp;property)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -163,7 +165,9 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#displayName(net.minecraft.text.Text)" class="member-name-link">displayName</a><wbr>(net.minecraft.text.Text&nbsp;displayName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the display name of the widget as rendered in the config screen.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#postBuild(net.replaceitem.reconfigure.config.PropertyHolder)" class="member-name-link">postBuild</a><wbr>(<a href="../../PropertyHolder.html" title="class in net.replaceitem.reconfigure.config">PropertyHolder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;&nbsp;property)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -179,10 +183,14 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tooltip()" class="member-name-link">tooltip</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Enabled the tooltip for the widget.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tooltip(net.minecraft.text.Text)" class="member-name-link">tooltip</a><wbr>(net.minecraft.text.Text&nbsp;tooltip)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the tooltip text for the widget.</div>
+</div>
 </div>
 </div>
 </div>
@@ -247,9 +255,16 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <section class="detail" id="displayName(net.minecraft.text.Text)">
 <h3>displayName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">displayName</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;displayName)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html#displayName(net.minecraft.text.Text)">WidgetBuilder</a></code></span></div>
+<div class="block">Sets the display name of the widget as rendered in the config screen.
+ When not set, defaults to a translatable text with key <code>reconfigure.property.[namespace].[propertyname]</code>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/WidgetBuilder.html#displayName(net.minecraft.text.Text)">displayName</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a> extends <a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a>,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>displayName</code> - The display name text</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
@@ -257,9 +272,16 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <section class="detail" id="tooltip(net.minecraft.text.Text)">
 <h3>tooltip</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">tooltip</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;tooltip)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html#tooltip(net.minecraft.text.Text)">WidgetBuilder</a></code></span></div>
+<div class="block">Sets the tooltip text for the widget. This is shown when hovering over
+ the property display name in the config widget.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/WidgetBuilder.html#tooltip(net.minecraft.text.Text)">tooltip</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a> extends <a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a>,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>tooltip</code> - The tooltip text</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
@@ -267,9 +289,14 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <section class="detail" id="tooltip()">
 <h3>tooltip</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">tooltip</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html#tooltip()">WidgetBuilder</a></code></span></div>
+<div class="block">Enabled the tooltip for the widget. The text of the tooltip will default to
+ a translatable text with key <code>reconfigure.property.[namespace].[propertyname].tooltip</code>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/WidgetBuilder.html#tooltip()">tooltip</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a> extends <a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a>,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
@@ -292,9 +319,14 @@ implements <a href="../../../api/widget/WidgetBuilder.html" title="interface in 
 <section class="detail" id="build()">
 <h3>build</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="../../property/PropertyImpl.html" title="class in net.replaceitem.reconfigure.config.property">PropertyImpl</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html#build()">WidgetBuilder</a></code></span></div>
+<div class="block">Builds the widget and the property. The built widget and property is automatically added
+ to the config tab on which this builder was created.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/WidgetBuilder.html#build()">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a> extends <a href="../../../api/widget/WidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">WidgetBuilder</a>&lt;<a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">SELF</a>,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;,<wbr><a href="WidgetBuilderImpl.html" title="type parameter in WidgetBuilderImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>The built property</dd>
 </dl>
 </section>
 </li>

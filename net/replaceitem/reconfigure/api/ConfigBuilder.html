@@ -108,10 +108,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Builds the config.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#title(net.minecraft.text.Text)" class="member-name-link">title</a><wbr>(net.minecraft.text.Text&nbsp;title)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#serializer(net.replaceitem.reconfigure.config.serialization.Serializer)" class="member-name-link">serializer</a><wbr>(<a href="../config/serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&lt;?,<wbr>?&gt;&nbsp;serializer)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the serializer for this config.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#title(net.minecraft.text.Text)" class="member-name-link">title</a><wbr>(net.minecraft.text.Text&nbsp;title)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the title text for the config.</div>
+</div>
 </div>
 </div>
 </div>
@@ -130,12 +139,40 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="title(net.minecraft.text.Text)">
 <h3>title</h3>
 <div class="member-signature"><span class="return-type"><a href="ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></span>&nbsp;<span class="element-name">title</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;title)</span></div>
+<div class="block">Sets the title text for the config. If not set, the default title is a translatable text with key
+ <code>reconfigure.title.[namespace]</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - The title text</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="serializer(net.replaceitem.reconfigure.config.serialization.Serializer)">
+<h3>serializer</h3>
+<div class="member-signature"><span class="return-type"><a href="ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></span>&nbsp;<span class="element-name">serializer</span><wbr><span class="parameters">(<a href="../config/serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&lt;?,<wbr>?&gt;&nbsp;serializer)</span></div>
+<div class="block">Sets the serializer for this config. The serializer is used for reading and
+ writing the config to a file in different formats.
+ Serializers can be built or fetched from <a href="serializer/Serializers.html" title="class in net.replaceitem.reconfigure.api.serializer"><code>Serializers</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>serializer</code> - The serializer</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="build()">
 <h3>build</h3>
 <div class="member-signature"><span class="return-type"><a href="Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="block">Builds the config. After this, the returned config can be used to create tabs for it.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The config</dd>
+</dl>
 </section>
 </li>
 </ul>

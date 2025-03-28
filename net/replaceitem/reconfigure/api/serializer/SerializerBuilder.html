@@ -112,13 +112,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">S</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the serializer</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#preLoad(java.util.function.Consumer)" class="member-name-link">preLoad</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">C</a>&gt;&nbsp;preLoad)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Adds a preload middleware to the serializer.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#preWrite(java.util.function.Consumer)" class="member-name-link">preWrite</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">C</a>&gt;&nbsp;preWrite)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Adds a prewrite middleware to the serializer.</div>
+</div>
 </div>
 </div>
 </div>
@@ -137,18 +143,52 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="preLoad(java.util.function.Consumer)">
 <h3>preLoad</h3>
 <div class="member-signature"><span class="return-type"><a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">SELF</a></span>&nbsp;<span class="element-name">preLoad</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">C</a>&gt;&nbsp;preLoad)</span></div>
+<div class="block">Adds a preload middleware to the serializer.
+ This is run just before data is loaded from disk into the config.
+ This can be used to migrate old config data to a new format.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>preLoad</code> - The consumer for the preload middleware</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../config/serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="preWrite(java.util.function.Consumer)">
 <h3>preWrite</h3>
 <div class="member-signature"><span class="return-type"><a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">SELF</a></span>&nbsp;<span class="element-name">preWrite</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">C</a>&gt;&nbsp;preWrite)</span></div>
+<div class="block">Adds a prewrite middleware to the serializer.
+ This is run just before data is saved to disk after it has been read from the config.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>preWrite</code> - The consumer for the prewrite middleware</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../config/serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="build()">
 <h3>build</h3>
 <div class="member-signature"><span class="return-type"><a href="SerializerBuilder.html" title="type parameter in SerializerBuilder">S</a></span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="block">Finishes building the serializer</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The build serializer instance. This should be provided to <a href="../ConfigBuilder.html#serializer(net.replaceitem.reconfigure.config.serialization.Serializer)"><code>ConfigBuilder.serializer(Serializer)</code></a></dd>
+</dl>
 </section>
 </li>
 </ul>

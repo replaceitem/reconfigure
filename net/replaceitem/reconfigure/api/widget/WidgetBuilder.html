@@ -88,7 +88,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Subinterfaces:</dt>
-<dd><code><a href="AbstractTextFieldWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">AbstractTextFieldWidgetBuilder</a>&lt;SELF&gt;</code>, <code><a href="CheckboxWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CheckboxWidgetBuilder</a></code>, <code><a href="ChipListWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ChipListWidgetBuilder</a></code>, <code><a href="ColorPickerWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ColorPickerWidgetBuilder</a></code>, <code><a href="CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a>&lt;T&gt;</code>, <code><a href="SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a>&lt;SELF,<wbr>T&gt;</code></dd>
+<dd><code><a href="AbstractTextFieldWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">AbstractTextFieldWidgetBuilder</a>&lt;SELF&gt;</code>, <code><a href="CheckboxWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CheckboxWidgetBuilder</a></code>, <code><a href="ChipListWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ChipListWidgetBuilder</a></code>, <code><a href="ColorPickerWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ColorPickerWidgetBuilder</a></code>, <code><a href="CustomWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CustomWidgetBuilder</a>&lt;T&gt;</code>, <code><a href="CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a>&lt;T&gt;</code>, <code><a href="SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a>&lt;SELF,<wbr>T&gt;</code></dd>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
@@ -112,16 +112,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a><wbr>&lt;<a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Builds the widget and the property.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#displayName(net.minecraft.text.Text)" class="member-name-link">displayName</a><wbr>(net.minecraft.text.Text&nbsp;displayName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the display name of the widget as rendered in the config screen.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#tooltip()" class="member-name-link">tooltip</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Enabled the tooltip for the widget.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#tooltip(net.minecraft.text.Text)" class="member-name-link">tooltip</a><wbr>(net.minecraft.text.Text&nbsp;tooltip)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the tooltip text for the widget.</div>
+</div>
 </div>
 </div>
 </div>
@@ -140,24 +148,52 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="displayName(net.minecraft.text.Text)">
 <h3>displayName</h3>
 <div class="member-signature"><span class="return-type"><a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">displayName</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;displayName)</span></div>
+<div class="block">Sets the display name of the widget as rendered in the config screen.
+ When not set, defaults to a translatable text with key <code>reconfigure.property.[namespace].[propertyname]</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>displayName</code> - The display name text</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="tooltip(net.minecraft.text.Text)">
 <h3>tooltip</h3>
 <div class="member-signature"><span class="return-type"><a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">tooltip</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;tooltip)</span></div>
+<div class="block">Sets the tooltip text for the widget. This is shown when hovering over
+ the property display name in the config widget.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tooltip</code> - The tooltip text</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="tooltip()">
 <h3>tooltip</h3>
 <div class="member-signature"><span class="return-type"><a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">tooltip</span>()</div>
+<div class="block">Enabled the tooltip for the widget. The text of the tooltip will default to
+ a translatable text with key <code>reconfigure.property.[namespace].[propertyname].tooltip</code>.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="build()">
 <h3>build</h3>
 <div class="member-signature"><span class="return-type"><a href="../Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="WidgetBuilder.html" title="type parameter in WidgetBuilder">T</a>&gt;</span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="block">Builds the widget and the property. The built widget and property is automatically added
+ to the config tab on which this builder was created.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The built property</dd>
+</dl>
 </section>
 </li>
 </ul>

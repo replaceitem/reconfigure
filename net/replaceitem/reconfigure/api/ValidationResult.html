@@ -145,36 +145,64 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="valid()">
 <h3>valid</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="ValidationResult.html" title="class in net.replaceitem.reconfigure.api">ValidationResult</a></span>&nbsp;<span class="element-name">valid</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>A valid validation result</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="invalid(net.minecraft.text.Text)">
 <h3>invalid</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="ValidationResult.html" title="class in net.replaceitem.reconfigure.api">ValidationResult</a></span>&nbsp;<span class="element-name">invalid</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;error)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>error</code> - The error text for the invalid validation result</dd>
+<dt>Returns:</dt>
+<dd>An invalid validation result</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="invalid(java.lang.String)">
 <h3>invalid</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="ValidationResult.html" title="class in net.replaceitem.reconfigure.api">ValidationResult</a></span>&nbsp;<span class="element-name">invalid</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;error)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>error</code> - The error string for the invalid validation result, which will be used as a literal text.</dd>
+<dt>Returns:</dt>
+<dd>An invalid validation result</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isValid()">
 <h3>isValid</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isValid</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Whether the validation result is valid</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isInvalid()">
 <h3>isInvalid</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isInvalid</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Whether the validation result is invalid</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMessage()">
 <h3>getMessage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">net.minecraft.text.Text</span>&nbsp;<span class="element-name">getMessage</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The validation error message if invalid. If valid, returns <code>Text.empty()</code></dd>
+</dl>
 </section>
 </li>
 </ul>

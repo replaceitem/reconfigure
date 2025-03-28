@@ -200,10 +200,14 @@ implements <a href="../../../api/widget/SliderWidgetBuilder.html" title="interfa
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(T)" class="member-name-link">max</a><wbr>(<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&nbsp;max)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The maximum value for the slider.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#min(T)" class="member-name-link">min</a><wbr>(<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&nbsp;min)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The minimum value for the slider.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#preBuild(net.replaceitem.reconfigure.config.PropertyHolder)" class="member-name-link">preBuild</a><wbr>(<a href="../../PropertyHolder.html" title="class in net.replaceitem.reconfigure.config">PropertyHolder</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;&nbsp;property)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -211,7 +215,9 @@ implements <a href="../../../api/widget/SliderWidgetBuilder.html" title="interfa
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#step(T)" class="member-name-link">step</a><wbr>(<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&nbsp;step)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The step distance for the slider.</div>
+</div>
 </div>
 </div>
 </div>
@@ -286,9 +292,16 @@ implements <a href="../../../api/widget/SliderWidgetBuilder.html" title="interfa
 <section class="detail" id="min(T)">
 <h3 id="min(java.lang.Number)">min</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">min</span><wbr><span class="parameters">(<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&nbsp;min)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/SliderWidgetBuilder.html#min(T)">SliderWidgetBuilder</a></code></span></div>
+<div class="block">The minimum value for the slider. By default, this is the minimum value of the property (if present),
+ but can be changed to differ from the allowed range of the property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/SliderWidgetBuilder.html#min(T)">min</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a> extends <a href="SliderWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">SliderWidgetBuilderImpl</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a>,<wbr><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;,<wbr><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a> extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a> &amp; <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>min</code> - The minimum value</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
@@ -296,9 +309,16 @@ implements <a href="../../../api/widget/SliderWidgetBuilder.html" title="interfa
 <section class="detail" id="max(T)">
 <h3 id="max(java.lang.Number)">max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&nbsp;max)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/SliderWidgetBuilder.html#max(T)">SliderWidgetBuilder</a></code></span></div>
+<div class="block">The maximum value for the slider. By default, this is the maximum value of the property (if present),
+ but can be changed to differ from the allowed range of the property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/SliderWidgetBuilder.html#max(T)">max</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a> extends <a href="SliderWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">SliderWidgetBuilderImpl</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a>,<wbr><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;,<wbr><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a> extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a> &amp; <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>max</code> - The maximum value</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
@@ -306,9 +326,16 @@ implements <a href="../../../api/widget/SliderWidgetBuilder.html" title="interfa
 <section class="detail" id="step(T)">
 <h3 id="step(java.lang.Number)">step</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">step</span><wbr><span class="parameters">(<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&nbsp;step)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/SliderWidgetBuilder.html#step(T)">SliderWidgetBuilder</a></code></span></div>
+<div class="block">The step distance for the slider. When set, the slider can only set values in this increment.
+ A step of 5 will mean your slider has the values <code>min, min+5, min+10, ...</code>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/SliderWidgetBuilder.html#step(T)">step</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a> extends <a href="SliderWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">SliderWidgetBuilderImpl</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">SELF</a>,<wbr><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;,<wbr><a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a> extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a> &amp; <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="SliderWidgetBuilderImpl.html" title="type parameter in SliderWidgetBuilderImpl">T</a>&gt;&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>step</code> - The step of the slider</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>

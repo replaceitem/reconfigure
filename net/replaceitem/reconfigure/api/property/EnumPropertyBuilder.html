@@ -113,7 +113,9 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../widget/CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a><wbr>&lt;<a href="EnumPropertyBuilder.html" title="type parameter in EnumPropertyBuilder">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asCyclingButton()" class="member-name-link">asCyclingButton</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the enum property and starts building a cycling button widget for it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -135,6 +137,15 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <section class="detail" id="asCyclingButton()">
 <h3>asCyclingButton</h3>
 <div class="member-signature"><span class="return-type"><a href="../widget/CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a>&lt;<a href="EnumPropertyBuilder.html" title="type parameter in EnumPropertyBuilder">T</a>&gt;</span>&nbsp;<span class="element-name">asCyclingButton</span>()</div>
+<div class="block">Finishes building the enum property and starts building a cycling button widget for it.
+ A cycling button widget is a button that cycles through all possible enum values when clicked.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The cycling button widget builder</dd>
+</dl>
 </section>
 </li>
 </ul>

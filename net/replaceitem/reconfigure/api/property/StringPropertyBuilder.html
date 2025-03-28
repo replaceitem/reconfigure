@@ -113,10 +113,14 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../config/widget/builder/EditBoxWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">EditBoxWidgetBuilderImpl</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asEditBox()" class="member-name-link">asEditBox</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the string property and starts building an edit box widget for it.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../config/widget/builder/TextFieldWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">TextFieldWidgetBuilderImpl</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asTextField()" class="member-name-link">asTextField</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the string property and starts building a text field widget for it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -138,12 +142,30 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <section class="detail" id="asTextField()">
 <h3>asTextField</h3>
 <div class="member-signature"><span class="return-type"><a href="../../config/widget/builder/TextFieldWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">TextFieldWidgetBuilderImpl</a></span>&nbsp;<span class="element-name">asTextField</span>()</div>
+<div class="block">Finishes building the string property and starts building a text field widget for it.
+ A text field widget is a single line text box.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The text field widget builder</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="asEditBox()">
 <h3>asEditBox</h3>
 <div class="member-signature"><span class="return-type"><a href="../../config/widget/builder/EditBoxWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">EditBoxWidgetBuilderImpl</a></span>&nbsp;<span class="element-name">asEditBox</span>()</div>
+<div class="block">Finishes building the string property and starts building an edit box widget for it.
+ An edit box is a multiline text box with scrolling support.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The edit box widget builder</dd>
+</dl>
 </section>
 </li>
 </ul>

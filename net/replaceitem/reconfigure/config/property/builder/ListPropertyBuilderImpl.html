@@ -139,7 +139,9 @@ implements <a href="../../../api/property/ListPropertyBuilder.html" title="inter
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../widget/builder/ChipListWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">ChipListWidgetBuilderImpl</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asChipList()" class="member-name-link">asChipList</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finishes building the list property and starts building a chip list widget for it.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../serialization/TypeAdapter.html" title="class in net.replaceitem.reconfigure.config.serialization">TypeAdapter</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;,<wbr>?&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTypeAdapter()" class="member-name-link">getTypeAdapter</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -196,9 +198,18 @@ implements <a href="../../../api/property/ListPropertyBuilder.html" title="inter
 <section class="detail" id="asChipList()">
 <h3>asChipList</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../widget/builder/ChipListWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">ChipListWidgetBuilderImpl</a></span>&nbsp;<span class="element-name">asChipList</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/property/ListPropertyBuilder.html#asChipList()">ListPropertyBuilder</a></code></span></div>
+<div class="block">Finishes building the list property and starts building a chip list widget for it.
+ A chip list widget has a text field into which values can be entered. When clicking a button,
+ the value is added to the list and shown in a chip. Each chip can be removed.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../../../api/widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/property/ListPropertyBuilder.html#asChipList()">asChipList</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/property/ListPropertyBuilder.html" title="interface in net.replaceitem.reconfigure.api.property">ListPropertyBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The chip list widget builder</dd>
 </dl>
 </section>
 </li>

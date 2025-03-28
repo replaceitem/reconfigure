@@ -148,10 +148,14 @@ implements <a href="../../../api/serializer/SerializerBuilder.html" title="inter
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#preLoad(java.util.function.Consumer)" class="member-name-link">preLoad</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;&nbsp;preLoad)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a preload middleware to the serializer.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#preWrite(java.util.function.Consumer)" class="member-name-link">preWrite</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;&nbsp;preWrite)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a prewrite middleware to the serializer.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#self()" class="member-name-link">self</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -215,9 +219,23 @@ implements <a href="../../../api/serializer/SerializerBuilder.html" title="inter
 <section class="detail" id="preLoad(java.util.function.Consumer)">
 <h3>preLoad</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">preLoad</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;&nbsp;preLoad)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/serializer/SerializerBuilder.html#preLoad(java.util.function.Consumer)">SerializerBuilder</a></code></span></div>
+<div class="block">Adds a preload middleware to the serializer.
+ This is run just before data is loaded from disk into the config.
+ This can be used to migrate old config data to a new format.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/serializer/SerializerBuilder.html#preLoad(java.util.function.Consumer)">preLoad</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/serializer/SerializerBuilder.html" title="interface in net.replaceitem.reconfigure.api.serializer">SerializerBuilder</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a> extends <a href="../../../api/serializer/SerializerBuilder.html" title="interface in net.replaceitem.reconfigure.api.serializer">SerializerBuilder</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a>,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">S</a>,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">S</a> extends <a href="../Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&lt;?,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>preLoad</code> - The consumer for the preload middleware</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>
@@ -225,9 +243,22 @@ implements <a href="../../../api/serializer/SerializerBuilder.html" title="inter
 <section class="detail" id="preWrite(java.util.function.Consumer)">
 <h3>preWrite</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a></span>&nbsp;<span class="element-name">preWrite</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;&nbsp;preWrite)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/serializer/SerializerBuilder.html#preWrite(java.util.function.Consumer)">SerializerBuilder</a></code></span></div>
+<div class="block">Adds a prewrite middleware to the serializer.
+ This is run just before data is saved to disk after it has been read from the config.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/serializer/SerializerBuilder.html#preWrite(java.util.function.Consumer)">preWrite</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/serializer/SerializerBuilder.html" title="interface in net.replaceitem.reconfigure.api.serializer">SerializerBuilder</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a> extends <a href="../../../api/serializer/SerializerBuilder.html" title="interface in net.replaceitem.reconfigure.api.serializer">SerializerBuilder</a>&lt;<a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">SELF</a>,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">S</a>,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">S</a> extends <a href="../Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&lt;?,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;,<wbr><a href="SerializerBuilderImpl.html" title="type parameter in SerializerBuilderImpl">C</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>preWrite</code> - The consumer for the prewrite middleware</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>

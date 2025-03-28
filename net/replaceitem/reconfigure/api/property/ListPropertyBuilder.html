@@ -113,7 +113,9 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../widget/ChipListWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ChipListWidgetBuilder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asChipList()" class="member-name-link">asChipList</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the list property and starts building a chip list widget for it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -135,6 +137,16 @@ extends <a href="PropertyBuilder.html" title="interface in net.replaceitem.recon
 <section class="detail" id="asChipList()">
 <h3>asChipList</h3>
 <div class="member-signature"><span class="return-type"><a href="../widget/ChipListWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ChipListWidgetBuilder</a></span>&nbsp;<span class="element-name">asChipList</span>()</div>
+<div class="block">Finishes building the list property and starts building a chip list widget for it.
+ A chip list widget has a text field into which values can be entered. When clicking a button,
+ the value is added to the list and shown in a chip. Each chip can be removed.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The chip list widget builder</dd>
+</dl>
 </section>
 </li>
 </ul>

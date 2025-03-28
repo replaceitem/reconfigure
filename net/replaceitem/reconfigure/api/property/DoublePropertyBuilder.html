@@ -113,7 +113,9 @@ extends <a href="NumericPropertyBuilder.html" title="interface in net.replaceite
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../widget/SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a><wbr>&lt;?,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asSlider()" class="member-name-link">asSlider</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the double property and starts building a slider widget for it.</div>
+</div>
 </div>
 </div>
 </div>
@@ -138,6 +140,14 @@ extends <a href="NumericPropertyBuilder.html" title="interface in net.replaceite
 <section class="detail" id="asSlider()">
 <h3>asSlider</h3>
 <div class="member-signature"><span class="return-type"><a href="../widget/SliderWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">SliderWidgetBuilder</a>&lt;?,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</span>&nbsp;<span class="element-name">asSlider</span>()</div>
+<div class="block">Finishes building the double property and starts building a slider widget for it.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The slider widget builder</dd>
+</dl>
 </section>
 </li>
 </ul>

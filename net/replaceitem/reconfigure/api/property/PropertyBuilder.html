@@ -112,13 +112,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addValidator(net.replaceitem.reconfigure.api.Validator)" class="member-name-link">addValidator</a><wbr>(<a href="../Validator.html" title="interface in net.replaceitem.reconfigure.api">Validator</a>&lt;<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&gt;&nbsp;validator)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Adds a validator to the property.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../widget/CustomWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CustomWidgetBuilder</a><wbr>&lt;<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#asCustomWidget(java.util.function.Function)" class="member-name-link">asCustomWidget</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="../../config/BaseSettings.html" title="class in net.replaceitem.reconfigure.config">BaseSettings</a>,<wbr><a href="../../config/widget/ConfigWidgetFactory.html" title="interface in net.replaceitem.reconfigure.config.widget">ConfigWidgetFactory</a>&lt;<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&gt;&gt;&nbsp;widgetFactorySupplier)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Finishes building the property and starts building a custom widget for it.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#defaultValue(T)" class="member-name-link">defaultValue</a><wbr>(<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&nbsp;defaultValue)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the default value for the property.</div>
+</div>
 </div>
 </div>
 </div>
@@ -137,18 +143,52 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="defaultValue(T)">
 <h3 id="defaultValue(java.lang.Object)">defaultValue</h3>
 <div class="member-signature"><span class="return-type"><a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">SELF</a></span>&nbsp;<span class="element-name">defaultValue</span><wbr><span class="parameters">(<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&nbsp;defaultValue)</span></div>
+<div class="block">Sets the default value for the property. This value is used as the initial value of the property
+ and when deserialization without a value present.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>defaultValue</code> - The default value for the property</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="addValidator(net.replaceitem.reconfigure.api.Validator)">
 <h3>addValidator</h3>
 <div class="member-signature"><span class="return-type"><a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">SELF</a></span>&nbsp;<span class="element-name">addValidator</span><wbr><span class="parameters">(<a href="../Validator.html" title="interface in net.replaceitem.reconfigure.api">Validator</a>&lt;<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&gt;&nbsp;validator)</span></div>
+<div class="block">Adds a validator to the property.
+ Validators are used to verify whether a value is allowed to be set for a property.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>validator</code> - The validator to add</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../Validator.html" title="interface in net.replaceitem.reconfigure.api"><code>Validator</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="asCustomWidget(java.util.function.Function)">
 <h3>asCustomWidget</h3>
 <div class="member-signature"><span class="return-type"><a href="../widget/CustomWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CustomWidgetBuilder</a>&lt;<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&gt;</span>&nbsp;<span class="element-name">asCustomWidget</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="../../config/BaseSettings.html" title="class in net.replaceitem.reconfigure.config">BaseSettings</a>,<wbr><a href="../../config/widget/ConfigWidgetFactory.html" title="interface in net.replaceitem.reconfigure.config.widget">ConfigWidgetFactory</a>&lt;<a href="PropertyBuilder.html" title="type parameter in PropertyBuilder">T</a>&gt;&gt;&nbsp;widgetFactorySupplier)</span></div>
+<div class="block">Finishes building the property and starts building a custom widget for it.
+ A function must be supplied, which returns a widget factory for your custom widget.
+ The function provides some base information which is configured in the returned custom widget builder.
+ This data is to be used in your custom widget.
+ To finish building the widget, use <a href="../widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>widgetFactorySupplier</code> - The supplier to construct a widget instance</dd>
+<dt>Returns:</dt>
+<dd>The custom widget builder</dd>
+</dl>
 </section>
 </li>
 </ul>

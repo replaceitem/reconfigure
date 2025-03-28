@@ -139,7 +139,9 @@ implements <a href="../../../api/property/EnumPropertyBuilder.html" title="inter
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../widget/builder/CyclingButtonWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CyclingButtonWidgetBuilderImpl</a><wbr>&lt;<a href="EnumPropertyBuilderImpl.html" title="type parameter in EnumPropertyBuilderImpl">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asCyclingButton()" class="member-name-link">asCyclingButton</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finishes building the enum property and starts building a cycling button widget for it.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../serialization/TypeAdapter.html" title="class in net.replaceitem.reconfigure.config.serialization">TypeAdapter</a><wbr>&lt;<a href="EnumPropertyBuilderImpl.html" title="type parameter in EnumPropertyBuilderImpl">T</a>,<wbr><a href="../../serialization/Intermediary.IntermediaryString.html" title="class in net.replaceitem.reconfigure.config.serialization">Intermediary.IntermediaryString</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTypeAdapter()" class="member-name-link">getTypeAdapter</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -191,9 +193,17 @@ implements <a href="../../../api/property/EnumPropertyBuilder.html" title="inter
 <section class="detail" id="asCyclingButton()">
 <h3>asCyclingButton</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../widget/builder/CyclingButtonWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CyclingButtonWidgetBuilderImpl</a>&lt;<a href="EnumPropertyBuilderImpl.html" title="type parameter in EnumPropertyBuilderImpl">T</a>&gt;</span>&nbsp;<span class="element-name">asCyclingButton</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/property/EnumPropertyBuilder.html#asCyclingButton()">EnumPropertyBuilder</a></code></span></div>
+<div class="block">Finishes building the enum property and starts building a cycling button widget for it.
+ A cycling button widget is a button that cycles through all possible enum values when clicked.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../../../api/widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/property/EnumPropertyBuilder.html#asCyclingButton()">asCyclingButton</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/property/EnumPropertyBuilder.html" title="interface in net.replaceitem.reconfigure.api.property">EnumPropertyBuilder</a>&lt;<a href="EnumPropertyBuilderImpl.html" title="type parameter in EnumPropertyBuilderImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>The cycling button widget builder</dd>
 </dl>
 </section>
 </li>

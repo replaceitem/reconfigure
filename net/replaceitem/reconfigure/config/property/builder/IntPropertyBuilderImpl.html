@@ -143,10 +143,14 @@ implements <a href="../../../api/property/IntPropertyBuilder.html" title="interf
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../api/widget/ColorPickerWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ColorPickerWidgetBuilder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asColorPicker()" class="member-name-link">asColorPicker</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finishes building the integer property and starts building a color picker widget for it.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../widget/builder/SliderWidgetBuilderImpl.IntSliderWidgetBuilder.html" title="class in net.replaceitem.reconfigure.config.widget.builder">SliderWidgetBuilderImpl.IntSliderWidgetBuilder</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asSlider()" class="member-name-link">asSlider</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finishes building the integer property and starts building a slider widget for it.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../serialization/TypeAdapter.html" title="class in net.replaceitem.reconfigure.config.serialization">TypeAdapter</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="../../serialization/Intermediary.IntermediaryInteger.html" title="class in net.replaceitem.reconfigure.config.serialization">Intermediary.IntermediaryInteger</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTypeAdapter()" class="member-name-link">getTypeAdapter</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -213,9 +217,16 @@ implements <a href="../../../api/property/IntPropertyBuilder.html" title="interf
 <section class="detail" id="asSlider()">
 <h3>asSlider</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../widget/builder/SliderWidgetBuilderImpl.IntSliderWidgetBuilder.html" title="class in net.replaceitem.reconfigure.config.widget.builder">SliderWidgetBuilderImpl.IntSliderWidgetBuilder</a></span>&nbsp;<span class="element-name">asSlider</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/property/IntPropertyBuilder.html#asSlider()">IntPropertyBuilder</a></code></span></div>
+<div class="block">Finishes building the integer property and starts building a slider widget for it.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../../../api/widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/property/IntPropertyBuilder.html#asSlider()">asSlider</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/property/IntPropertyBuilder.html" title="interface in net.replaceitem.reconfigure.api.property">IntPropertyBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The slider widget builder</dd>
 </dl>
 </section>
 </li>
@@ -223,9 +234,16 @@ implements <a href="../../../api/property/IntPropertyBuilder.html" title="interf
 <section class="detail" id="asColorPicker()">
 <h3>asColorPicker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../api/widget/ColorPickerWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ColorPickerWidgetBuilder</a></span>&nbsp;<span class="element-name">asColorPicker</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/property/IntPropertyBuilder.html#asColorPicker()">IntPropertyBuilder</a></code></span></div>
+<div class="block">Finishes building the integer property and starts building a color picker widget for it.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../../../api/widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/property/IntPropertyBuilder.html#asColorPicker()">asColorPicker</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/property/IntPropertyBuilder.html" title="interface in net.replaceitem.reconfigure.api.property">IntPropertyBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The color picker widget builder</dd>
 </dl>
 </section>
 </li>

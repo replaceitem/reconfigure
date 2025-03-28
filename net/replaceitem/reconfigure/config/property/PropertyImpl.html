@@ -86,7 +86,7 @@ loadScripts(document, 'script');</script>
 <h1 title="Class PropertyImpl" class="title">Class PropertyImpl&lt;T&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="../../api/AbstractBindable.html" title="class in net.replaceitem.reconfigure.api">net.replaceitem.reconfigure.api.AbstractBindable</a>&lt;T&gt;
+<div class="inheritance"><a href="../AbstractBindable.html" title="class in net.replaceitem.reconfigure.config">net.replaceitem.reconfigure.config.AbstractBindable</a>&lt;T&gt;
 <div class="inheritance">net.replaceitem.reconfigure.config.property.PropertyImpl&lt;T&gt;</div>
 </div>
 </div>
@@ -97,7 +97,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PropertyImpl&lt;T&gt;</span>
-<span class="extends-implements">extends <a href="../../api/AbstractBindable.html" title="class in net.replaceitem.reconfigure.api">AbstractBindable</a>&lt;T&gt;
+<span class="extends-implements">extends <a href="../AbstractBindable.html" title="class in net.replaceitem.reconfigure.config">AbstractBindable</a>&lt;T&gt;
 implements <a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;T&gt;</span></div>
 </section>
 <section class="summary">
@@ -145,31 +145,51 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the current value</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultValue()" class="member-name-link">getDefaultValue</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the default value of the property.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>net.minecraft.util.Identifier</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the identifier of the property.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDefault()" class="member-name-link">isDefault</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether the property is currently set to the default value according to
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link"><code>Objects.equals(Object, Object)</code></a>.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDefault(T)" class="member-name-link">isDefault</a><wbr>(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether the value is equal to the default value according to
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link"><code>Objects.equals(Object, Object)</code></a>.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resets the property to the default value.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#set(T)" class="member-name-link">set</a><wbr>(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the value of the property.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIfValid(T)" class="member-name-link">setIfValid</a><wbr>(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the value of the property.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOrDefault(T)" class="member-name-link">setOrDefault</a><wbr>(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the value of the property.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../api/ValidationResult.html" title="class in net.replaceitem.reconfigure.api">ValidationResult</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#validate(T)" class="member-name-link">validate</a><wbr>(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -177,8 +197,8 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 </div>
 </div>
 <div class="inherited-list">
-<h3 id="methods-inherited-from-class-net.replaceitem.reconfigure.api.AbstractBindable">Methods inherited from class&nbsp;net.replaceitem.reconfigure.api.<a href="../../api/AbstractBindable.html" title="class in net.replaceitem.reconfigure.api">AbstractBindable</a></h3>
-<code><a href="../../api/AbstractBindable.html#addListener(java.util.function.Consumer)">addListener</a>, <a href="../../api/AbstractBindable.html#callListeners(T)">callListeners</a>, <a href="../../api/AbstractBindable.html#hasListeners()">hasListeners</a>, <a href="../../api/AbstractBindable.html#removeListener(java.util.function.Consumer)">removeListener</a></code></div>
+<h3 id="methods-inherited-from-class-net.replaceitem.reconfigure.config.AbstractBindable">Methods inherited from class&nbsp;net.replaceitem.reconfigure.config.<a href="../AbstractBindable.html" title="class in net.replaceitem.reconfigure.config">AbstractBindable</a></h3>
+<code><a href="../AbstractBindable.html#addListener(java.util.function.Consumer)">addListener</a>, <a href="../AbstractBindable.html#callListeners(T)">callListeners</a>, <a href="../AbstractBindable.html#hasListeners()">hasListeners</a>, <a href="../AbstractBindable.html#map(java.util.function.Function)">map</a>, <a href="../AbstractBindable.html#observe(java.util.function.Consumer)">observe</a>, <a href="../AbstractBindable.html#removeListener(java.util.function.Consumer)">removeListener</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -230,9 +250,13 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="get()">
 <h3>get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a></span>&nbsp;<span class="element-name">get</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Bindable.html#get()">Bindable</a></code></span></div>
+<div class="block">Gets the current value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Bindable.html#get()">get</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Bindable.html" title="interface in net.replaceitem.reconfigure.api">Bindable</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>The current value</dd>
 </dl>
 </section>
 </li>
@@ -240,9 +264,14 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="set(T)">
 <h3 id="set(java.lang.Object)">set</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">set</span><wbr><span class="parameters">(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#set(T)">Property</a></code></span></div>
+<div class="block">Sets the value of the property. If the provided value is invalid according to the validators,
+ an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link"><code>IllegalArgumentException</code></a> is thrown.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#set(T)">set</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>value</code> - The value to set</dd>
 </dl>
 </section>
 </li>
@@ -250,9 +279,14 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="setIfValid(T)">
 <h3 id="setIfValid(java.lang.Object)">setIfValid</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setIfValid</span><wbr><span class="parameters">(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#setIfValid(T)">Property</a></code></span></div>
+<div class="block">Sets the value of the property. If the provided value is invalid according to the validators,
+ the previous value is kept and no listeners are invoked.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#setIfValid(T)">setIfValid</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>value</code> - The value to set</dd>
 </dl>
 </section>
 </li>
@@ -260,9 +294,14 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="setOrDefault(T)">
 <h3 id="setOrDefault(java.lang.Object)">setOrDefault</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setOrDefault</span><wbr><span class="parameters">(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#setOrDefault(T)">Property</a></code></span></div>
+<div class="block">Sets the value of the property. If the provided value is invalid according to the validators,
+ the default value of the property will be set instead.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#setOrDefault(T)">setOrDefault</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>value</code> - The value to set</dd>
 </dl>
 </section>
 </li>
@@ -270,6 +309,8 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="reset()">
 <h3>reset</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#reset()">Property</a></code></span></div>
+<div class="block">Resets the property to the default value.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#reset()">reset</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
@@ -280,9 +321,13 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="getDefaultValue()">
 <h3>getDefaultValue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a></span>&nbsp;<span class="element-name">getDefaultValue</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#getDefaultValue()">Property</a></code></span></div>
+<div class="block">Gets the default value of the property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#getDefaultValue()">getDefaultValue</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>The default value of the property</dd>
 </dl>
 </section>
 </li>
@@ -290,9 +335,14 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="isDefault()">
 <h3>isDefault</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDefault</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#isDefault()">Property</a></code></span></div>
+<div class="block">Returns whether the property is currently set to the default value according to
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link"><code>Objects.equals(Object, Object)</code></a>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#isDefault()">isDefault</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd><code>true</code> if the value of the property equals the default value, <code>false</code> otherwise</dd>
 </dl>
 </section>
 </li>
@@ -300,9 +350,16 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="isDefault(T)">
 <h3 id="isDefault(java.lang.Object)">isDefault</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDefault</span><wbr><span class="parameters">(<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&nbsp;value)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#isDefault(T)">Property</a></code></span></div>
+<div class="block">Returns whether the value is equal to the default value according to
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link"><code>Objects.equals(Object, Object)</code></a>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#isDefault(T)">isDefault</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>value</code> - The value to check whether it is equal to the properties default value</dd>
+<dt>Returns:</dt>
+<dd><code>true</code> if the value equals the default value, <code>false</code> otherwise</dd>
 </dl>
 </section>
 </li>
@@ -316,9 +373,15 @@ implements <a href="../../api/Property.html" title="interface in net.replaceitem
 <section class="detail" id="getId()">
 <h3>getId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">net.minecraft.util.Identifier</span>&nbsp;<span class="element-name">getId</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/Property.html#getId()">Property</a></code></span></div>
+<div class="block">Gets the identifier of the property. This consists of the namespace provided when building the
+ config with <a href="../../api/Config.html#builder(java.lang.String)"><code>Config.builder(String)</code></a> and the name of the property provided when building the
+ property with <a href="../../api/ConfigTab.html" title="interface in net.replaceitem.reconfigure.api"><code>ConfigTab</code></a><code>.create???Property()</code>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/Property.html#getId()">getId</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/Property.html" title="interface in net.replaceitem.reconfigure.api">Property</a>&lt;<a href="PropertyImpl.html" title="type parameter in PropertyImpl">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>The identifier of the property.</dd>
 </dl>
 </section>
 </li>

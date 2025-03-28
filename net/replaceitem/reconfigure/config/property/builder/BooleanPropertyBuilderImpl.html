@@ -138,10 +138,14 @@ implements <a href="../../../api/property/BooleanPropertyBuilder.html" title="in
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../widget/builder/CheckboxWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CheckboxWidgetBuilderImpl</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asCheckbox()" class="member-name-link">asCheckbox</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finishes building the boolean property and starts building a checkbox widget for it.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../widget/builder/CyclingButtonWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CyclingButtonWidgetBuilderImpl</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asToggleButton()" class="member-name-link">asToggleButton</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Finishes building the boolean property and starts building a cycling button widget for it.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../serialization/TypeAdapter.html" title="class in net.replaceitem.reconfigure.config.serialization">TypeAdapter</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>,<wbr><a href="../../serialization/Intermediary.IntermediaryBoolean.html" title="class in net.replaceitem.reconfigure.config.serialization">Intermediary.IntermediaryBoolean</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTypeAdapter()" class="member-name-link">getTypeAdapter</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -197,9 +201,16 @@ implements <a href="../../../api/property/BooleanPropertyBuilder.html" title="in
 <section class="detail" id="asCheckbox()">
 <h3>asCheckbox</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../widget/builder/CheckboxWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CheckboxWidgetBuilderImpl</a></span>&nbsp;<span class="element-name">asCheckbox</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/property/BooleanPropertyBuilder.html#asCheckbox()">BooleanPropertyBuilder</a></code></span></div>
+<div class="block">Finishes building the boolean property and starts building a checkbox widget for it.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../../../api/widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/property/BooleanPropertyBuilder.html#asCheckbox()">asCheckbox</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/property/BooleanPropertyBuilder.html" title="interface in net.replaceitem.reconfigure.api.property">BooleanPropertyBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The checkbox widget builder</dd>
 </dl>
 </section>
 </li>
@@ -207,9 +218,17 @@ implements <a href="../../../api/property/BooleanPropertyBuilder.html" title="in
 <section class="detail" id="asToggleButton()">
 <h3>asToggleButton</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../widget/builder/CyclingButtonWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">CyclingButtonWidgetBuilderImpl</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</span>&nbsp;<span class="element-name">asToggleButton</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/property/BooleanPropertyBuilder.html#asToggleButton()">BooleanPropertyBuilder</a></code></span></div>
+<div class="block">Finishes building the boolean property and starts building a cycling button widget for it.
+ A cycling button widget is a button that cycles between two values for true and false when clicked.
+ The returned widget builder can then be used to configure the widget.
+ To finish building the widget, use <a href="../../../api/widget/WidgetBuilder.html#build()"><code>WidgetBuilder.build()</code></a> which
+ will return the created property.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/property/BooleanPropertyBuilder.html#asToggleButton()">asToggleButton</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/property/BooleanPropertyBuilder.html" title="interface in net.replaceitem.reconfigure.api.property">BooleanPropertyBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The cycling button widget builder</dd>
 </dl>
 </section>
 </li>

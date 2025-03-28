@@ -113,17 +113,26 @@ extends <a href="WidgetBuilder.html" title="interface in net.replaceitem.reconfi
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#max(T)" class="member-name-link">max</a><wbr>(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;max)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">The maximum value for the slider.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#min(T)" class="member-name-link">min</a><wbr>(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;min)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">The minimum value for the slider.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#range(T,T)" class="member-name-link">range</a><wbr>(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;min,
  <a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;max)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Convenience method for setting <a href="#min(T)"><code>min(Number)</code></a> and
+ <a href="#max(T)"><code>max(Number)</code></a> at once.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#step(T)" class="member-name-link">step</a><wbr>(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;step)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">The step distance for the slider.</div>
+</div>
 </div>
 </div>
 </div>
@@ -145,12 +154,28 @@ extends <a href="WidgetBuilder.html" title="interface in net.replaceitem.reconfi
 <section class="detail" id="min(T)">
 <h3 id="min(java.lang.Number)">min</h3>
 <div class="member-signature"><span class="return-type"><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">min</span><wbr><span class="parameters">(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;min)</span></div>
+<div class="block">The minimum value for the slider. By default, this is the minimum value of the property (if present),
+ but can be changed to differ from the allowed range of the property.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>min</code> - The minimum value</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="max(T)">
 <h3 id="max(java.lang.Number)">max</h3>
 <div class="member-signature"><span class="return-type"><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;max)</span></div>
+<div class="block">The maximum value for the slider. By default, this is the maximum value of the property (if present),
+ but can be changed to differ from the allowed range of the property.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>max</code> - The maximum value</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -158,12 +183,29 @@ extends <a href="WidgetBuilder.html" title="interface in net.replaceitem.reconfi
 <h3 id="range(java.lang.Number,java.lang.Number)">range</h3>
 <div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">range</span><wbr><span class="parameters">(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;min,
  <a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;max)</span></div>
+<div class="block">Convenience method for setting <a href="#min(T)"><code>min(Number)</code></a> and
+ <a href="#max(T)"><code>max(Number)</code></a> at once.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>min</code> - The minimum value of the slider</dd>
+<dd><code>max</code> - The maximum value of the slider</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="step(T)">
 <h3 id="step(java.lang.Number)">step</h3>
 <div class="member-signature"><span class="return-type"><a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">SELF</a></span>&nbsp;<span class="element-name">step</span><wbr><span class="parameters">(<a href="SliderWidgetBuilder.html" title="type parameter in SliderWidgetBuilder">T</a>&nbsp;step)</span></div>
+<div class="block">The step distance for the slider. When set, the slider can only set values in this increment.
+ A step of 5 will mean your slider has the values <code>min, min+5, min+10, ...</code>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>step</code> - The step of the slider</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 </ul>

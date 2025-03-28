@@ -160,7 +160,9 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createDefaultTab()" class="member-name-link">createDefaultTab</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates the default tab for the config.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="../screen/ConfigScreen.html" title="class in net.replaceitem.reconfigure.screen">ConfigScreen</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#createScreen(net.minecraft.client.gui.screen.Screen)" class="member-name-link">createScreen</a><wbr>(@Nullable net.minecraft.client.gui.screen.Screen&nbsp;parent)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
@@ -168,7 +170,9 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createTab(java.lang.String)" class="member-name-link">createTab</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a new tab for the config.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNamespace()" class="member-name-link">getNamespace</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -192,10 +196,16 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#load()" class="member-name-link">load</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Loads the config from a file using the <a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a>
+ defined in the config.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#save()" class="member-name-link">save</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Saves the config to a file using the <a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a>
+ defined in the config.</div>
+</div>
 </div>
 </div>
 </div>
@@ -248,9 +258,16 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 <section class="detail" id="createTab(java.lang.String)">
 <h3>createTab</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></span>&nbsp;<span class="element-name">createTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Config.html#createTab(java.lang.String)">Config</a></code></span></div>
+<div class="block">Creates a new tab for the config.
+ Use this if you want to split your config into multiple tabs.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Config.html#createTab(java.lang.String)">createTab</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>name</code> - The name of the tab</dd>
+<dt>Returns:</dt>
+<dd>A new config tab builder</dd>
 </dl>
 </section>
 </li>
@@ -258,9 +275,15 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 <section class="detail" id="createDefaultTab()">
 <h3>createDefaultTab</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></span>&nbsp;<span class="element-name">createDefaultTab</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Config.html#createDefaultTab()">Config</a></code></span></div>
+<div class="block">Creates the default tab for the config.
+ Use this if you don't want to use multiple tabs for your config.
+ This will create the single default tab to which you can add all your properties.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Config.html#createDefaultTab()">createDefaultTab</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></dd>
+<dt>Returns:</dt>
+<dd>The default config tab builder</dd>
 </dl>
 </section>
 </li>
@@ -343,9 +366,16 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../screen/ConfigScreen.html" title="class in net.replaceitem.reconfigure.screen">ConfigScreen</a></span>&nbsp;<span class="element-name">createScreen</span><wbr><span class="parameters">(@Nullable
  @Nullable net.minecraft.client.gui.screen.Screen&nbsp;parent)</span></div>
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Config.html#createScreen(net.minecraft.client.gui.screen.Screen)">Config</a></code></span></div>
+<div class="block">Creates a screen for the config.
+ Use this with <code>MinecraftClient.setScreen(Screen)</code> to show the config screen.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Config.html#createScreen(net.minecraft.client.gui.screen.Screen)">createScreen</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>parent</code> - The parent screen to return to when closing the config screen</dd>
+<dt>Returns:</dt>
+<dd>The config screen</dd>
 </dl>
 </section>
 </li>
@@ -353,6 +383,9 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 <section class="detail" id="save()">
 <h3>save</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">save</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Config.html#save()">Config</a></code></span></div>
+<div class="block">Saves the config to a file using the <a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a>
+ defined in the config.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Config.html#save()">save</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></dd>
@@ -363,6 +396,9 @@ implements <a href="../api/Config.html" title="interface in net.replaceitem.reco
 <section class="detail" id="load()">
 <h3>load</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">load</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Config.html#load()">Config</a></code></span></div>
+<div class="block">Loads the config from a file using the <a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization"><code>Serializer</code></a>
+ defined in the config.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Config.html#load()">load</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></dd>

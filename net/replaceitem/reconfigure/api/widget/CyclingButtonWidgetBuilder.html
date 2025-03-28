@@ -113,10 +113,15 @@ extends <a href="WidgetBuilder.html" title="interface in net.replaceitem.reconfi
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a><wbr>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#values(java.util.Collection)" class="member-name-link">values</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>&gt;&nbsp;values)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the values for the cycling button.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a><wbr>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#valueToText(java.util.function.Function)" class="member-name-link">valueToText</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>,<wbr>net.minecraft.text.Text&gt;&nbsp;valueToText)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the function for converting the current value of the cycling
+ button widget to the text to display on the button.</div>
+</div>
 </div>
 </div>
 </div>
@@ -138,12 +143,29 @@ extends <a href="WidgetBuilder.html" title="interface in net.replaceitem.reconfi
 <section class="detail" id="values(java.util.Collection)">
 <h3>values</h3>
 <div class="member-signature"><span class="return-type"><a href="CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>&gt;</span>&nbsp;<span class="element-name">values</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>&gt;&nbsp;values)</span></div>
+<div class="block">Sets the values for the cycling button. This defaults to all available values of the
+ property, but can be changed to include only a subset of all allowed values. However, all values
+ provided here must be valid values for the property.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>values</code> - The values to set for the cycling button</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="valueToText(java.util.function.Function)">
 <h3>valueToText</h3>
 <div class="member-signature"><span class="return-type"><a href="CyclingButtonWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">CyclingButtonWidgetBuilder</a>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>&gt;</span>&nbsp;<span class="element-name">valueToText</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="CyclingButtonWidgetBuilder.html" title="type parameter in CyclingButtonWidgetBuilder">T</a>,<wbr>net.minecraft.text.Text&gt;&nbsp;valueToText)</span></div>
+<div class="block">Sets the function for converting the current value of the cycling
+ button widget to the text to display on the button.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>valueToText</code> - The text function</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 </ul>

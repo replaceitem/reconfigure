@@ -141,7 +141,9 @@ implements <a href="../../../api/widget/ChipListWidgetBuilder.html" title="inter
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ChipListWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">ChipListWidgetBuilderImpl</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#chipsEditable(boolean)" class="member-name-link">chipsEditable</a><wbr>(boolean&nbsp;editable)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets whether the chips of the chip list are editable.</div>
+</div>
 </div>
 </div>
 </div>
@@ -184,9 +186,17 @@ implements <a href="../../../api/widget/ChipListWidgetBuilder.html" title="inter
 <section class="detail" id="chipsEditable(boolean)">
 <h3>chipsEditable</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ChipListWidgetBuilderImpl.html" title="class in net.replaceitem.reconfigure.config.widget.builder">ChipListWidgetBuilderImpl</a></span>&nbsp;<span class="element-name">chipsEditable</span><wbr><span class="parameters">(boolean&nbsp;editable)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../../api/widget/ChipListWidgetBuilder.html#chipsEditable(boolean)">ChipListWidgetBuilder</a></code></span></div>
+<div class="block">Sets whether the chips of the chip list are editable. Each chip is its own text field and this
+ allows toggling whether they can be edited or only added and removed.
+ Defaults to true.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../../api/widget/ChipListWidgetBuilder.html#chipsEditable(boolean)">chipsEditable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../api/widget/ChipListWidgetBuilder.html" title="interface in net.replaceitem.reconfigure.api.widget">ChipListWidgetBuilder</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>editable</code> - Whether the chips are editable</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>

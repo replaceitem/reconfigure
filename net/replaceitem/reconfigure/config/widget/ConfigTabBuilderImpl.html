@@ -127,10 +127,14 @@ implements <a href="../../api/ConfigTabBuilder.html" title="interface in net.rep
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ConfigTabImpl.html" title="class in net.replaceitem.reconfigure.config.widget">ConfigTabImpl</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Builds the config tab.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#title(net.minecraft.text.Text)" class="member-name-link">title</a><wbr>(net.minecraft.text.Text&nbsp;title)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the title text of the config tab.</div>
+</div>
 </div>
 </div>
 </div>
@@ -167,9 +171,17 @@ implements <a href="../../api/ConfigTabBuilder.html" title="interface in net.rep
 <section class="detail" id="title(net.minecraft.text.Text)">
 <h3>title</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></span>&nbsp;<span class="element-name">title</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;title)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/ConfigTabBuilder.html#title(net.minecraft.text.Text)">ConfigTabBuilder</a></code></span></div>
+<div class="block">Sets the title text of the config tab. If not set, this defaults to a translatable text with key
+ <code>reconfigure.tab.[namespace].[tabname]</code> and <code>reconfigure.tab.[namespace].default</code>
+ for the default tab.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/ConfigTabBuilder.html#title(net.minecraft.text.Text)">title</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>title</code> - The title text for the tab</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
@@ -177,9 +189,13 @@ implements <a href="../../api/ConfigTabBuilder.html" title="interface in net.rep
 <section class="detail" id="build()">
 <h3>build</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ConfigTabImpl.html" title="class in net.replaceitem.reconfigure.config.widget">ConfigTabImpl</a></span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../../api/ConfigTabBuilder.html#build()">ConfigTabBuilder</a></code></span></div>
+<div class="block">Builds the config tab.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../api/ConfigTabBuilder.html#build()">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../api/ConfigTabBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigTabBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The built config tab</dd>
 </dl>
 </section>
 </li>

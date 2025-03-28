@@ -126,13 +126,19 @@ implements <a href="../api/ConfigBuilder.html" title="interface in net.replaceit
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Builds the config.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ConfigBuilderImpl.html" title="class in net.replaceitem.reconfigure.config">ConfigBuilderImpl</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serializer(net.replaceitem.reconfigure.config.serialization.Serializer)" class="member-name-link">serializer</a><wbr>(<a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&nbsp;serializer)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serializer(net.replaceitem.reconfigure.config.serialization.Serializer)" class="member-name-link">serializer</a><wbr>(<a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&lt;?,<wbr>?&gt;&nbsp;serializer)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the serializer for this config.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ConfigBuilderImpl.html" title="class in net.replaceitem.reconfigure.config">ConfigBuilderImpl</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#title(net.minecraft.text.Text)" class="member-name-link">title</a><wbr>(net.minecraft.text.Text&nbsp;title)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the title text for the config.</div>
+</div>
 </div>
 </div>
 </div>
@@ -168,25 +174,48 @@ implements <a href="../api/ConfigBuilder.html" title="interface in net.replaceit
 <section class="detail" id="title(net.minecraft.text.Text)">
 <h3>title</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ConfigBuilderImpl.html" title="class in net.replaceitem.reconfigure.config">ConfigBuilderImpl</a></span>&nbsp;<span class="element-name">title</span><wbr><span class="parameters">(net.minecraft.text.Text&nbsp;title)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/ConfigBuilder.html#title(net.minecraft.text.Text)">ConfigBuilder</a></code></span></div>
+<div class="block">Sets the title text for the config. If not set, the default title is a translatable text with key
+ <code>reconfigure.title.[namespace]</code>.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/ConfigBuilder.html#title(net.minecraft.text.Text)">title</a></code>&nbsp;in interface&nbsp;<code><a href="../api/ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>title</code> - The title text</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="serializer(net.replaceitem.reconfigure.config.serialization.Serializer)">
 <h3>serializer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ConfigBuilderImpl.html" title="class in net.replaceitem.reconfigure.config">ConfigBuilderImpl</a></span>&nbsp;<span class="element-name">serializer</span><wbr><span class="parameters">(<a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&nbsp;serializer)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ConfigBuilderImpl.html" title="class in net.replaceitem.reconfigure.config">ConfigBuilderImpl</a></span>&nbsp;<span class="element-name">serializer</span><wbr><span class="parameters">(<a href="serialization/Serializer.html" title="class in net.replaceitem.reconfigure.config.serialization">Serializer</a>&lt;?,<wbr>?&gt;&nbsp;serializer)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/ConfigBuilder.html#serializer(net.replaceitem.reconfigure.config.serialization.Serializer)">ConfigBuilder</a></code></span></div>
+<div class="block">Sets the serializer for this config. The serializer is used for reading and
+ writing the config to a file in different formats.
+ Serializers can be built or fetched from <a href="../api/serializer/Serializers.html" title="class in net.replaceitem.reconfigure.api.serializer"><code>Serializers</code></a>.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../api/ConfigBuilder.html#serializer(net.replaceitem.reconfigure.config.serialization.Serializer)">serializer</a></code>&nbsp;in interface&nbsp;<code><a href="../api/ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>serializer</code> - The serializer</dd>
+<dt>Returns:</dt>
+<dd>The builder for chaining</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="build()">
 <h3>build</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/Config.html" title="interface in net.replaceitem.reconfigure.api">Config</a></span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/ConfigBuilder.html#build()">ConfigBuilder</a></code></span></div>
+<div class="block">Builds the config. After this, the returned config can be used to create tabs for it.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/ConfigBuilder.html#build()">build</a></code>&nbsp;in interface&nbsp;<code><a href="../api/ConfigBuilder.html" title="interface in net.replaceitem.reconfigure.api">ConfigBuilder</a></code></dd>
+<dt>Returns:</dt>
+<dd>The config</dd>
 </dl>
 </section>
 </li>

@@ -87,12 +87,17 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - The type of the property that is handled with this widget.</dd>
+</dl>
+<dl class="notes">
 <dt>Functional Interface:</dt>
 <dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/FunctionalInterface.html" title="class or interface in java.lang" class="external-link">@FunctionalInterface</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">ConfigWidgetFactory&lt;T&gt;</span></div>
+<div class="block">A config widget factory models a function for creating a widget instance.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -110,7 +115,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../../screen/widget/config/ConfigWidget.html" title="class in net.replaceitem.reconfigure.screen.widget.config">ConfigWidget</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#createWidget(net.replaceitem.reconfigure.screen.ConfigWidgetList,net.replaceitem.reconfigure.config.property.PropertyImpl)" class="member-name-link">createWidget</a><wbr>(<a href="../../screen/ConfigWidgetList.html" title="class in net.replaceitem.reconfigure.screen">ConfigWidgetList</a>&nbsp;parent,
  <a href="../property/PropertyImpl.html" title="class in net.replaceitem.reconfigure.config.property">PropertyImpl</a>&lt;<a href="ConfigWidgetFactory.html" title="type parameter in ConfigWidgetFactory">T</a>&gt;&nbsp;property)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Creates a widget for the provided parent config widget list and the given property.</div>
+</div>
 </div>
 </div>
 </div>
@@ -130,6 +137,14 @@ loadScripts(document, 'script');</script>
 <h3>createWidget</h3>
 <div class="member-signature"><span class="return-type"><a href="../../screen/widget/config/ConfigWidget.html" title="class in net.replaceitem.reconfigure.screen.widget.config">ConfigWidget</a></span>&nbsp;<span class="element-name">createWidget</span><wbr><span class="parameters">(<a href="../../screen/ConfigWidgetList.html" title="class in net.replaceitem.reconfigure.screen">ConfigWidgetList</a>&nbsp;parent,
  <a href="../property/PropertyImpl.html" title="class in net.replaceitem.reconfigure.config.property">PropertyImpl</a>&lt;<a href="ConfigWidgetFactory.html" title="type parameter in ConfigWidgetFactory">T</a>&gt;&nbsp;property)</span></div>
+<div class="block">Creates a widget for the provided parent config widget list and the given property.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>parent</code> - The config widget list for providing it to the constructor of the config widget</dd>
+<dd><code>property</code> - The property used for this widget</dd>
+<dt>Returns:</dt>
+<dd>The created config widget</dd>
+</dl>
 </section>
 </li>
 </ul>
