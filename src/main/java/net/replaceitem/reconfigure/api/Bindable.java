@@ -8,15 +8,10 @@ public interface Bindable<T> {
     T get();
     void addListener(Consumer<T> listener);
     void removeListener(Consumer<T> listener);
-    default <M> Bindable<M> map(Function<T,M> mapper) {
-        return new MappedBindable<>(mapper, this);
-    }
+    <M> Bindable<M> map(Function<T,M> mapper);
 
     /**
      * Adds a listener to this bindable and immediately emits the current value to the listener.
      */
-    default void observe(Consumer<T> listener) {
-        listener.accept(get());
-        this.addListener(listener);
-    }
+    void observe(Consumer<T> listener);
 }

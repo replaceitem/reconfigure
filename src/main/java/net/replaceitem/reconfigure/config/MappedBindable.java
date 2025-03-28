@@ -1,5 +1,6 @@
-package net.replaceitem.reconfigure.api;
+package net.replaceitem.reconfigure.config;
 
+import net.replaceitem.reconfigure.api.Bindable;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnknownNullability;
 

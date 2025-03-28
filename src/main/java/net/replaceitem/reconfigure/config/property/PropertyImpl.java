@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.property;
 
 import net.minecraft.util.Identifier;
-import net.replaceitem.reconfigure.api.AbstractBindable;
+import net.replaceitem.reconfigure.config.AbstractBindable;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.ValidationResult;
 import net.replaceitem.reconfigure.config.ValidatorList;
