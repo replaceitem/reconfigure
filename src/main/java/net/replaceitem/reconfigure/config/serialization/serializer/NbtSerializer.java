@@ -71,8 +71,7 @@ public class NbtSerializer extends Serializer<NbtElement, NbtCompound> {
 
         @Override
         protected String unmarshallString(NbtElement value) throws SerializationException {
-            if(!(value instanceof NbtString nbtString)) throw new SerializationException("Expected a string");
-            return nbtString.asString();
+            return value.asString().orElseThrow(() -> new SerializationException("Expected a string"));
         }
 
         @Override

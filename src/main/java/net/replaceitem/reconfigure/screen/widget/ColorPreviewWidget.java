@@ -1,9 +1,9 @@
 package net.replaceitem.reconfigure.screen.widget;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
@@ -23,12 +23,10 @@ public class ColorPreviewWidget extends ClickableWidget {
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         context.fill(getX(), getY(), getRight(), getBottom(), hovered ? Colors.WHITE : Colors.GRAY);
         if(ColorHelper.getAlpha(color) < 255) {
-            context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, Colors.WHITE);
+            context.fill(RenderLayer.getGuiOverlay(), getX()+1, getY()+1, getRight()-1, getBottom()-1, Colors.WHITE);
             DrawUtil.drawCheckerboard(context, getX()+1, getY()+1, getRight()-1, getBottom()-1, 3, Colors.LIGHT_GRAY);
-            RenderSystem.enableBlend();
         }
         context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, color);
-        RenderSystem.disableBlend();
     }
     
     public void setColor(int color) {

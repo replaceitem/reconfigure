@@ -1,12 +1,6 @@
 package net.replaceitem.reconfigure.util;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gl.ShaderProgram;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.*;
-import net.replaceitem.reconfigure.Shaders;
-
-import java.util.function.Consumer;
 
 public class DrawUtil {
     public static void renderRectOutline(DrawContext context, int x1, int y1, int x2, int y2, int color) {
@@ -29,17 +23,5 @@ public class DrawUtil {
                 context.fill(px, py, Math.min(x2, px + size), Math.min(y2, py + size), color);
             }
         }
-    }
-
-    @SuppressWarnings("resource")
-    public static void drawWithColorpickerShader(DrawContext context, Consumer<VertexConsumer> vertexConsumer) {
-        context.draw(); // since we draw the shader immediately but DrawContext calls like .fill are buffered and drawn later, we need to flush all pending draws for proper z order
-        ShaderProgram previousShader = RenderSystem.getShader();
-        RenderSystem.setShader(Shaders.COLORPICKER);
-        Tessellator tessellator = RenderSystem.renderThreadTesselator();
-        BufferBuilder buffer = tessellator.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
-        vertexConsumer.accept(buffer);
-        BufferRenderer.drawWithGlobalProgram(buffer.end());
-        RenderSystem.setShader(previousShader);
     }
 }

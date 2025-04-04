@@ -1,6 +1,5 @@
 package net.replaceitem.reconfigure.screen.widget;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -14,8 +13,6 @@ import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 import net.replaceitem.reconfigure.util.DrawUtil;
 import org.joml.Matrix4f;
-
-import java.util.function.Consumer;
 
 public class GradientSlider extends SliderWidget {
     private final Int2IntFunction colorSupplier;
@@ -53,36 +50,44 @@ public class GradientSlider extends SliderWidget {
         if(ColorHelper.getAlpha(colorSupplier.get(0)) < 255 || ColorHelper.getAlpha(colorSupplier.get(1)) < 255) {
             context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, Colors.WHITE);
             DrawUtil.drawCheckerboard(context, getX()+1, getY()+1, getRight()-1, getBottom()-1, 3, Colors.LIGHT_GRAY);
-            RenderSystem.enableBlend();
         }
-        
-        Consumer<VertexConsumer> drawer = getGradientDrawer(context);
+
+        Matrix4f matrix = context.getMatrices().peek().getPositionMatrix();
+        ScreenRect colorRect = this.getColorRect();
         if(isHsv) {
-            DrawUtil.drawWithColorpickerShader(context, drawer);
+            float yTop = colorRect.getTop();
+            float yBottom = colorRect.getBottom();
+            context.draw(vertexConsumerProvider -> {
+                VertexConsumer buffer = vertexConsumerProvider.getBuffer(RenderLayer.getGui());
+                for (int i = 0; i < ColorPlanePickerWidget.HSV_GRADIENT_COLORS.length; i++) {
+                    int colorStart = ColorPlanePickerWidget.HSV_GRADIENT_COLORS[i];
+                    int colorEnd = ColorPlanePickerWidget.HSV_GRADIENT_COLORS[(i + 1) % ColorPlanePickerWidget.HSV_GRADIENT_COLORS.length];
+                    float xStart = colorRect.getLeft() + ((float) colorRect.width()) / ColorPlanePickerWidget.HSV_GRADIENT_COLORS.length * i;
+                    float xEnd = colorRect.getLeft() + ((float) colorRect.width()) / ColorPlanePickerWidget.HSV_GRADIENT_COLORS.length * (i + 1);
+                    buffer
+                            .vertex(matrix, xStart, yTop, 0).color(colorStart)
+                            .vertex(matrix, xStart, yBottom, 0).color(colorStart)
+                            .vertex(matrix, xEnd, yBottom, 0).color(colorEnd)
+                            .vertex(matrix, xEnd, yTop, 0).color(colorEnd);
+                }
+            });
         } else {
-            context.draw(vertexConsumerProvider -> drawer.accept(vertexConsumerProvider.getBuffer(RenderLayer.getGui())));
+            context.draw(vertexConsumerProvider -> {
+                VertexConsumer buffer = vertexConsumerProvider.getBuffer(RenderLayer.getGui());
+                int colorA = colorSupplier.get(0);
+                int colorB = colorSupplier.get(1);
+                buffer.vertex(matrix, colorRect.getLeft(), colorRect.getTop(), 0).color(colorA);
+                buffer.vertex(matrix, colorRect.getLeft(), colorRect.getBottom(), 0).color(colorA);
+                buffer.vertex(matrix, colorRect.getRight(), colorRect.getBottom(), 0).color(colorB);
+                buffer.vertex(matrix, colorRect.getRight(), colorRect.getTop(), 0).color(colorB);
+            });
         }
-        RenderSystem.disableBlend();
 
         int handleX = this.getX() + (int) (this.value * (double) (this.width - 8));
         DrawUtil.renderRectOutline(context, handleX, getY(), handleX+8-1, getBottom()-1, ColorHelper.withAlpha(ColorHelper.channelFromFloat(this.alpha), this.hovered ? Colors.WHITE : Colors.LIGHT_GRAY));
         
         int i = this.active ? 16777215 : 10526880;
         this.drawScrollableText(context, minecraftClient.textRenderer, 2, i | MathHelper.ceil(this.alpha * 255.0F) << 24);
-    }
-
-    private Consumer<VertexConsumer> getGradientDrawer(DrawContext context) {
-        ScreenRect colorRect = getColorRect();
-
-        return (vertexConsumer) -> {
-            Matrix4f matrix = context.getMatrices().peek().getPositionMatrix();
-            int colorA = colorSupplier.get(0);
-            int colorB = colorSupplier.get(1);
-            vertexConsumer.vertex(matrix, colorRect.getLeft(), colorRect.getTop(), 0).color(colorA);
-            vertexConsumer.vertex(matrix, colorRect.getLeft(), colorRect.getBottom(), 0).color(colorA);
-            vertexConsumer.vertex(matrix, colorRect.getRight(), colorRect.getBottom(), 0).color(colorB);
-            vertexConsumer.vertex(matrix, colorRect.getRight(), colorRect.getTop(), 0).color(colorB);
-        };
     }
 
     private ScreenRect getColorRect() {

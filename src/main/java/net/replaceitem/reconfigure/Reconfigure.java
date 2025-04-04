@@ -15,6 +15,5 @@ public class Reconfigure implements ClientModInitializer {
     
     @Override
     public void onInitializeClient() {
-        Shaders.init();
     }
 }
