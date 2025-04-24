@@ -1,1 +1,1 @@
-* Updated to MC 1.21.5
+* Lowered fabric loader requirement
