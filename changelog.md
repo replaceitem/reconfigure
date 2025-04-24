@@ -1,1 +1,1 @@
-* Lowered fabric loader requirement
+* Fixed fabric loader requirement for real this time

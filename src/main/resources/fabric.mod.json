@@ -25,8 +25,8 @@
     ],
     "accessWidener": "reconfigure.accesswidener",
     "depends": {
-        "fabricloader": ">=${loader_version}",
-        "fabric": "*",
+        "fabricloader": ">=0.16.10",
+        "fabric-api": "*",
         "minecraft": "${minecraft_version}"
     },
     "custom": {
