@@ -23,8 +23,9 @@
     ],
     "depends": {
         "fabricloader": ">=0.16.10",
+        "fabric": "*",
         "minecraft": "${minecraft_version}",
-        "fabric": "*"
+        "reconfigure":  "${version}"
     },
     "custom": {
         "modmenu": {
