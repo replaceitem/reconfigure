@@ -1,1 +1,1 @@
-* Fixed fabric loader requirement for real this time
+* Updated to Minecraft 1.21.6
