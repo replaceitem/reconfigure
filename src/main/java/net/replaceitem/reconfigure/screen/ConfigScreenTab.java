@@ -30,6 +30,11 @@ public class ConfigScreenTab implements Tab {
     }
 
     @Override
+    public Text getNarratedHint() {
+        return this.tab.getTitle();
+    }
+
+    @Override
     public void forEachChild(Consumer<ClickableWidget> consumer) {
         consumer.accept(list);
     }

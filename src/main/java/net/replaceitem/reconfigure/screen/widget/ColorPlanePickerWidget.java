@@ -2,16 +2,16 @@ package net.replaceitem.reconfigure.screen.widget;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.ScreenRect;
+import net.minecraft.client.gui.navigation.NavigationAxis;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
+import net.replaceitem.reconfigure.util.ColoredAxisQuadGuiElementRenderState;
 import net.replaceitem.reconfigure.util.DrawUtil;
-import org.joml.Matrix4f;
+import net.replaceitem.reconfigure.util.HueGradientQuadGuiElementRenderState;
 
 public class ColorPlanePickerWidget extends ClickableWidget {
 
@@ -39,52 +39,33 @@ public class ColorPlanePickerWidget extends ClickableWidget {
             ScreenRect colorRect = getColorRect();
             this.renderRectOutline(
                     context,
-                    MathHelper.lerp(colorX, colorRect.getLeft(), colorRect.getRight()),
-                    MathHelper.lerp(colorY, colorRect.getTop(), colorRect.getBottom()),
+                    (float) MathHelper.lerp(colorX, colorRect.getLeft(), colorRect.getRight()),
+                    (float) MathHelper.lerp(colorY, colorRect.getTop(), colorRect.getBottom()),
                     ColorHelper.lerp(MathHelper.clamp((float) colorY * 2 - 1, 0, 1), Colors.BLACK, Colors.WHITE)
             );
         }
     }
 
-    private void renderRectOutline(DrawContext context, double cx, double cy, int color) {
-        context.getMatrices().push();
-        context.getMatrices().translate(cx, cy, 0.0);
+    private void renderRectOutline(DrawContext context, float cx, float cy, int color) {
+        context.getMatrices().pushMatrix();
+        context.getMatrices().translate(cx, cy);
         DrawUtil.renderRectOutline(context, -3, -3, 3, 3, color);
-        context.getMatrices().pop();
+        context.getMatrices().popMatrix();
     }
 
-    public static final int[] HSV_GRADIENT_COLORS = {0xFFFF0000, 0xFFFFFF00, 0xFF00FF00, 0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF};
-    
+
     private void renderHsvGradient(DrawContext context) {
         ScreenRect colorRect = getColorRect();
-        Matrix4f matrix4f = context.getMatrices().peek().getPositionMatrix();
-        float yTop = colorRect.getTop();
-        float yBottom = colorRect.getBottom();
-        float yCenter = (yTop + yBottom) / 2;
-        context.draw(vertexConsumerProvider -> {
-            VertexConsumer buffer = vertexConsumerProvider.getBuffer(RenderLayer.getGui());
-            for (int i = 0; i < HSV_GRADIENT_COLORS.length; i++) {
-                int colorStart = HSV_GRADIENT_COLORS[i];
-                int colorEnd = HSV_GRADIENT_COLORS[(i+1) % HSV_GRADIENT_COLORS.length];
-                float xStart = colorRect.getLeft() + ((float) colorRect.width()) / HSV_GRADIENT_COLORS.length * i;
-                float xEnd = colorRect.getLeft() + ((float) colorRect.width()) / HSV_GRADIENT_COLORS.length * (i + 1);
-                buffer
-                        .vertex(matrix4f, xStart, yTop, 0).color(colorStart)
-                        .vertex(matrix4f, xStart, yBottom, 0).color(colorStart)
-                        .vertex(matrix4f, xEnd, yBottom, 0).color(colorEnd)
-                        .vertex(matrix4f, xEnd, yTop, 0).color(colorEnd);
-            }
-            buffer
-                    .vertex(matrix4f, colorRect.getLeft(), yTop, 0).color(0xFFFFFFFF)
-                    .vertex(matrix4f, colorRect.getLeft(), yCenter, 0).color(0x00FFFFFF)
-                    .vertex(matrix4f, colorRect.getRight(), yCenter, 0).color(0x00FFFFFF)
-                    .vertex(matrix4f, colorRect.getRight(), yTop, 0).color(0xFFFFFFFF);
-            buffer
-                    .vertex(matrix4f, colorRect.getLeft(), yCenter, 0).color(0x00000000)
-                    .vertex(matrix4f, colorRect.getLeft(), yBottom, 0).color(0xFF000000)
-                    .vertex(matrix4f, colorRect.getRight(), yBottom, 0).color(0xFF000000)
-                    .vertex(matrix4f, colorRect.getRight(), yCenter, 0).color(0x00000000);
-        });
+        float yCenter = colorRect.getCenter(NavigationAxis.VERTICAL);
+        context.state.addSimpleElement(HueGradientQuadGuiElementRenderState.draw(
+            context, colorRect.getLeft(), colorRect.getTop(), colorRect.getRight(), colorRect.getBottom()
+        ));
+        context.state.addSimpleElement(ColoredAxisQuadGuiElementRenderState.draw(
+                context, colorRect.getLeft(), colorRect.getTop(), colorRect.getRight(), yCenter, 0xFFFFFFFF, 0x00FFFFFF, NavigationAxis.VERTICAL
+        ));
+        context.state.addSimpleElement(ColoredAxisQuadGuiElementRenderState.draw(
+                context, colorRect.getLeft(), yCenter, colorRect.getRight(), colorRect.getBottom(), 0x00000000, 0xFF000000, NavigationAxis.VERTICAL
+        ));
     }
 
     @Override
