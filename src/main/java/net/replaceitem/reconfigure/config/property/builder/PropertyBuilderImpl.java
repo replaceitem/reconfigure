@@ -1,6 +1,7 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
 import net.minecraft.util.Identifier;
+import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.api.property.PropertyBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
@@ -43,6 +44,12 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
         return new CustomWidgetBuilderImpl<>(propertyBuildContext, this, widgetFactorySupplier);
     }
 
+    @Override
+    public Property<T> buildWithoutWidget() {
+        PropertyHolder<T> propertyHolder = this.build();
+        this.propertyBuildContext.addProperty(propertyHolder);
+        return propertyHolder.getProperty();
+    }
 
     public Identifier getId() {
         return id;

@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.api.property;
 
+import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.api.widget.CustomWidgetBuilder;
 import net.replaceitem.reconfigure.api.widget.WidgetBuilder;
@@ -38,4 +39,10 @@ public interface PropertyBuilder<SELF extends PropertyBuilder<SELF, T>, T> {
      * @return The custom widget builder
      */
     CustomWidgetBuilder<T> asCustomWidget(Function<BaseSettings, ConfigWidgetFactory<T>> widgetFactorySupplier);
+
+    /**
+     * Finishes building the property and directly returns it, without creating a widget for it.
+     * @return The build Property
+     */
+    Property<T> buildWithoutWidget();
 }

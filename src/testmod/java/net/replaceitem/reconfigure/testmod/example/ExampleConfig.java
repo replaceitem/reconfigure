@@ -76,6 +76,9 @@ public class ExampleConfig {
     public final Property<List<String>> CHIP_LIST = SIMPLE_TAB.createListProperty("chiplist").asChipList().build();
 
 
+    public final Property<String> WITHOUT_WIDGET = SIMPLE_TAB.createStringProperty("without_widget").defaultValue("Not shown in GUI").buildWithoutWidget();
+
+
 
 
 
