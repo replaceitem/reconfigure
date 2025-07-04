@@ -24,7 +24,7 @@
     "depends": {
         "fabricloader": ">=0.16.10",
         "fabric-api": "*",
-        "minecraft": "${minecraft_version}",
+        "minecraft": ">=${minecraft_version}",
         "reconfigure":  "${version}"
     },
     "custom": {
