@@ -1,1 +1,1 @@
-* Added `PropertyBuilder.buildWithoutWidget()`
+* Allow minecraft versions >=1.21.7
