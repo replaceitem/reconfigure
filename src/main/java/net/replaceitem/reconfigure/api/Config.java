@@ -51,4 +51,14 @@ public interface Config {
      * defined in the config.
      */
     void load();
+
+    /**
+     * @return Whether any property has been changed since the config was last saved.
+     */
+    boolean isDirty();
+
+    /**
+     * Saves the config only if any property has been changed since last saving.
+     */
+    void saveIfDirty();
 }

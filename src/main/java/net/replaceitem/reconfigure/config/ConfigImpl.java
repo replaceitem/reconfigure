@@ -25,6 +25,7 @@ public class ConfigImpl implements Config, SerializationTarget {
     private final List<ConfigTabImpl> tabs = new ArrayList<>();
     private boolean hasSingleDefaultTab = false;
     @Nullable private final Serializer<?,?> serializer;
+    private boolean dirty = false;
 
     protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
@@ -88,6 +89,7 @@ public class ConfigImpl implements Config, SerializationTarget {
         if(this.properties.containsKey(property.getId())) {
             throw new RuntimeException("Config " + namespace + " already contains a property with id " + property.getId());
         }
+        property.getProperty().addListener(o -> this.markDirty());
         this.properties.put(property.getId(), property);
     }
 
@@ -114,6 +116,7 @@ public class ConfigImpl implements Config, SerializationTarget {
             try (FileOutputStream fileOutputStream = new FileOutputStream(configFile)) {
                 this.serializer.serialize(this, fileOutputStream);
             }
+            this.dirty = false;
         } catch (IOException e) {
             Reconfigure.LOGGER.error("Could save config", e);
         }
@@ -137,6 +140,22 @@ public class ConfigImpl implements Config, SerializationTarget {
             }
         } catch (IOException e) {
             Reconfigure.LOGGER.error("Could load config", e);
+        }
+    }
+
+    protected void markDirty() {
+        this.dirty = true;
+    }
+
+    @Override
+    public boolean isDirty() {
+        return this.dirty;
+    }
+
+    @Override
+    public void saveIfDirty() {
+        if(this.isDirty()) {
+            this.save();
         }
     }
 }
