@@ -5,6 +5,8 @@ import net.replaceitem.reconfigure.config.ConfigBuilderImpl;
 import net.replaceitem.reconfigure.screen.ConfigScreen;
 import org.jetbrains.annotations.Nullable;
 
+import java.time.Duration;
+
 public interface Config {
     /**
      * This is the entrypoint for starting to build a config and all its tabs, properties and widgets.
@@ -61,4 +63,14 @@ public interface Config {
      * Saves the config only if any property has been changed since last saving.
      */
     void saveIfDirty();
+
+    /**
+     * Schedules a call to {@link #saveIfDirty()} with the specified delay.
+     * If this method is called again during that delay,
+     * the old delay is overridden and the time starts again.
+     * That makes it useful for debouncing repeated modification of a property from user input outside a config screen.
+     * If this method is invoked after every change of a property,
+     * it will only be saved once, assuming the delay is set longer than the gaps between property changes.
+     */
+    void scheduleSave(Duration duration);
 }

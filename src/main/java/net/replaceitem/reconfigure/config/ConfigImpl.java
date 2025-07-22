@@ -1,6 +1,7 @@
 package net.replaceitem.reconfigure.config;
 
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -17,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.*;
 
 public class ConfigImpl implements Config, SerializationTarget {
@@ -26,6 +28,8 @@ public class ConfigImpl implements Config, SerializationTarget {
     private boolean hasSingleDefaultTab = false;
     @Nullable private final Serializer<?,?> serializer;
     private boolean dirty = false;
+    @Nullable
+    private Timer saveTimer;
 
     protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
@@ -157,5 +161,20 @@ public class ConfigImpl implements Config, SerializationTarget {
         if(this.isDirty()) {
             this.save();
         }
+    }
+
+    @Override
+    public void scheduleSave(Duration duration) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (saveTimer != null) {
+            saveTimer.cancel();
+        }
+        saveTimer = new Timer();
+        saveTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                client.send(ConfigImpl.this::saveIfDirty);
+            }
+        }, duration.toMillis());
     }
 }
