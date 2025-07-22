@@ -1,1 +1,1 @@
-* Added `saveIfDirty` method to config
+* Added `Config#scheduleSave` method
