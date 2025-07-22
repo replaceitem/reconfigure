@@ -1,1 +1,1 @@
-* Allow minecraft versions >=1.21.7
+* Added `saveIfDirty` method to config
