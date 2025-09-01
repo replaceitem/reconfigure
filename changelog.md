@@ -1,1 +1,1 @@
-* Added `Config#scheduleSave` method
+* Removed mixin debug export in EditBoxWidgetAccessor
