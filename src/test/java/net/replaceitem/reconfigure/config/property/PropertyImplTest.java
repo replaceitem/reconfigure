@@ -20,38 +20,38 @@ public class PropertyImplTest {
     @Test
     void testSetResetGet() {
         PropertyImpl<String> property = new PropertyImpl<>(ID, "def", new ValidatorList<>());
-        assertEquals(property.get(), "def");
+        assertEquals("def", property.get());
         property.set("set");
-        assertEquals(property.get(), "set");
+        assertEquals("set", property.get());
         property.reset();
-        assertEquals(property.get(), "def");
+        assertEquals("def", property.get());
     }
     
     @Test
     void testInvalidSet() {
         PropertyImpl<String> property = new PropertyImpl<>(ID, "", shortStringValidationList());
         assertDoesNotThrow(() -> property.set("shrt"), "Expected no error to be thrown when setting a value satisfies the validators");
-        assertEquals(property.get(), "shrt");
+        assertEquals("shrt", property.get());
         assertThrows(IllegalArgumentException.class, () -> property.set("too long"), "Expected an error when setting a invalid value");
-        assertEquals(property.get(), "shrt");
+        assertEquals("shrt", property.get());
     }
     
     @Test
     void testInvalidSetOrDefault() {
         PropertyImpl<String> property = new PropertyImpl<>(ID, "def", shortStringValidationList());
         property.setOrDefault("shrt");
-        assertEquals(property.get(), "shrt");
+        assertEquals("shrt", property.get());
         property.setOrDefault("too long");
-        assertEquals(property.get(), "def");
+        assertEquals("def", property.get());
     }
     
     @Test
     void testInvalidSetIfValid() {
         PropertyImpl<String> property = new PropertyImpl<>(ID, "def", shortStringValidationList());
         property.setIfValid("shrt");
-        assertEquals(property.get(), "shrt");
+        assertEquals("shrt", property.get());
         property.setIfValid("too long");
-        assertEquals(property.get(), "shrt");
+        assertEquals("shrt", property.get());
     }
     
     @Test

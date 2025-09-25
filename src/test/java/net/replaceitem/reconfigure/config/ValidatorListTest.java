@@ -17,18 +17,18 @@ public class ValidatorListTest {
         ValidationResult result;
         result = validatorList.validate("good");
         assertTrue(result.isValid());
-        assertEquals(result.getMessage().getString(), "");
+        assertEquals("", result.getMessage().getString());
         
         result = validatorList.validate("way too long");
         assertTrue(result.isInvalid());
-        assertEquals(result.getMessage().getString(), "too long");
+        assertEquals("too long", result.getMessage().getString());
         
         result = validatorList.validate("very massive");
         assertTrue(result.isInvalid());
-        assertEquals(result.getMessage().getString(), "too long");
+        assertEquals("too long", result.getMessage().getString());
         
         result = validatorList.validate("miss");
         assertTrue(result.isInvalid());
-        assertEquals(result.getMessage().getString(), "no o");
+        assertEquals("no o", result.getMessage().getString());
     }
 }
