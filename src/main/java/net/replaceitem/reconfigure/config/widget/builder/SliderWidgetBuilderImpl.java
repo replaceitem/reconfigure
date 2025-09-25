@@ -57,6 +57,7 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
 
     @Override
     protected ConfigWidgetFactory<T> buildWidgetFactory(BaseSettings baseSettings) {
+        assert controlToValue != null;
         assert valueToControl != null;
         assert valueToText != null;
         return (parent, property) ->

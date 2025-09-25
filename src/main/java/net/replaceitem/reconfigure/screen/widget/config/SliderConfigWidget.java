@@ -42,6 +42,6 @@ public class SliderConfigWidget<T extends Number> extends SimpleConfigWidget<Sli
 
     @Override
     protected void loadValue(T value) {
-        ((SliderWidgetAccessor) this.widget).callSetValue(this.valueToControl.apply(value));
+        ((SliderWidgetAccessor) this.widget()).callSetValue(this.valueToControl.apply(value));
     }
 }

@@ -21,11 +21,11 @@ public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boo
 
     @Override
     protected Boolean getSaveValue() {
-        return this.widget.isChecked();
+        return this.widget().isChecked();
     }
 
     @Override
     protected void loadValue(Boolean value) {
-        if(value != this.widget.isChecked()) this.widget.onPress();
+        if(value != this.widget().isChecked()) this.widget().onPress();
     }
 }

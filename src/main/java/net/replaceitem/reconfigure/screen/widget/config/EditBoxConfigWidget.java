@@ -21,7 +21,7 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
         super(listWidget, HEIGHT, property, baseSettings);
         ScreenRect widgetPos = getWidgetPos();
         setWidget(new DynamicEditBoxWidget(listWidget.getTextRenderer(), widgetPos.getLeft(), widgetPos.getTop(), widgetPos.width(), widgetPos.height(), placeholder, Text.empty()));
-        this.widget.setChangeListener(s -> this.onValueChanged());
+        this.widget().setChangeListener(s -> this.onValueChanged());
         this.loadValue(property.get());
     }
 
@@ -37,11 +37,11 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
 
     @Override
     protected String getSaveValue() {
-        return this.widget.getText();
+        return this.widget().getText();
     }
 
     @Override
     protected void loadValue(String value) {
-        this.widget.setText(value);
+        this.widget().setText(value);
     }
 }

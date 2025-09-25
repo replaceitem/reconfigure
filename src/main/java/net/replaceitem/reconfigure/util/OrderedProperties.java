@@ -1,5 +1,7 @@
 package net.replaceitem.reconfigure.util;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -9,6 +11,7 @@ public class OrderedProperties extends Properties {
     private final LinkedHashMap<Object, Object> linkedHashMap = new LinkedHashMap<>();
 
     @Override
+    @Nullable
     public synchronized Object put(Object key, Object value) {
         linkedHashMap.put(key, value);
         return super.put(key, value);

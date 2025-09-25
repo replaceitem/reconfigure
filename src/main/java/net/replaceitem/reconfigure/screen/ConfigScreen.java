@@ -8,6 +8,8 @@ import net.minecraft.text.Text;
 import net.replaceitem.reconfigure.config.ConfigImpl;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class ConfigScreen extends Screen {
     @Nullable private final Screen parent;
     private final ConfigImpl config;
@@ -15,7 +17,7 @@ public class ConfigScreen extends Screen {
     @Nullable private TabNavigationWidget tabNavigation;
     private final TabManager tabManager = new TabManager(this::addDrawableChild, this::remove);
     private final ThreePartsLayoutWidget threePartsLayoutWidget = new ThreePartsLayoutWidget(this);
-    private ConfigScreenTab[] tabs;
+    private ConfigScreenTab[] tabs = {};
 
     public ConfigScreen(ConfigImpl config, @Nullable Screen parent) {
         super(config.getTitle());
@@ -26,7 +28,7 @@ public class ConfigScreen extends Screen {
     @Override
     protected void init() {
         tabs = this.config.getTabs().stream()
-                .map(configTab -> new ConfigScreenTab(configTab, client))
+                .map(configTab -> new ConfigScreenTab(configTab, Objects.requireNonNull(client)))
                 .toArray(ConfigScreenTab[]::new);
         this.tabNavigation = TabNavigationWidget.builder(this.tabManager, this.width)
                 .tabs(tabs)

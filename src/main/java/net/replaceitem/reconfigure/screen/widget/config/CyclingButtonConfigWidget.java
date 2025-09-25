@@ -27,12 +27,12 @@ public class CyclingButtonConfigWidget<P> extends SimpleConfigWidget<CyclingButt
 
     @Override
     protected P getSaveValue() {
-        return this.widget.getValue();
+        return this.widget().getValue();
     }
 
     @Override
     protected void loadValue(P value) {
-        this.widget.setValue(value);
+        this.widget().setValue(value);
         // manually need to trigger since setValue doesn't
         this.onValueChanged();
     }
