@@ -1,1 +1,1 @@
-* Removed mixin debug export in EditBoxWidgetAccessor
+* Fixed crash when providing no placeholder to an edit box ([#1](https://github.com/replaceitem/reconfigure/issues/1))
