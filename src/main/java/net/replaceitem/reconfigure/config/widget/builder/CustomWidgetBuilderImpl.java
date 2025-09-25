@@ -1,7 +1,6 @@
 package net.replaceitem.reconfigure.config.widget.builder;
 
 import net.replaceitem.reconfigure.api.widget.CustomWidgetBuilder;
-import net.replaceitem.reconfigure.api.widget.CyclingButtonWidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;

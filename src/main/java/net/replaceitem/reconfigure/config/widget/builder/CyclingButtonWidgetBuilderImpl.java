@@ -19,8 +19,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
-
 public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<CyclingButtonWidgetBuilder<T>, T> implements CyclingButtonWidgetBuilder<T> {
 
     private Collection<T> values;

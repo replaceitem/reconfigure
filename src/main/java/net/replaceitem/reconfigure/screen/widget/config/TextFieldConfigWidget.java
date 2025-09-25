@@ -9,8 +9,6 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.DynamicTextFieldWidget;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 public class TextFieldConfigWidget extends SimpleConfigWidget<TextFieldWidget, String> {
     public TextFieldConfigWidget(
             ConfigWidgetList listWidget,
