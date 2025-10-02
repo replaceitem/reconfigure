@@ -1,9 +1,7 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextIconButtonWidget;
-import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -13,6 +11,7 @@ import net.replaceitem.reconfigure.api.ValidationResult;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
+import net.replaceitem.reconfigure.screen.widget.TooltippedTextWidget;
 
 import java.util.Objects;
 
@@ -31,14 +30,14 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
 
     protected ValidationResult validationResult = ValidationResult.valid();
     
-    protected final TextWidget nameWidget;
+    protected final TooltippedTextWidget nameWidget;
     protected final ButtonWidget resetButtonWidget;
 
     public PropertyConfigWidget(ConfigWidgetList listWidget, int contentHeight, PropertyImpl<P> property, BaseSettings baseSettings) {
         super(listWidget, contentHeight);
         this.property = property;
         this.baseSettings = baseSettings;
-        this.nameWidget = new TextWidget(Text.empty(), this.parent.getTextRenderer());
+        this.nameWidget = new TooltippedTextWidget(Text.empty(), this.parent.getTextRenderer());
         this.children.add(nameWidget);
         this.resetButtonWidget = TextIconButtonWidget.builder(Text.empty(), button -> {
             this.loadValue(this.property.getDefaultValue());
@@ -62,13 +61,13 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
 
     protected void positionName() {
         int maxNameWidth = this.getContentWidth() / 2 - textPadding;
-        this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
+        this.nameWidget.setMaxWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
         this.nameWidget.setPosition(this.getContentX() + textPadding, this.getContentY() + textPadding);
     }
     
     protected void positionNameFullWidth() {
         int maxNameWidth = this.getContentWidth() - 2 * this.textPadding;
-        this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
+        this.nameWidget.setMaxWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
         this.nameWidget.setPosition(this.getContentX() + textPadding, this.getContentY() + textPadding);
     }
 
@@ -106,7 +105,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
                 return style.withFormatting(Formatting.RED);
             }));
         }
-        this.nameWidget.setTooltip(Tooltip.of(tooltipText));
+        this.nameWidget.setAdditionalTooltip(tooltipText);
     }
 
     protected abstract P getSaveValue();

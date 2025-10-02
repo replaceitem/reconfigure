@@ -21,7 +21,7 @@ public class ExampleConfig {
     
     Void HEADLINE_STRINGS = SIMPLE_TAB.createHeadline("strings");
     public final Property<String> TITLE = SIMPLE_TAB.createStringProperty("title").addValidator(Validator.ofPredicate(s -> s.length() <= 4, Text.translatable("reconfigure-testmod.validation.max_length", 4))).asTextField().build();
-    public final Property<String> OTHER_NAME = SIMPLE_TAB.createStringProperty("othername").asTextField().displayName(Text.of("Alt display name")).placeholder().build();
+    public final Property<String> OTHER_NAME = SIMPLE_TAB.createStringProperty("othername").asTextField().displayName(Text.of("Alt display name if the other name is not present")).tooltip(Text.literal("It's like a fallback")).placeholder().build();
     public final Property<String> REGEX = SIMPLE_TAB.createStringProperty("regex").asTextField().displayName(Text.of("Regular Expression")).build();
     public final Bindable<Pattern> COMPILED_REGEX = REGEX.map(Pattern::compile);
     

@@ -1,27 +1,28 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
+import net.replaceitem.reconfigure.screen.widget.TooltippedTextWidget;
 
 public class HeadlineConfigWidget extends ConfigWidget {
     
-    private final Text text;
-    
+    private final TooltippedTextWidget textWidget;
+
+    public static final int HEIGHT = 30;
+
     public HeadlineConfigWidget(ConfigWidgetList listWidget, Text text) {
-        super(listWidget, 30);
-        this.text = text;
+        super(listWidget, HEIGHT);
+        this.textWidget = new TooltippedTextWidget(text, this.parent.getTextRenderer());
+        this.children.add(this.textWidget);
     }
 
     @Override
-    public void render(DrawContext context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
-        super.render(context, mouseX, mouseY, hovered, deltaTicks);
-        this.renderName(context);
-    }
-
-    protected void renderName(DrawContext context) {
-        int textY = this.getContentMiddleY() - (this.parent.getTextRenderer().fontHeight / 2);
-        context.drawCenteredTextWithShadow(this.parent.getTextRenderer(), this.text, this.getContentMiddleX(), textY, Colors.WHITE);
+    public void refreshPosition() {
+        super.refreshPosition();
+        int padding = (this.getContentHeight() - this.parent.getTextRenderer().fontHeight) / 2;
+        this.textWidget.setMaxWidth(this.getContentWidth() - 2 * padding);
+        this.textWidget.setHeight(this.getContentHeight() - 2 * padding);
+        this.textWidget.setY(this.getContentY() + padding);
+        this.textWidget.setX(this.getContentMiddleX() - this.textWidget.getWidth() / 2);
     }
 }
