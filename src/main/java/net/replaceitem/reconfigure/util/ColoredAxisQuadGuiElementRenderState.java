@@ -33,11 +33,11 @@ public record ColoredAxisQuadGuiElementRenderState(
     }
 
     @Override
-    public void setupVertices(VertexConsumer vertices, float depth) {
-        vertices.vertex(this.pose(), this.x0(), this.y0(), depth).color(this.col1());
-        vertices.vertex(this.pose(), this.x0(), this.y1(), depth).color(this.axis() == NavigationAxis.VERTICAL ? this.col2() : this.col1());
-        vertices.vertex(this.pose(), this.x1(), this.y1(), depth).color(this.col2());
-        vertices.vertex(this.pose(), this.x1(), this.y0(), depth).color(this.axis() == NavigationAxis.VERTICAL ? this.col1() : this.col2());
+    public void setupVertices(VertexConsumer vertices) {
+        vertices.vertex(this.pose(), this.x0(), this.y0()).color(this.col1());
+        vertices.vertex(this.pose(), this.x0(), this.y1()).color(this.axis() == NavigationAxis.VERTICAL ? this.col2() : this.col1());
+        vertices.vertex(this.pose(), this.x1(), this.y1()).color(this.col2());
+        vertices.vertex(this.pose(), this.x1(), this.y0()).color(this.axis() == NavigationAxis.VERTICAL ? this.col1() : this.col2());
     }
 
     @Nullable

@@ -14,7 +14,7 @@ public class DynamicEditBoxWidget extends EditBoxWidget {
     protected int totalWidth;
     
     public DynamicEditBoxWidget(TextRenderer textRenderer, int x, int y, int width, int height, Text placeholder, Text message) {
-        super(textRenderer, x, y, width, height, placeholder, message, -2039584, true, -3092272, true, true);
+        super(textRenderer, x, y, width, height, placeholder, message, 0xffe0e0e0, true, 0xffd0d0d0, true, true);
         this.setWidth(width);
     }
     

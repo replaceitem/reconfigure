@@ -10,7 +10,7 @@ import net.replaceitem.reconfigure.screen.widget.DynamicEditBoxWidget;
 
 public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, String> {
     public static final int BOX_HEIGHT = 65;
-    public static final int HEIGHT = BOX_HEIGHT + SimpleConfigWidget.DEFAULT_HEIGHT;
+    public static final int HEIGHT = SimpleConfigWidget.DEFAULT_HEIGHT + INNER_PADDING + BOX_HEIGHT;
 
     public EditBoxConfigWidget(
             ConfigWidgetList listWidget,
@@ -32,7 +32,7 @@ public class EditBoxConfigWidget extends SimpleConfigWidget<EditBoxWidget, Strin
 
     @Override
     protected ScreenRect getWidgetPos() {
-        return new ScreenRect(x + PADDING, y + PADDING + NAME_HEIGHT + PADDING, width - 2 * PADDING, BOX_HEIGHT);
+        return new ScreenRect(this.getContentX() + INNER_PADDING, this.getContentY() + INNER_PADDING + NAME_HEIGHT + INNER_PADDING, this.getContentWidth() - 2 * INNER_PADDING, BOX_HEIGHT);
     }
 
     @Override

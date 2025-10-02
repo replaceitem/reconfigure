@@ -15,13 +15,13 @@ public class HeadlineConfigWidget extends ConfigWidget {
     }
 
     @Override
-    public void renderWidgets(DrawContext context, int index, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+    public void render(DrawContext context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
+        super.render(context, mouseX, mouseY, hovered, deltaTicks);
         this.renderName(context);
     }
 
     protected void renderName(DrawContext context) {
-        int textPadding = height / 2 - this.parent.getTextRenderer().fontHeight / 2;
-        int textY = y + textPadding;
-        context.drawCenteredTextWithShadow(this.parent.getTextRenderer(), this.text, x + width / 2, textY, Colors.WHITE);
+        int textY = this.getContentMiddleY() - (this.parent.getTextRenderer().fontHeight / 2);
+        context.drawCenteredTextWithShadow(this.parent.getTextRenderer(), this.text, this.getContentMiddleX(), textY, Colors.WHITE);
     }
 }

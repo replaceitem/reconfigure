@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget;
 
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.navigation.NavigationAxis;
@@ -69,13 +70,17 @@ public class ColorPlanePickerWidget extends ClickableWidget {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        this.setColorAtMouse(mouseX, mouseY);
+    public void onClick(Click click, boolean doubled) {
+        if(click.button() == 0) {
+            this.setColorAtMouse(click.x(), click.y());
+        }
     }
 
     @Override
-    protected void onDrag(double mouseX, double mouseY, double deltaX, double deltaY) {
-        this.setColorAtMouse(mouseX, mouseY);
+    protected void onDrag(Click click, double offsetX, double offsetY) {
+        if(click.button() == 0) {
+            this.setColorAtMouse(click.x(), click.y());
+        }
     }
 
     private void setColorAtMouse(double mouseX, double mouseY) {

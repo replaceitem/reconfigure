@@ -2,6 +2,7 @@ package net.replaceitem.reconfigure.screen.widget.config;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.GridWidget;
@@ -32,9 +33,9 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         super(listWidget, 0, property, baseSettings);
         this.chipsEditable = chipsEditable;
         
-        this.grid.setRowSpacing(PADDING);
+        this.grid.setRowSpacing(INNER_PADDING);
         
-        this.textField = new DynamicTextFieldWidget(listWidget.getTextRenderer(), 0, 0, getWidth() - 2*PADDING, 20, Text.empty());
+        this.textField = new DynamicTextFieldWidget(listWidget.getTextRenderer(), 0, 0, getContentWidth() - 2* INNER_PADDING, 20, Text.empty());
         this.textField.setMaxLength(10000);
         grid.add(textField, 0, 0);
         
@@ -113,12 +114,12 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     @Override
     public void refreshPosition() {
         super.refreshPosition();
-        int gridWidth = this.getWidth() - 2*PADDING;
+        int gridWidth = this.getContentWidth() - 2* INNER_PADDING;
         this.textField.setWidth(gridWidth - addButton.getWidth());
         this.flowSocket.getInner().setFlowWidth(gridWidth);
-        this.grid.setPosition(this.getX() + PADDING, this.getY() + NAME_HEIGHT + PADDING*2);
+        this.grid.setPosition(this.getContentX() + INNER_PADDING, this.getContentY() + NAME_HEIGHT + INNER_PADDING *2);
         this.grid.refreshPositions();
-        this.height = NAME_HEIGHT + PADDING + this.grid.getHeight() + 2*PADDING;
+        this.setHeight(NAME_HEIGHT + this.grid.getHeight() + 4* INNER_PADDING);
     }
     
     class Chip extends TextFieldWidget {
@@ -153,11 +154,11 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         }
 
         @Override
-        public void onClick(double mouseX, double mouseY) {
-            if(this.removeButtonHovered((int) mouseX, (int) mouseY)) {
+        public void onClick(Click click, boolean doubled) {
+            if(this.removeButtonHovered((int) click.x(), (int) click.y())) {
                 playClickSound(MinecraftClient.getInstance().getSoundManager());
                 ChipListConfigWidget.this.removeChip(this);
-            } else super.onClick(mouseX, mouseY);
+            } else super.onClick(click, doubled);
         }
 
         @Override

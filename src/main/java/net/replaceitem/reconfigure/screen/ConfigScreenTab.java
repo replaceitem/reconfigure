@@ -16,7 +16,7 @@ public class ConfigScreenTab implements Tab {
 
     public ConfigScreenTab(ConfigTabImpl tab, MinecraftClient client) {
         this.tab = tab;
-        this.list = new ConfigWidgetList(tab, client, 0, 0, 0, 30) {
+        this.list = new ConfigWidgetList(tab, client, 0, 0, 0) {
             @Override
             public int getRowWidth() {
                 return Math.min(this.width - 40, 400);
@@ -41,7 +41,7 @@ public class ConfigScreenTab implements Tab {
 
     @Override
     public void refreshGrid(ScreenRect tabArea) {
-        this.list.setDimensionsAndPosition(tabArea.width(), tabArea.height(), tabArea.getLeft(), tabArea.getTop());
+        this.list.position(tabArea.width(), tabArea.height(), tabArea.getLeft(), tabArea.getTop());
     }
 
     public void onSave() {

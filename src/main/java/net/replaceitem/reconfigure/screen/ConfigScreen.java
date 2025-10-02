@@ -38,7 +38,6 @@ public class ConfigScreen extends Screen {
             this.addDrawableChild(this.tabNavigation);
         } else {
             this.headline = new TextWidget(config.getTitle(), this.textRenderer);
-            headline.alignCenter();
             this.addDrawableChild(headline);
         }
         DirectionalLayoutWidget directionalLayoutWidget = this.threePartsLayoutWidget.addFooter(DirectionalLayoutWidget.horizontal().spacing(8));

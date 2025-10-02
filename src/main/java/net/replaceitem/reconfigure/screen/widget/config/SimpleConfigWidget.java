@@ -13,8 +13,8 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     @Nullable
     private W widget;
 
-    public SimpleConfigWidget(ConfigWidgetList listWidget, int height, PropertyImpl<P> property, BaseSettings baseSettings) {
-        super(listWidget, height, property, baseSettings);
+    public SimpleConfigWidget(ConfigWidgetList listWidget, int contentHeight, PropertyImpl<P> property, BaseSettings baseSettings) {
+        super(listWidget, contentHeight, property, baseSettings);
     }
 
     public SimpleConfigWidget(ConfigWidgetList listWidget, PropertyImpl<P> property, BaseSettings baseSettings) {
@@ -42,7 +42,7 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     }
     
     protected ScreenRect getWidgetPos() {
-        int maxNameWidth = this.width / 2 - textPadding;
-        return new ScreenRect(x + textPadding + maxNameWidth, y + PADDING, width - maxNameWidth - PADDING - textPadding - this.resetButtonWidget.getWidth(), NAME_HEIGHT);
+        int maxNameWidth = this.getContentWidth() / 2 - textPadding;
+        return new ScreenRect(this.getContentX() + textPadding + maxNameWidth, this.getContentY() + INNER_PADDING, this.getContentWidth() - maxNameWidth - INNER_PADDING - textPadding - this.resetButtonWidget.getWidth(), NAME_HEIGHT);
     }
 }

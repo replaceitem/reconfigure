@@ -39,7 +39,6 @@ public interface Config {
      * @param parent The parent screen to return to when closing the config screen
      * @return The config screen
      */
-    @Deprecated
     ConfigScreen createScreen(@Nullable Screen parent);
 
     /**

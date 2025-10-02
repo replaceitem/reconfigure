@@ -17,10 +17,10 @@ import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import java.util.Objects;
 
 public abstract class PropertyConfigWidget<P> extends ConfigWidget {
-    public static final int PADDING = 3;
+    public static final int INNER_PADDING = 3;
     public static final int BASIC_WIDGET_SIZE = 20;
     public static final int NAME_HEIGHT = BASIC_WIDGET_SIZE;
-    public static final int DEFAULT_HEIGHT = NAME_HEIGHT + 2*PADDING;
+    public static final int DEFAULT_HEIGHT = NAME_HEIGHT + 2* INNER_PADDING;
     
     private static final Identifier RESET_ICON = Reconfigure.id("reconfigure/reset");
     
@@ -34,12 +34,11 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     protected final TextWidget nameWidget;
     protected final ButtonWidget resetButtonWidget;
 
-    public PropertyConfigWidget(ConfigWidgetList listWidget, int height, PropertyImpl<P> property, BaseSettings baseSettings) {
-        super(listWidget, height);
+    public PropertyConfigWidget(ConfigWidgetList listWidget, int contentHeight, PropertyImpl<P> property, BaseSettings baseSettings) {
+        super(listWidget, contentHeight);
         this.property = property;
         this.baseSettings = baseSettings;
         this.nameWidget = new TextWidget(Text.empty(), this.parent.getTextRenderer());
-        this.nameWidget.alignLeft();
         this.children.add(nameWidget);
         this.resetButtonWidget = TextIconButtonWidget.builder(Text.empty(), button -> {
             this.loadValue(this.property.getDefaultValue());
@@ -58,19 +57,19 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
 
     private void positionResetButton() {
-        this.resetButtonWidget.setPosition(getRight() - PADDING - this.resetButtonWidget.getWidth(), y + PADDING);
+        this.resetButtonWidget.setPosition(getContentRightEnd() - INNER_PADDING - this.resetButtonWidget.getWidth(), this.getContentY() + INNER_PADDING);
     }
 
     protected void positionName() {
-        int maxNameWidth = this.width / 2 - textPadding;
+        int maxNameWidth = this.getContentWidth() / 2 - textPadding;
         this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
-        this.nameWidget.setPosition(x + textPadding, y + textPadding);
+        this.nameWidget.setPosition(this.getContentX() + textPadding, this.getContentY() + textPadding);
     }
     
     protected void positionNameFullWidth() {
-        int maxNameWidth = this.width - 2 * this.textPadding;
+        int maxNameWidth = this.getContentWidth() - 2 * this.textPadding;
         this.nameWidget.setWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
-        this.nameWidget.setPosition(x + textPadding, y + textPadding);
+        this.nameWidget.setPosition(this.getContentX() + textPadding, this.getContentY() + textPadding);
     }
 
     @Override
@@ -112,8 +111,4 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
 
     protected abstract P getSaveValue();
     protected abstract void loadValue(P value);
-    
-    public int getContentWidth() {
-        return this.width - 2*PADDING;
-    }
 }

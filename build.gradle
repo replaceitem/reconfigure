@@ -46,7 +46,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modTestmodImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modTestmodCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
     
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
     

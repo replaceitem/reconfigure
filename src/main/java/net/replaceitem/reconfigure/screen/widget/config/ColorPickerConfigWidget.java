@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.widget.GridWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.OrderedText;
@@ -59,13 +60,15 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         super(listWidget, DEFAULT_HEIGHT, property, baseSettings);
         this.colorPreviewWidget = new ColorPreviewWidget(0, 0, BASIC_WIDGET_SIZE, BASIC_WIDGET_SIZE) {
             @Override
-            public void onClick(double mouseX, double mouseY) {
-                setOpen(!isOpen);
+            public void onClick(Click click, boolean doubled) {
+                if(click.button() == 0) {
+                    setOpen(!isOpen);
+                }
             }
         };
         this.textField = new TextFieldWidget(listWidget.getTextRenderer(), 70, NAME_HEIGHT, Text.empty());
         this.textField.setChangedListener(this::setColorFromTextField);
-        this.textField.setRenderTextProvider((string, firstCharacterIndex) -> OrderedText.styledForwardsVisitedString(
+        this.textField.addFormatter((string, firstCharacterIndex) -> OrderedText.styledForwardsVisitedString(
                 string, isInvalid ? Style.EMPTY.withColor(Formatting.RED) : Style.EMPTY
         ));
         
@@ -182,7 +185,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     
     private void setOpen(boolean open) {
         this.isOpen = open;
-        this.height = DEFAULT_HEIGHT + (open ? EXPANSION_HEIGHT + PADDING : 0);
+        this.setContentHeight(DEFAULT_HEIGHT + (open ? EXPANSION_HEIGHT + INNER_PADDING : 0));
         this.grid.forEachChild(clickableWidget -> clickableWidget.visible = open);
         this.refreshPosition();
     }
@@ -190,18 +193,17 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     @Override
     public void refreshPosition() {
         super.refreshPosition();
-        int topRowY = y + (DEFAULT_HEIGHT -20) / 2;
-        this.colorPreviewWidget.setPosition(getRight() - PADDING - this.resetButtonWidget.getWidth() - this.colorPreviewWidget.getWidth(), topRowY);
+        int topRowY = this.getContentY() + (DEFAULT_HEIGHT -20) / 2;
+        this.colorPreviewWidget.setPosition(getContentRightEnd() - INNER_PADDING - this.resetButtonWidget.getWidth() - this.colorPreviewWidget.getWidth(), topRowY);
         this.textField.setPosition(this.colorPreviewWidget.getX() - textField.getWidth(), topRowY);
-        
-        int contentWidth = getContentWidth();
+        int contentWidth = getContentWidth() - 2*INNER_PADDING;
         this.colorPlanePickerWidget.setWidth(contentWidth/2);
         int sliderWidth = contentWidth - colorPlanePickerWidget.getWidth() - SPACING;
         this.hueSlider.setWidth(sliderWidth);
         this.saturationSlider.setWidth(sliderWidth);
         this.valueSlider.setWidth(sliderWidth);
         this.alphaSlider.setWidth(sliderWidth);
-        this.grid.setPosition(getX() + PADDING, getY() + DEFAULT_HEIGHT);
+        this.grid.setPosition(getContentX() + INNER_PADDING, getContentY() + DEFAULT_HEIGHT);
         this.grid.refreshPositions();
     }
 

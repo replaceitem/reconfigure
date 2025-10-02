@@ -30,17 +30,17 @@ public record HueGradientQuadGuiElementRenderState(
     private static final int[] HSV_GRADIENT_COLORS = {0xFFFF0000, 0xFFFFFF00, 0xFF00FF00, 0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF};
 
     @Override
-    public void setupVertices(VertexConsumer vertices, float depth) {
+    public void setupVertices(VertexConsumer vertices) {
         for (int i = 0; i < HSV_GRADIENT_COLORS.length; i++) {
             int colorStart = HSV_GRADIENT_COLORS[i];
             int colorEnd = HSV_GRADIENT_COLORS[(i+1) % HSV_GRADIENT_COLORS.length];
             float xStart = x0 + (x1-x0) / HSV_GRADIENT_COLORS.length * i;
             float xEnd = x0 + (x1-x0) / HSV_GRADIENT_COLORS.length * (i + 1);
             vertices
-                    .vertex(this.pose(), xStart, y0, depth).color(colorStart)
-                    .vertex(this.pose(), xStart, y1, depth).color(colorStart)
-                    .vertex(this.pose(), xEnd, y1, depth).color(colorEnd)
-                    .vertex(this.pose(), xEnd, y0, depth).color(colorEnd);
+                    .vertex(this.pose(), xStart, y0).color(colorStart)
+                    .vertex(this.pose(), xStart, y1).color(colorStart)
+                    .vertex(this.pose(), xEnd, y1).color(colorEnd)
+                    .vertex(this.pose(), xEnd, y0).color(colorEnd);
         }
     }
 

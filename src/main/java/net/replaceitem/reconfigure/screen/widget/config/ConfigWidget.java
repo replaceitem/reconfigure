@@ -18,8 +18,9 @@ public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> 
     protected final List<ClickableWidget> children = new ArrayList<>();
     protected final ConfigWidgetList parent;
 
-    public ConfigWidget(ConfigWidgetList parent, int height) {
-        super(height);
+    public ConfigWidget(ConfigWidgetList parent, int contentHeight) {
+        super();
+        this.setHeight(contentHeight + 4);
         this.parent = parent;
     }
 
@@ -39,17 +40,11 @@ public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> 
     }
 
     @Override
-    public final void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
-        context.fill(x, y, x+entryWidth, y+entryHeight, ColorHelper.withAlpha(60, Colors.BLACK));
-        this.renderWidgets(context, index, mouseX, mouseY, hovered, tickDelta);
+    public void render(DrawContext context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
+        context.fill(this.getContentX(), this.getContentY(), getContentRightEnd(), getContentBottomEnd(), ColorHelper.withAlpha(60, Colors.BLACK));
         for (ClickableWidget child : children) {
-            child.render(context, mouseX, mouseY, tickDelta);
+            child.render(context, mouseX, mouseY, deltaTicks);
         }
-    }
-    
-    public void renderWidgets(DrawContext context, int index, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        
     }
     
     public void onSave() {
