@@ -187,7 +187,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         this.isOpen = open;
         this.setContentHeight(DEFAULT_HEIGHT + (open ? EXPANSION_HEIGHT + INNER_PADDING : 0));
         this.grid.forEachChild(clickableWidget -> clickableWidget.visible = open);
-        this.refreshPosition();
+        this.parent.reposition();
     }
 
     @Override

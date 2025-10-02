@@ -1,10 +1,7 @@
 package net.replaceitem.reconfigure.screen.widget;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.util.math.MathHelper;
-import org.jetbrains.annotations.Nullable;
 
 public class VariableHeightElementListWidget<E extends VariableHeightElementListWidget.Entry<E>> extends ElementListWidget<E> {
     public VariableHeightElementListWidget(MinecraftClient minecraftClient, int width, int height, int y) {
@@ -19,5 +16,10 @@ public class VariableHeightElementListWidget<E extends VariableHeightElementList
     @Override
     protected void addEntryToTop(E entry) {
         this.addEntryToTop(entry, this.itemHeight);
+    }
+
+    public void reposition() {
+        // recalculates all element positions
+        this.position(this.width, this.height, this.getX(), this.getY());
     }
 }

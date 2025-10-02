@@ -75,6 +75,8 @@ public class ExampleConfig {
     Void LIST = SIMPLE_TAB.createHeadline(Text.literal("List"));
     public final Property<List<String>> CHIP_LIST = SIMPLE_TAB.createListProperty("chiplist").asChipList().build();
 
+    Void FINISHING_HEADLINE = SIMPLE_TAB.createHeadline(Text.literal("Finishing headline for testing when sizes above change and how long the text can be"));
+
 
     public final Property<String> WITHOUT_WIDGET = SIMPLE_TAB.createStringProperty("without_widget").defaultValue("Not shown in GUI").buildWithoutWidget();
 

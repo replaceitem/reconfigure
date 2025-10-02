@@ -85,7 +85,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
             flowWidget.add(c);
         }
 
-        this.refreshPosition();
+        this.parent.reposition();
     }
     
     @Override
