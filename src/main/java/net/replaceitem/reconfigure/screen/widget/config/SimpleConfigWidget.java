@@ -25,7 +25,7 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     protected void setWidget(W widget) {
         if(this.widget != null) throw new RuntimeException("Widget already assigned");
         this.widget = widget;
-        this.children.add(widget);
+        this.children.addFirst(widget);
     }
 
     protected W widget() {
