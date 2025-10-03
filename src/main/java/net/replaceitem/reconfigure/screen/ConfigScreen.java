@@ -67,7 +67,10 @@ public class ConfigScreen extends Screen {
         if (this.tabNavigation != null) {
             this.tabNavigation.setWidth(this.width);
             this.tabNavigation.init();
-            if(headline != null) this.headline.setDimensionsAndPosition(this.width, this.tabNavigation.getNavigationFocus().height(), 0, 0);
+            if(headline != null) {
+                this.headline.setHeight(this.tabNavigation.getNavigationFocus().height());
+                this.headline.setX(this.width / 2 - this.headline.getWidth() / 2);
+            }
             int headerHeight = this.tabNavigation.getNavigationFocus().getBottom();
             ScreenRect screenRect = new ScreenRect(0, headerHeight, this.width, this.height - this.threePartsLayoutWidget.getFooterHeight() - headerHeight);
             this.tabManager.setTabArea(screenRect);
