@@ -105,7 +105,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
                 return style.withFormatting(Formatting.RED);
             }));
         }
-        this.nameWidget.setAdditionalTooltip(tooltipText);
+        this.nameWidget.setAdditionalTooltip(tooltipText.getSiblings().isEmpty() ? null : tooltipText);
     }
 
     protected abstract P getSaveValue();

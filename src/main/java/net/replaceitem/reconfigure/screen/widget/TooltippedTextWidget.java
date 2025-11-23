@@ -50,7 +50,7 @@ public class TooltippedTextWidget extends TextWidget {
                             Text.empty().append(getMessage()).append("\n").append(this.additionalTooltip)
             ));
         } else {
-            this.setTooltip(Tooltip.of(this.additionalTooltip));
+            this.setTooltip(this.additionalTooltip == null ? null : Tooltip.of(this.additionalTooltip));
         }
     }
 }
