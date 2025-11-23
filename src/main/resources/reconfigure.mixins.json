@@ -9,9 +9,9 @@
         "defaultRequire": 1
     },
     "client": [
-        "EditBoxAccessor",
-        "EditBoxWidgetAccessor",
-        "SliderWidgetAccessor",
-        "TextWidgetAccessor"
+        "MultilineTextFieldAccessor",
+        "MultiLineEditBoxAccessor",
+        "AbstractSliderButtonAccessor",
+        "StringWidgetAccessor"
     ]
 }

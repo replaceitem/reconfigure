@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.replaceitem.reconfigure.config.ConfigBuilderImpl;
 import net.replaceitem.reconfigure.screen.ConfigScreen;
 import org.jetbrains.annotations.Nullable;
@@ -35,7 +35,7 @@ public interface Config {
 
     /**
      * Creates a screen for the config.
-     * Use this with {@link net.minecraft.client.MinecraftClient#setScreen(Screen)} to show the config screen.
+     * Use this with {@link net.minecraft.client.Minecraft#setScreen(Screen)} to show the config screen.
      * @param parent The parent screen to return to when closing the config screen
      * @return The config screen
      */

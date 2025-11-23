@@ -1,9 +1,9 @@
 package net.replaceitem.reconfigure.util;
 
-import net.minecraft.util.math.ColorHelper;
+import net.minecraft.util.ARGB;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ColorUtilTest {
     @Test
@@ -12,7 +12,7 @@ public class ColorUtilTest {
         for (int r : channelValues) {
             for (int g : channelValues) {
                 for (int b : channelValues) {
-                    int color = ColorHelper.getArgb(r, g, b);
+                    int color = ARGB.color(r, g, b);
                     ColorUtil.HSVColor floats = ColorUtil.rgbToHsvFloats(color);
                     int converted = ColorUtil.hsvToRgb(floats.hue(), floats.saturation(), floats.value());
                     assertEquals(color, converted,

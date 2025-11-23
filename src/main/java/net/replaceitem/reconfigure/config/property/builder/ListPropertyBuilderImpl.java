@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.property.ListPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ListPropertyBuilderImpl extends PropertyBuilderImpl<ListPropertyBuilder, List<String>> implements ListPropertyBuilder {
     
-    public ListPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, List<String> defaultValue) {
+    public ListPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id, List<String> defaultValue) {
         super(propertyBuildContext, id, defaultValue);
     }
 

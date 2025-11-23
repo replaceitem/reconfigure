@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.screen.widget.layout;
 
-import net.minecraft.client.gui.widget.LayoutWidget;
-import net.minecraft.client.gui.widget.Widget;
+import net.minecraft.client.gui.layouts.Layout;
+import net.minecraft.client.gui.layouts.LayoutElement;
 
 import java.util.function.Consumer;
 
@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * that for re-creation. This SocketWidget is used as a way to keep itself in an outer grid, but replace the
  * LayoutWidget within.
  */
-public class SocketWidget<T extends LayoutWidget> implements LayoutWidget {
+public class SocketWidget<T extends Layout> implements Layout {
     private T inner;
 
     public SocketWidget(T inner) {
@@ -58,12 +58,12 @@ public class SocketWidget<T extends LayoutWidget> implements LayoutWidget {
     }
 
     @Override
-    public void refreshPositions() {
-        inner.refreshPositions();
+    public void arrangeElements() {
+        inner.arrangeElements();
     }
 
     @Override
-    public void forEachElement(Consumer<Widget> consumer) {
-        inner.forEachElement(consumer);
+    public void visitChildren(Consumer<LayoutElement> consumer) {
+        inner.visitChildren(consumer);
     }
 }

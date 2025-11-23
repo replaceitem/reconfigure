@@ -1,17 +1,17 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.TextIconButtonWidget;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.SpriteIconButton;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.Reconfigure;
 import net.replaceitem.reconfigure.api.ValidationResult;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
-import net.replaceitem.reconfigure.screen.widget.TooltippedTextWidget;
+import net.replaceitem.reconfigure.screen.widget.TooltippedStringWidget;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     public static final int NAME_HEIGHT = BASIC_WIDGET_SIZE;
     public static final int DEFAULT_HEIGHT = NAME_HEIGHT + 2* INNER_PADDING;
     
-    private static final Identifier RESET_ICON = Reconfigure.id("reconfigure/reset");
+    private static final ResourceLocation RESET_ICON = Reconfigure.id("reconfigure/reset");
     
     protected final int textPadding;
 
@@ -30,21 +30,21 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
 
     protected ValidationResult validationResult = ValidationResult.valid();
     
-    protected final TooltippedTextWidget nameWidget;
-    protected final ButtonWidget resetButtonWidget;
+    protected final TooltippedStringWidget nameWidget;
+    protected final Button resetButtonWidget;
 
     public PropertyConfigWidget(ConfigWidgetList listWidget, int contentHeight, PropertyImpl<P> property, BaseSettings baseSettings) {
         super(listWidget, contentHeight);
         this.property = property;
         this.baseSettings = baseSettings;
-        this.nameWidget = new TooltippedTextWidget(Text.empty(), this.parent.getTextRenderer());
+        this.nameWidget = new TooltippedStringWidget(Component.empty(), this.parent.getTextRenderer());
         this.children.add(nameWidget);
-        this.resetButtonWidget = TextIconButtonWidget.builder(Text.empty(), button -> {
+        this.resetButtonWidget = SpriteIconButton.builder(Component.empty(), button -> {
             this.loadValue(this.property.getDefaultValue());
-        }, true).texture(RESET_ICON, 10, 10).width(20).build();
+        }, true).sprite(RESET_ICON, 10, 10).width(20).build();
         this.resetButtonWidget.active = !property.isDefault();
         this.children.add(this.resetButtonWidget);
-        this.textPadding = DEFAULT_HEIGHT / 2 - this.parent.getTextRenderer().fontHeight / 2;
+        this.textPadding = DEFAULT_HEIGHT / 2 - this.parent.getTextRenderer().lineHeight / 2;
         this.setNameText(this.property.get());
     }
 
@@ -56,18 +56,18 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     }
 
     private void positionResetButton() {
-        this.resetButtonWidget.setPosition(getContentRightEnd() - INNER_PADDING - this.resetButtonWidget.getWidth(), this.getContentY() + INNER_PADDING);
+        this.resetButtonWidget.setPosition(getContentRight() - INNER_PADDING - this.resetButtonWidget.getWidth(), this.getContentY() + INNER_PADDING);
     }
 
     protected void positionName() {
         int maxNameWidth = this.getContentWidth() / 2 - textPadding;
-        this.nameWidget.setMaxWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
+        this.nameWidget.setMaxWidth(Math.min(this.parent.getTextRenderer().width(this.nameWidget.getMessage().getVisualOrderText()), maxNameWidth));
         this.nameWidget.setPosition(this.getContentX() + textPadding, this.getContentY() + textPadding);
     }
     
     protected void positionNameFullWidth() {
         int maxNameWidth = this.getContentWidth() - 2 * this.textPadding;
-        this.nameWidget.setMaxWidth(Math.min(this.parent.getTextRenderer().getWidth(this.nameWidget.getMessage().asOrderedText()), maxNameWidth));
+        this.nameWidget.setMaxWidth(Math.min(this.parent.getTextRenderer().width(this.nameWidget.getMessage().getVisualOrderText()), maxNameWidth));
         this.nameWidget.setPosition(this.getContentX() + textPadding, this.getContentY() + textPadding);
     }
 
@@ -89,20 +89,20 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     
     private void setNameText(P saveValue) {
         boolean wasChanged = !Objects.equals(saveValue, this.property.get());
-        this.nameWidget.setMessage(baseSettings.displayName().copy().styled(style -> {
+        this.nameWidget.setMessage(baseSettings.displayName().copy().withStyle(style -> {
             style = style.withItalic(wasChanged);
-            if(this.validationResult.isInvalid()) style = style.withColor(Formatting.RED);
+            if(this.validationResult.isInvalid()) style = style.withColor(ChatFormatting.RED);
             return style;
         }));
-        MutableText tooltipText = Text.empty();
+        MutableComponent tooltipText = Component.empty();
         if(baseSettings.tooltip() != null) {
             tooltipText.append(baseSettings.tooltip());
         }
         if(baseSettings.tooltip() != null && this.validationResult.isInvalid()) tooltipText.append("\n");
         if(this.validationResult.isInvalid()) {
-            tooltipText.append(validationResult.getMessage().copy().formatted().styled(style -> {
+            tooltipText.append(validationResult.getMessage().copy().withStyle().withStyle(style -> {
                 if(style.getColor() != null) return style;
-                return style.withFormatting(Formatting.RED);
+                return style.applyFormat(ChatFormatting.RED);
             }));
         }
         this.nameWidget.setAdditionalTooltip(tooltipText.getSiblings().isEmpty() ? null : tooltipText);

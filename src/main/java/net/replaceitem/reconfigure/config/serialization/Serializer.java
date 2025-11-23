@@ -40,7 +40,7 @@ import java.util.function.Consumer;
  * order for the mod using the configuration library to do custom handling of data (such as datafixing).
  *
  * @param <T> The type of one property after reading, as provided to the {@link Marshaller},
- *           such as a {@link com.google.gson.JsonElement} or {@link net.minecraft.nbt.NbtElement}.
+ *           such as a {@link com.google.gson.JsonElement} or {@link net.minecraft.nbt.Tag}.
  * @param <C> The type of the complete compound object after reading, such as {@link com.google.gson.JsonObject}.
  *           A value of this type will be provided to middleware.
  */

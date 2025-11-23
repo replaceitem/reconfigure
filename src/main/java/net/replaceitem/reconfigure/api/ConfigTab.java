@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.property.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public interface ConfigTab {
      * @return {@link Void} in order to be able to invoke this inline in a class field
      * initializer using an assignment to a dummy {@link Void} field.
      */
-    Void createHeadline(Text text);
+    Void createHeadline(Component text);
 
     /**
      * Starts building a string property for this config tab.

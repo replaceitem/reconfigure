@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.widget.builder;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.widget.WidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.PropertyHolder;
@@ -15,8 +15,8 @@ import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> implements WidgetBuilder<SELF, T> {
     private final PropertyBuildContext propertyBuildContext;
     protected final PropertyBuilderImpl<?, T> propertyBuilder;
-    @Nullable protected Text displayName;
-    @Nullable protected Text tooltip;
+    @Nullable protected Component displayName;
+    @Nullable protected Component tooltip;
 
     protected WidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder) {
         this.propertyBuildContext = propertyBuildContext;
@@ -25,20 +25,20 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
 
 
     @Override
-    public SELF displayName(Text displayName) {
+    public SELF displayName(Component displayName) {
         this.displayName = displayName;
         return self();
     }
     
     @Override
-    public SELF tooltip(Text tooltip) {
+    public SELF tooltip(Component tooltip) {
         this.tooltip = tooltip;
         return self();
     }
 
     @Override
     public SELF tooltip() {
-        this.tooltip = Text.translatable(propertyBuilder.getId().toTranslationKey(NAMESPACE + ".property", "tooltip"));
+        this.tooltip = Component.translatable(propertyBuilder.getId().toLanguageKey(NAMESPACE + ".property", "tooltip"));
         return self();
     }
 
@@ -47,7 +47,7 @@ public abstract class WidgetBuilderImpl<SELF extends WidgetBuilder<SELF, T>, T> 
      * Can be used to fill in missing default values.
      */
     protected void preBuild(PropertyHolder<T> property) {
-        if(displayName == null) displayName(Text.translatable(property.getId().toTranslationKey(NAMESPACE + ".property")));
+        if(displayName == null) displayName(Component.translatable(property.getId().toLanguageKey(NAMESPACE + ".property")));
     }
 
     /**

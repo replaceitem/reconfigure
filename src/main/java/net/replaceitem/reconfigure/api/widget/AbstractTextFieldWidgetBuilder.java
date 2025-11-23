@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api.widget;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public interface AbstractTextFieldWidgetBuilder<SELF extends AbstractTextFieldWidgetBuilder<SELF>> extends WidgetBuilder<SELF, String> {
     /**
@@ -9,7 +9,7 @@ public interface AbstractTextFieldWidgetBuilder<SELF extends AbstractTextFieldWi
      * @param placeholder The placeholder text
      * @return The builder for chaining
      */
-    SELF placeholder(Text placeholder);
+    SELF placeholder(Component placeholder);
     
     /**
      * Sets the placeholder for the text field widget to the default translatable text.

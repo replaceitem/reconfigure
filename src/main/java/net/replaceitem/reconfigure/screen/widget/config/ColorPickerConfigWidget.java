@@ -1,13 +1,13 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.Click;
-import net.minecraft.client.gui.widget.GridWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.text.OrderedText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.ColorHelper;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.FormattedCharSequence;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
@@ -23,14 +23,14 @@ import java.util.regex.Pattern;
 
 public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
 
-    private final TextFieldWidget textField;
+    private final EditBox textField;
     private final ColorPreviewWidget colorPreviewWidget;
     private final ColorPlanePickerWidget colorPlanePickerWidget;
     private final GradientSlider hueSlider;
     private final GradientSlider saturationSlider;
     private final GradientSlider valueSlider;
     private final GradientSlider alphaSlider;
-    private final GridWidget grid = new GridWidget(0, 0);
+    private final GridLayout grid = new GridLayout(0, 0);
     private boolean isOpen = false;
     private boolean isInvalid = false;
     private int color;
@@ -46,11 +46,11 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     
     private record BiFormatColor(int argb, ColorUtil.HSVColor hsv, float alpha) {
         public BiFormatColor(int argb) {
-            this(argb, ColorUtil.rgbToHsvFloats(argb), ColorHelper.getAlphaFloat(argb));
+            this(argb, ColorUtil.rgbToHsvFloats(argb), ARGB.alphaFloat(argb));
         }
 
         public BiFormatColor(ColorUtil.HSVColor hsv, float alpha) {
-            this(ColorHelper.withAlpha(ColorHelper.channelFromFloat(alpha), ColorUtil.hsvToRgb(hsv.hue(), hsv.saturation(), hsv.value())), hsv, alpha);
+            this(ARGB.color(ARGB.as8BitChannel(alpha), ColorUtil.hsvToRgb(hsv.hue(), hsv.saturation(), hsv.value())), hsv, alpha);
         }
     }
     
@@ -60,16 +60,16 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         super(listWidget, DEFAULT_HEIGHT, property, baseSettings);
         this.colorPreviewWidget = new ColorPreviewWidget(0, 0, BASIC_WIDGET_SIZE, BASIC_WIDGET_SIZE) {
             @Override
-            public void onClick(Click click, boolean doubled) {
+            public void onClick(MouseButtonEvent click, boolean doubled) {
                 if(click.button() == 0) {
                     setOpen(!isOpen);
                 }
             }
         };
-        this.textField = new TextFieldWidget(listWidget.getTextRenderer(), 70, NAME_HEIGHT, Text.empty());
-        this.textField.setChangedListener(this::setColorFromTextField);
-        this.textField.addFormatter((string, firstCharacterIndex) -> OrderedText.styledForwardsVisitedString(
-                string, isInvalid ? Style.EMPTY.withColor(Formatting.RED) : Style.EMPTY
+        this.textField = new EditBox(listWidget.getTextRenderer(), 70, NAME_HEIGHT, Component.empty());
+        this.textField.setResponder(this::setColorFromTextField);
+        this.textField.addFormatter((string, firstCharacterIndex) -> FormattedCharSequence.forward(
+                string, isInvalid ? Style.EMPTY.withColor(ChatFormatting.RED) : Style.EMPTY
         ));
         
         this.colorPlanePickerWidget = new ColorPlanePickerWidget(0, 0, 0, EXPANSION_HEIGHT) {
@@ -79,13 +79,13 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
             }
         };
 
-        this.hueSlider = new GradientSlider(0, 0, 0, 20, Text.empty(), 0, (v) -> ColorHelper.fromFloats(1.0f, v, 0.5f, 0.5f)) {
+        this.hueSlider = new GradientSlider(0, 0, 0, 20, Component.empty(), 0, (v) -> ARGB.colorFromFloat(1.0f, v, 0.5f, 0.5f)) {
             @Override
             protected void applyValue() {
                 setColorFromSliders();
             }
         };
-        this.saturationSlider = new GradientSlider(0, 0, 0, 20, Text.empty(), 1,
+        this.saturationSlider = new GradientSlider(0, 0, 0, 20, Component.empty(), 1,
                 (v) -> ColorUtil.hsvToRgb((float) hueSlider.getValue(), v, 1f)
         ) {
             @Override
@@ -93,7 +93,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
                 setColorFromSliders();
             }
         };
-        this.valueSlider = new GradientSlider(0, 0, 0, 20, Text.empty(), 1,
+        this.valueSlider = new GradientSlider(0, 0, 0, 20, Component.empty(), 1,
                 (v) -> ColorUtil.hsvToRgb((float) hueSlider.getValue(), (float) saturationSlider.getValue(), v)
         ) {
             @Override
@@ -101,8 +101,8 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
                 setColorFromSliders();
             }
         };
-        this.alphaSlider = new GradientSlider(0, 0, 0, 20, Text.empty(), 1,
-                (v) -> ColorHelper.withAlpha(v*255, ColorUtil.hsvToRgb((float) hueSlider.getValue(), (float) saturationSlider.getValue(), (float) valueSlider.getValue()))
+        this.alphaSlider = new GradientSlider(0, 0, 0, 20, Component.empty(), 1,
+                (v) -> ARGB.color(v*255, ColorUtil.hsvToRgb((float) hueSlider.getValue(), (float) saturationSlider.getValue(), (float) valueSlider.getValue()))
         ) {
             @Override
             protected void applyValue() {
@@ -112,14 +112,14 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         
         this.hueSlider.setHsv(true);
         
-        grid.setSpacing(SPACING);
-        grid.add(colorPlanePickerWidget, 0, 0, 4, 1);
-        grid.add(hueSlider, 0, 1);
-        grid.add(saturationSlider, 1, 1);
-        grid.add(valueSlider, 2, 1);
-        grid.add(alphaSlider, 3, 1);
+        grid.spacing(SPACING);
+        grid.addChild(colorPlanePickerWidget, 0, 0, 4, 1);
+        grid.addChild(hueSlider, 0, 1);
+        grid.addChild(saturationSlider, 1, 1);
+        grid.addChild(valueSlider, 2, 1);
+        grid.addChild(alphaSlider, 3, 1);
         
-        grid.forEachChild(this.children::add);
+        grid.visitWidgets(this.children::add);
         
         this.children.add(textField);
         this.children.add(colorPreviewWidget);
@@ -147,7 +147,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
                 this.alphaSlider.setValue(color.alpha());
             }
             if(excludeUpdate != UpdateTargets.TEXT_FIELD) {
-                this.textField.setText(String.format("#%08X", color.argb()));
+                this.textField.setValue(String.format("#%08X", color.argb()));
             }
         }
         this.onValueChanged();
@@ -186,7 +186,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     private void setOpen(boolean open) {
         this.isOpen = open;
         this.setContentHeight(DEFAULT_HEIGHT + (open ? EXPANSION_HEIGHT + INNER_PADDING : 0));
-        this.grid.forEachChild(clickableWidget -> clickableWidget.visible = open);
+        this.grid.visitWidgets(clickableWidget -> clickableWidget.visible = open);
         this.parent.reposition();
     }
 
@@ -194,7 +194,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     public void refreshPosition() {
         super.refreshPosition();
         int topRowY = this.getContentY() + (DEFAULT_HEIGHT -20) / 2;
-        this.colorPreviewWidget.setPosition(getContentRightEnd() - INNER_PADDING - this.resetButtonWidget.getWidth() - this.colorPreviewWidget.getWidth(), topRowY);
+        this.colorPreviewWidget.setPosition(getContentRight() - INNER_PADDING - this.resetButtonWidget.getWidth() - this.colorPreviewWidget.getWidth(), topRowY);
         this.textField.setPosition(this.colorPreviewWidget.getX() - textField.getWidth(), topRowY);
         int contentWidth = getContentWidth() - 2*INNER_PADDING;
         this.colorPlanePickerWidget.setWidth(contentWidth/2);
@@ -204,7 +204,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         this.valueSlider.setWidth(sliderWidth);
         this.alphaSlider.setWidth(sliderWidth);
         this.grid.setPosition(getContentX() + INNER_PADDING, getContentY() + DEFAULT_HEIGHT);
-        this.grid.refreshPositions();
+        this.grid.arrangeElements();
     }
 
     @Override

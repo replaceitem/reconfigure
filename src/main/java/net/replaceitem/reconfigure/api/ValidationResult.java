@@ -1,13 +1,13 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public class ValidationResult {
-    private static final ValidationResult VALID = new ValidationResult(Text.empty());
+    private static final ValidationResult VALID = new ValidationResult(Component.empty());
 
-    private final Text message;
+    private final Component message;
 
-    private ValidationResult(Text message) {
+    private ValidationResult(Component message) {
         this.message = message;
     }
 
@@ -22,7 +22,7 @@ public class ValidationResult {
      * @param error The error text for the invalid validation result
      * @return An invalid validation result
      */
-    public static ValidationResult invalid(Text error) {
+    public static ValidationResult invalid(Component error) {
         return new ValidationResult(error);
     }
 
@@ -31,7 +31,7 @@ public class ValidationResult {
      * @return An invalid validation result
      */
     public static ValidationResult invalid(String error) {
-        return new ValidationResult(Text.literal(error));
+        return new ValidationResult(Component.literal(error));
     }
 
     /**
@@ -49,9 +49,9 @@ public class ValidationResult {
     }
 
     /**
-     * @return The validation error message if invalid. If valid, returns {@link Text#empty()}
+     * @return The validation error message if invalid. If valid, returns {@link Component#empty()}
      */
-    public Text getMessage() {
+    public Component getMessage() {
         return message;
     }
 }

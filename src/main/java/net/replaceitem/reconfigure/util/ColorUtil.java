@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.util;
 
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
 
 @SuppressWarnings("DuplicatedCode")
 public class ColorUtil {
@@ -9,7 +9,7 @@ public class ColorUtil {
         float r = getRgbComponent(1.0f, hue, saturation, value);
         float g = getRgbComponent(2.0f/3.0f, hue, saturation, value);
         float b = getRgbComponent(1.0f/3.0f, hue, saturation, value);
-        return ColorHelper.getArgb(roundFloatToInt(r), roundFloatToInt(g), roundFloatToInt(b));
+        return ARGB.color(roundFloatToInt(r), roundFloatToInt(g), roundFloatToInt(b));
     }
     
     private static int roundFloatToInt(float f) {
@@ -23,22 +23,22 @@ public class ColorUtil {
         return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
      */
     private static float getRgbComponent(float k, float hue, float saturation, float value) {
-        float p = Math.abs(MathHelper.fractionalPart(hue + k) * 6.0f - 3.0f);
-        return value * MathHelper.lerp(saturation, 1.0f, MathHelper.clamp(p-1, 0, 1));
+        float p = Math.abs(Mth.frac(hue + k) * 6.0f - 3.0f);
+        return value * Mth.lerp(saturation, 1.0f, Mth.clamp(p-1, 0, 1));
     }
 
     public static HSVColor rgbToHsvFloats(int rgb) {
-        int red = ColorHelper.getRed(rgb);
-        int green = ColorHelper.getGreen(rgb);
-        int blue = ColorHelper.getBlue(rgb);
+        int red = ARGB.red(rgb);
+        int green = ARGB.green(rgb);
+        int blue = ARGB.blue(rgb);
         
         int value = Math.max(Math.max(red, green), blue);
         int minChannel = Math.min(Math.min(red, green), blue);
         float saturation = 1.0f - minChannel / (value == 0 ? 1.0f : value);
 
-        float redNormalized = MathHelper.getLerpProgress(red, minChannel, value);
-        float greenNormalized = MathHelper.getLerpProgress(green, minChannel, value);
-        float blueNormalized = MathHelper.getLerpProgress(blue, minChannel, value);
+        float redNormalized = Mth.inverseLerp(red, minChannel, value);
+        float greenNormalized = Mth.inverseLerp(green, minChannel, value);
+        float blueNormalized = Mth.inverseLerp(blue, minChannel, value);
 
         float hue;
 
@@ -53,7 +53,7 @@ public class ColorUtil {
         return new HSVColor(
                 hue,
                 saturation,
-                ColorHelper.getBlueFloat(value)
+                ARGB.blueFloat(value)
         );
     }
     

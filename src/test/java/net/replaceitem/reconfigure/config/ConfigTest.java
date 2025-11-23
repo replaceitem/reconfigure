@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.ConfigTab;
 import net.replaceitem.reconfigure.api.Property;
@@ -13,7 +13,7 @@ public class ConfigTest {
     private static class MockConfig extends ConfigImpl {
         boolean hasSaved = false;
 
-        protected MockConfig(String namespace, Text title) {
+        protected MockConfig(String namespace, Component title) {
             super(namespace, title, null);
         }
 
@@ -39,7 +39,7 @@ public class ConfigTest {
 
     @Test
     void testSaveIfDirty() {
-        MockConfig config = new MockConfig("test", Text.empty());
+        MockConfig config = new MockConfig("test", Component.empty());
         ConfigTab tab = config.createDefaultTab().build();
         Property<String> test = tab.createStringProperty("test").defaultValue("ABC").buildWithoutWidget();
         config.saveIfDirty();

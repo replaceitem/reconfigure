@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.widget.builder;
 
-import net.minecraft.screen.ScreenTexts;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.widget.CyclingButtonWidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.PropertyHolder;
@@ -23,7 +23,7 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
 
     private Collection<T> values;
     private final Collection<T> allValues;
-    @Nullable private Function<T, Text> valueToText;
+    @Nullable private Function<T, Component> valueToText;
 
     public CyclingButtonWidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder, Collection<T> values) {
         super(propertyBuildContext, propertyBuilder);
@@ -33,7 +33,7 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
 
     private static final List<Boolean> BOOLEAN_VALUES = List.of(Boolean.FALSE, Boolean.TRUE);
     public static CyclingButtonWidgetBuilderImpl<Boolean> createBoolean(PropertyBuildContext propertyBuildContext, BooleanPropertyBuilderImpl propertyBuilder) {
-        return new CyclingButtonWidgetBuilderImpl<>(propertyBuildContext, propertyBuilder, BOOLEAN_VALUES).valueToText(value -> value ? ScreenTexts.ON : ScreenTexts.OFF);
+        return new CyclingButtonWidgetBuilderImpl<>(propertyBuildContext, propertyBuilder, BOOLEAN_VALUES).valueToText(value -> value ? CommonComponents.OPTION_ON : CommonComponents.OPTION_OFF);
     }
 
 
@@ -44,7 +44,7 @@ public class CyclingButtonWidgetBuilderImpl<T> extends WidgetBuilderImpl<Cycling
     }
 
     @Override
-    public CyclingButtonWidgetBuilderImpl<T> valueToText(Function<T, Text> valueToText) {
+    public CyclingButtonWidgetBuilderImpl<T> valueToText(Function<T, Component> valueToText) {
         this.valueToText = valueToText;
         return this;
     }

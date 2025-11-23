@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.ScreenRect;
-import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends PropertyConfigWidget<P> {
+public abstract class SimpleConfigWidget<W extends AbstractWidget, P> extends PropertyConfigWidget<P> {
     @Nullable
     private W widget;
 
@@ -36,13 +36,13 @@ public abstract class SimpleConfigWidget<W extends ClickableWidget, P> extends P
     public void refreshPosition() {
         super.refreshPosition();
         if(this.widget != null) {
-            ScreenRect widgetPos = getWidgetPos();
-            this.widget.setDimensionsAndPosition(widgetPos.width(), widgetPos.height(), widgetPos.getLeft(), widgetPos.getTop());
+            ScreenRectangle widgetPos = getWidgetPos();
+            this.widget.setRectangle(widgetPos.width(), widgetPos.height(), widgetPos.left(), widgetPos.top());
         }
     }
     
-    protected ScreenRect getWidgetPos() {
+    protected ScreenRectangle getWidgetPos() {
         int maxNameWidth = this.getContentWidth() / 2 - textPadding;
-        return new ScreenRect(this.getContentX() + textPadding + maxNameWidth, this.getContentY() + INNER_PADDING, this.getContentWidth() - maxNameWidth - INNER_PADDING - textPadding - this.resetButtonWidget.getWidth(), NAME_HEIGHT);
+        return new ScreenRectangle(this.getContentX() + textPadding + maxNameWidth, this.getContentY() + INNER_PADDING, this.getContentWidth() - maxNameWidth - INNER_PADDING - textPadding - this.resetButtonWidget.getWidth(), NAME_HEIGHT);
     }
 }

@@ -1,16 +1,16 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.property.IntPropertyBuilder;
+import net.replaceitem.reconfigure.api.widget.ColorPickerWidgetBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.serialization.Intermediary;
 import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
-import net.replaceitem.reconfigure.api.widget.ColorPickerWidgetBuilder;
 import net.replaceitem.reconfigure.config.widget.builder.ColorPickerWidgetBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.builder.SliderWidgetBuilderImpl;
 
 public class IntPropertyBuilderImpl extends NumericPropertyBuilderImpl<IntPropertyBuilder, Integer> implements IntPropertyBuilder {
-    public IntPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
+    public IntPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id) {
         super(propertyBuildContext, id, 0);
     }
 

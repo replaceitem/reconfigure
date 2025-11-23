@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.widget;
 
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.ConfigTab;
 import net.replaceitem.reconfigure.api.property.BooleanPropertyBuilder;
 import net.replaceitem.reconfigure.api.property.EnumPropertyBuilder;
@@ -21,10 +21,10 @@ public class ConfigTabImpl implements ConfigTab, PropertyBuildContext {
 
     final ConfigImpl config;
     private final String name;
-    private final Text title;
+    private final Component title;
     private final List<TabItem> entries = new ArrayList<>();
 
-    protected ConfigTabImpl(ConfigImpl config, String name, Text title) {
+    protected ConfigTabImpl(ConfigImpl config, String name, Component title) {
         this.config = config;
         this.name = name;
         this.title = title;
@@ -34,23 +34,23 @@ public class ConfigTabImpl implements ConfigTab, PropertyBuildContext {
         return Collections.unmodifiableList(entries);
     }
 
-    public Text getTitle() {
+    public Component getTitle() {
         return this.title;
     }
 
     @Override
     public Void createHeadline(String name) {
-        return createHeadline(Text.translatable(Identifier.of(config.getNamespace(), name).toTranslationKey(NAMESPACE + ".headline")).styled(style -> style.withUnderline(true)));
+        return createHeadline(Component.translatable(ResourceLocation.fromNamespaceAndPath(config.getNamespace(), name).toLanguageKey(NAMESPACE + ".headline")).withStyle(style -> style.withUnderlined(true)));
     }
 
     @Override
-    public Void createHeadline(Text text) {
+    public Void createHeadline(Component text) {
         this.entries.add(new Headline(text));
         return null;
     }
     
-    private Identifier getPropertyId(String name) {
-        return Identifier.of(this.config.getNamespace(), name);
+    private ResourceLocation getPropertyId(String name) {
+        return ResourceLocation.fromNamespaceAndPath(this.config.getNamespace(), name);
     }
 
     @Override

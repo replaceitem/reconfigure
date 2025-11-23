@@ -1,10 +1,10 @@
 package net.replaceitem.reconfigure.screen;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.ScreenRect;
-import net.minecraft.client.gui.tab.Tab;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.text.Text;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.tabs.Tab;
+import net.minecraft.client.gui.navigation.ScreenRectangle;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 
@@ -14,7 +14,7 @@ public class ConfigScreenTab implements Tab {
     private final ConfigWidgetList list;
     private final ConfigTabImpl tab;
 
-    public ConfigScreenTab(ConfigTabImpl tab, MinecraftClient client) {
+    public ConfigScreenTab(ConfigTabImpl tab, Minecraft client) {
         this.tab = tab;
         this.list = new ConfigWidgetList(tab, client, 0, 0, 0) {
             @Override
@@ -25,23 +25,23 @@ public class ConfigScreenTab implements Tab {
     }
 
     @Override
-    public Text getTitle() {
+    public Component getTabTitle() {
         return this.tab.getTitle();
     }
 
     @Override
-    public Text getNarratedHint() {
+    public Component getTabExtraNarration() {
         return this.tab.getTitle();
     }
 
     @Override
-    public void forEachChild(Consumer<ClickableWidget> consumer) {
+    public void visitChildren(Consumer<AbstractWidget> consumer) {
         consumer.accept(list);
     }
 
     @Override
-    public void refreshGrid(ScreenRect tabArea) {
-        this.list.position(tabArea.width(), tabArea.height(), tabArea.getLeft(), tabArea.getTop());
+    public void doLayout(ScreenRectangle tabArea) {
+        this.list.updateSizeAndPosition(tabArea.width(), tabArea.height(), tabArea.left(), tabArea.top());
     }
 
     public void onSave() {

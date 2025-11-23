@@ -1,16 +1,16 @@
 package net.replaceitem.reconfigure.screen;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
-import net.replaceitem.reconfigure.screen.widget.PositioningEntryWidget;
-import net.replaceitem.reconfigure.screen.widget.VariableHeightElementListWidget;
+import net.replaceitem.reconfigure.screen.widget.PositioningSelectionListEntry;
+import net.replaceitem.reconfigure.screen.widget.VariableHeightSelectionList;
 import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
 
 import java.util.Optional;
 
-public class ConfigWidgetList extends VariableHeightElementListWidget<ConfigWidget> {
-    public ConfigWidgetList(ConfigTabImpl tab, MinecraftClient minecraftClient, int width, int height, int y) {
+public class ConfigWidgetList extends VariableHeightSelectionList<ConfigWidget> {
+    public ConfigWidgetList(ConfigTabImpl tab, Minecraft minecraftClient, int width, int height, int y) {
         super(minecraftClient, width, height, y);
         this.replaceEntries(
                 tab.getEntries().stream()
@@ -18,10 +18,10 @@ public class ConfigWidgetList extends VariableHeightElementListWidget<ConfigWidg
                         .flatMap(Optional::stream)
                         .toList()
         );
-        this.children().forEach(PositioningEntryWidget::refreshPosition);
+        this.children().forEach(PositioningSelectionListEntry::refreshPosition);
     }
 
-    public TextRenderer getTextRenderer() {
-        return this.client.textRenderer;
+    public Font getTextRenderer() {
+        return this.minecraft.font;
     }
 }

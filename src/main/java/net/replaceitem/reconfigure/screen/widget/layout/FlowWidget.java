@@ -1,16 +1,18 @@
 package net.replaceitem.reconfigure.screen.widget.layout;
 
-import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.gui.layouts.AbstractLayout;
+import net.minecraft.client.gui.layouts.LayoutElement;
+import net.minecraft.client.gui.layouts.LayoutSettings;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class FlowWidget extends WrapperWidget {
+public class FlowWidget extends AbstractLayout {
 
-    private final List<Widget> children = new ArrayList<>();
+    private final List<LayoutElement> children = new ArrayList<>();
     private final List<Element> elements = new ArrayList<>();
-    private final Positioner mainPositioner = Positioner.create();
+    private final LayoutSettings mainPositioner = LayoutSettings.defaults();
     
     private int flowSpacing = 0;
     private int wrapSpacing = 0;
@@ -40,24 +42,24 @@ public class FlowWidget extends WrapperWidget {
         }
     }
     
-    public <T extends Widget> T add(T widget) {
+    public <T extends LayoutElement> T add(T widget) {
         return this.add(widget, this.getMainPositioner());
     }
 
-    public <T extends Widget> T add(T widget, Positioner positioner) {
+    public <T extends LayoutElement> T add(T widget, LayoutSettings positioner) {
         this.elements.add(new Element(widget, positioner));
         this.children.add(widget);
         return widget;
     }
 
     @Override
-    public void forEachElement(Consumer<Widget> consumer) {
+    public void visitChildren(Consumer<LayoutElement> consumer) {
         this.children.forEach(consumer);
     }
 
     @Override
-    public void refreshPositions() {
-        super.refreshPositions();
+    public void arrangeElements() {
+        super.arrangeElements();
         
         int flowAxisPos = 0;
         int flowAxisTotalSize = flowAxis.getLength(this);
@@ -93,16 +95,16 @@ public class FlowWidget extends WrapperWidget {
         }
     }
 
-    public Positioner copyPositioner() {
+    public LayoutSettings copyPositioner() {
         return this.mainPositioner.copy();
     }
 
-    public Positioner getMainPositioner() {
+    public LayoutSettings getMainPositioner() {
         return this.mainPositioner;
     }
 
-    protected static class Element extends WrappedElement {
-        protected Element(Widget widget, Positioner positioner) {
+    protected static class Element extends AbstractChildWrapper {
+        protected Element(LayoutElement widget, LayoutSettings positioner) {
             super(widget, positioner);
         }
     }
@@ -116,14 +118,14 @@ public class FlowWidget extends WrapperWidget {
             return DisplayAxis.values()[1 - this.ordinal()];
         }
         
-        int getCoordinate(Widget widget) {
+        int getCoordinate(LayoutElement widget) {
             return switch (this) {
                 case HORIZONTAL -> widget.getX();
                 case VERTICAL -> widget.getY();
             };
         }
         
-        int getLength(Widget widget) {
+        int getLength(LayoutElement widget) {
             return switch (this) {
                 case HORIZONTAL -> widget.getWidth();
                 case VERTICAL -> widget.getHeight();

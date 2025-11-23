@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.util.function.Predicate;
 
@@ -19,7 +19,7 @@ public interface Validator<T> {
      * @param errorMessage The error message for invalid values
      * @return The validator
      */
-    static <T> Validator<T> ofPredicate(Predicate<T> predicate, Text errorMessage) {
+    static <T> Validator<T> ofPredicate(Predicate<T> predicate, Component errorMessage) {
         return value -> predicate.test(value) ? ValidationResult.valid() : ValidationResult.invalid(errorMessage);
     }
 }

@@ -1,20 +1,20 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.Click;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.GridWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
-import net.replaceitem.reconfigure.screen.widget.DynamicTextFieldWidget;
+import net.replaceitem.reconfigure.screen.widget.DynamicEditBox;
 import net.replaceitem.reconfigure.screen.widget.layout.FlowWidget;
 import net.replaceitem.reconfigure.screen.widget.layout.SocketWidget;
 
@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
-    private final DynamicTextFieldWidget textField;
-    private final GridWidget grid = new GridWidget();
-    private final ButtonWidget addButton;
+    private final DynamicEditBox editBox;
+    private final GridLayout grid = new GridLayout();
+    private final Button addButton;
     private final List<Chip> chips = new ArrayList<>();
     private final SocketWidget<FlowWidget> flowSocket = new SocketWidget<>(createFlowWidget());
     private final boolean chipsEditable;
@@ -33,27 +33,27 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         super(listWidget, 0, property, baseSettings);
         this.chipsEditable = chipsEditable;
         
-        this.grid.setRowSpacing(INNER_PADDING);
+        this.grid.rowSpacing(INNER_PADDING);
         
-        this.textField = new DynamicTextFieldWidget(listWidget.getTextRenderer(), 0, 0, getContentWidth() - 2* INNER_PADDING, 20, Text.empty());
-        this.textField.setMaxLength(10000);
-        grid.add(textField, 0, 0);
+        this.editBox = new DynamicEditBox(listWidget.getTextRenderer(), 0, 0, getContentWidth() - 2* INNER_PADDING, 20, Component.empty());
+        this.editBox.setMaxLength(10000);
+        grid.addChild(editBox, 0, 0);
         
-        this.addButton = ButtonWidget.builder(Text.literal("+")
-                .styled(style -> style.withColor(Formatting.GREEN)), this::addChipButtonClicked)
+        this.addButton = Button.builder(Component.literal("+")
+                .withStyle(style -> style.withColor(ChatFormatting.GREEN)), this::addChipButtonClicked)
                 .size(20, 20)
                 .build();
-        grid.add(addButton, 0, 1);
+        grid.addChild(addButton, 0, 1);
         
-        grid.add(flowSocket, 1, 0, 1, 2);
+        grid.addChild(flowSocket, 1, 0, 1, 2);
         
-        grid.forEachChild(this.children::add);
+        grid.visitWidgets(this.children::add);
 
         this.loadValue(property.get());
     }
 
-    private void addChipButtonClicked(ButtonWidget buttonWidget) {
-        this.addChip(this.textField.getText());
+    private void addChipButtonClicked(Button buttonWidget) {
+        this.addChip(this.editBox.getValue());
     }
     
     private static FlowWidget createFlowWidget() {
@@ -90,7 +90,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     
     @Override
     protected List<String> getSaveValue() {
-        return chips.stream().map(TextFieldWidget::getText).toList();
+        return chips.stream().map(EditBox::getValue).toList();
     }
 
     @Override
@@ -115,34 +115,34 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     public void refreshPosition() {
         super.refreshPosition();
         int gridWidth = this.getContentWidth() - 2* INNER_PADDING;
-        this.textField.setWidth(gridWidth - addButton.getWidth());
+        this.editBox.setWidth(gridWidth - addButton.getWidth());
         this.flowSocket.getInner().setFlowWidth(gridWidth);
         this.grid.setPosition(this.getContentX() + INNER_PADDING, this.getContentY() + NAME_HEIGHT + INNER_PADDING *2);
-        this.grid.refreshPositions();
+        this.grid.arrangeElements();
         this.setHeight(NAME_HEIGHT + this.grid.getHeight() + 4* INNER_PADDING);
     }
     
-    class Chip extends TextFieldWidget {
-        private final TextRenderer textRenderer;
+    class Chip extends EditBox {
+        private final Font textRenderer;
 
-        public Chip(TextRenderer textRenderer, String value) {
-            super(textRenderer, MathHelper.clamp(textRenderer.getWidth(value) + 8 + 2 + REMOVE_BUTTON_SIZE, 50, 250), 20, Text.empty());
+        public Chip(Font textRenderer, String value) {
+            super(textRenderer, Mth.clamp(textRenderer.width(value) + 8 + 2 + REMOVE_BUTTON_SIZE, 50, 250), 20, Component.empty());
             this.textRenderer = textRenderer;
             this.setMaxLength(Integer.MAX_VALUE);
-            this.setText(value);
-            this.setCursor(0, false);
+            this.setValue(value);
+            this.moveCursorTo(0, false);
             this.setEditable(chipsEditable);
-            this.setChangedListener(s -> ChipListConfigWidget.this.onValueChanged());
+            this.setResponder(s -> ChipListConfigWidget.this.onValueChanged());
         }
         
-        private static final Text REMOVE_TEXT = Text.literal("x").styled(style -> style.withColor(Formatting.RED));
+        private static final Component REMOVE_TEXT = Component.literal("x").withStyle(style -> style.withColor(ChatFormatting.RED));
         public static final int REMOVE_BUTTON_SIZE = 10;
 
         @Override
-        public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+        public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
             super.renderWidget(context, mouseX, mouseY, delta);
-            context.drawCenteredTextWithShadow(this.textRenderer, REMOVE_TEXT, getRight() - height/2, getY() + height/2 - textRenderer.fontHeight/2, 0xFFFFFFFF);
-            int backgroundColor = ColorHelper.getArgb(removeButtonHovered(mouseX, mouseY) ? 128 : 64, 255, 255, 255);
+            context.drawCenteredString(this.textRenderer, REMOVE_TEXT, getRight() - height/2, getY() + height/2 - textRenderer.lineHeight/2, 0xFFFFFFFF);
+            int backgroundColor = ARGB.color(removeButtonHovered(mouseX, mouseY) ? 128 : 64, 255, 255, 255);
             context.fill(getRight() - height/2 - REMOVE_BUTTON_SIZE/2, getY() + height/2 - REMOVE_BUTTON_SIZE/2, getRight() - height/2 + REMOVE_BUTTON_SIZE/2, getY() + height/2 + REMOVE_BUTTON_SIZE/2, backgroundColor);
         }
         
@@ -154,9 +154,9 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         }
 
         @Override
-        public void onClick(Click click, boolean doubled) {
+        public void onClick(MouseButtonEvent click, boolean doubled) {
             if(this.removeButtonHovered((int) click.x(), (int) click.y())) {
-                playClickSound(MinecraftClient.getInstance().getSoundManager());
+                playButtonClickSound(Minecraft.getInstance().getSoundManager());
                 ChipListConfigWidget.this.removeChip(this);
             } else super.onClick(click, doubled);
         }

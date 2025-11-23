@@ -1,20 +1,20 @@
 package net.replaceitem.reconfigure.config.property;
 
-import net.minecraft.util.Identifier;
-import net.replaceitem.reconfigure.config.AbstractBindable;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.ValidationResult;
+import net.replaceitem.reconfigure.config.AbstractBindable;
 import net.replaceitem.reconfigure.config.ValidatorList;
 
 import java.util.Objects;
 
 public class PropertyImpl<T> extends AbstractBindable<T> implements Property<T> {
     protected T value;
-    private final Identifier id;
+    private final ResourceLocation id;
     private final T defaultValue;
     private final ValidatorList<T> validators;
 
-    public PropertyImpl(Identifier id, T defaultValue, ValidatorList<T> validators) {
+    public PropertyImpl(ResourceLocation id, T defaultValue, ValidatorList<T> validators) {
         this.id = id;
         this.defaultValue = defaultValue;
         this.value = defaultValue;
@@ -77,7 +77,7 @@ public class PropertyImpl<T> extends AbstractBindable<T> implements Property<T> 
     }
 
     @Override
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return id;
     }
 }

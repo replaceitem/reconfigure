@@ -1,16 +1,16 @@
 package net.replaceitem.reconfigure.util;
 
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.GuiGraphics;
 
 public class DrawUtil {
-    public static void renderRectOutline(DrawContext context, int x1, int y1, int x2, int y2, int color) {
-        context.drawHorizontalLine(x1, x2, y1, color);
-        context.drawHorizontalLine(x1, x2, y2, color);
-        context.drawVerticalLine(x1, y1, y2, color);
-        context.drawVerticalLine(x2, y1, y2, color);
+    public static void renderRectOutline(GuiGraphics context, int x1, int y1, int x2, int y2, int color) {
+        context.hLine(x1, x2, y1, color);
+        context.hLine(x1, x2, y2, color);
+        context.vLine(x1, y1, y2, color);
+        context.vLine(x2, y1, y2, color);
     }
 
-    public static void drawCheckerboard(DrawContext context, int x1, int y1, int x2, int y2, int size, int color) {
+    public static void drawCheckerboard(GuiGraphics context, int x1, int y1, int x2, int y2, int size, int color) {
         int w = x2-x1;
         int h = y2-y1;
         int stepsY = Math.ceilDiv(h, size);

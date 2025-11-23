@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api.widget;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.util.Collection;
 import java.util.function.Function;
@@ -21,5 +21,5 @@ public interface CyclingButtonWidgetBuilder<T> extends WidgetBuilder<CyclingButt
      * @param valueToText The text function
      * @return The builder for chaining
      */
-    CyclingButtonWidgetBuilder<T> valueToText(Function<T, Text> valueToText);
+    CyclingButtonWidgetBuilder<T> valueToText(Function<T, Component> valueToText);
 }

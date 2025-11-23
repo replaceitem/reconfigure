@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.ValidationResult;
 import net.replaceitem.reconfigure.api.Validator;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,8 @@ public class ValidatorListTest {
     @Test
     void testValidation() {
         ValidatorList<String> validatorList = new ValidatorList<>();
-        validatorList.add(Validator.ofPredicate(value -> value.length() < 5, Text.literal("too long")));
-        validatorList.add(Validator.ofPredicate(value -> value.contains("o"), Text.literal("no o")));
+        validatorList.add(Validator.ofPredicate(value -> value.length() < 5, Component.literal("too long")));
+        validatorList.add(Validator.ofPredicate(value -> value.contains("o"), Component.literal("no o")));
 
         ValidationResult result;
         result = validatorList.validate("good");

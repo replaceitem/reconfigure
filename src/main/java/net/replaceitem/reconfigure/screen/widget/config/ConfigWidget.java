@@ -1,21 +1,21 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.util.Colors;
-import net.minecraft.util.math.ColorHelper;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.narration.NarratableEntry;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.CommonColors;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
-import net.replaceitem.reconfigure.screen.widget.PositioningEntryWidget;
+import net.replaceitem.reconfigure.screen.widget.PositioningSelectionListEntry;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> {
+public abstract class ConfigWidget extends PositioningSelectionListEntry<ConfigWidget> {
     
-    protected final List<ClickableWidget> children = new ArrayList<>();
+    protected final List<AbstractWidget> children = new ArrayList<>();
     protected final ConfigWidgetList parent;
 
     public ConfigWidget(ConfigWidgetList parent, int contentHeight) {
@@ -25,24 +25,24 @@ public abstract class ConfigWidget extends PositioningEntryWidget<ConfigWidget> 
     }
 
     @Override
-    public List<? extends Selectable> selectableChildren() {
+    public List<? extends NarratableEntry> narratables() {
         return this.children;
     }
 
     @Override
-    public List<? extends Element> children() {
+    public List<? extends GuiEventListener> children() {
         return this.children;
     }
 
     @Override
-    public void forEachChild(Consumer<ClickableWidget> consumer) {
+    public void visitWidgets(Consumer<AbstractWidget> consumer) {
         children.forEach(consumer);
     }
 
     @Override
-    public void render(DrawContext context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
-        context.fill(this.getContentX(), this.getContentY(), getContentRightEnd(), getContentBottomEnd(), ColorHelper.withAlpha(60, Colors.BLACK));
-        for (ClickableWidget child : children) {
+    public void renderContent(GuiGraphics context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
+        context.fill(this.getContentX(), this.getContentY(), getContentRight(), getContentBottom(), ARGB.color(60, CommonColors.BLACK));
+        for (AbstractWidget child : children) {
             child.render(context, mouseX, mouseY, deltaTicks);
         }
     }

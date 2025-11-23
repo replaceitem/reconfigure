@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.config.serialization.Serializer;
 
 public interface ConfigBuilder {
@@ -10,7 +10,7 @@ public interface ConfigBuilder {
      * @param title The title text
      * @return The builder for chaining
      */
-    ConfigBuilder title(Text title);
+    ConfigBuilder title(Component title);
 
     /**
      * Sets the serializer for this config. The serializer is used for reading and

@@ -1,14 +1,14 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.api.property.PropertyBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.PropertyHolder;
+import net.replaceitem.reconfigure.config.ValidatorList;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
-import net.replaceitem.reconfigure.config.ValidatorList;
 import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.config.widget.builder.CustomWidgetBuilderImpl;
@@ -18,10 +18,10 @@ import java.util.function.Function;
 public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>, T> implements PropertyBuilder<SELF, T> {
     protected final PropertyBuildContext propertyBuildContext;
     protected T defaultValue;
-    protected final Identifier id;
+    protected final ResourceLocation id;
     protected final ValidatorList<T> validators = new ValidatorList<>();
 
-    protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, T defaultValue) {
+    protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id, T defaultValue) {
         this.propertyBuildContext = propertyBuildContext;
         this.id = id;
         this.defaultValue = defaultValue;
@@ -51,7 +51,7 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
         return propertyHolder.getProperty();
     }
 
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return id;
     }
 

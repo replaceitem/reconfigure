@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.property;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.Bindable;
 import net.replaceitem.reconfigure.config.ValidatorList;
 import org.jetbrains.annotations.Nullable;
@@ -13,7 +13,7 @@ import java.util.function.Function;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BindableTest {
-    private final Identifier ID = Identifier.of("test", "dummy");
+    private final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath("test", "dummy");
     
     @Test
     void testListenerWhenChanged() {

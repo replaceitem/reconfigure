@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public interface ConfigTabBuilder {
     /**
@@ -10,7 +10,7 @@ public interface ConfigTabBuilder {
      * @param title The title text for the tab
      * @return The builder for chaining
      */
-    ConfigTabBuilder title(Text title);
+    ConfigTabBuilder title(Component title);
 
     /**
      * Builds the config tab.

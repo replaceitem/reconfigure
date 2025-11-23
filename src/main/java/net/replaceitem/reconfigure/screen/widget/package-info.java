@@ -3,7 +3,7 @@
 @MethodsReturnNonnullByDefault()
 package net.replaceitem.reconfigure.screen.widget;
 
-import net.minecraft.util.annotation.FieldsAreNonnullByDefault;
-import net.minecraft.util.annotation.MethodsReturnNonnullByDefault;
+import net.minecraft.FieldsAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;

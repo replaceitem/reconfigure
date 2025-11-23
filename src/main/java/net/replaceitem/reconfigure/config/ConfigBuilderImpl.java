@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.ConfigBuilder;
 import net.replaceitem.reconfigure.config.serialization.Serializer;
@@ -10,7 +10,7 @@ import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 
 public class ConfigBuilderImpl implements ConfigBuilder {
     private final String namespace;
-    @Nullable private Text title;
+    @Nullable private Component title;
     @Nullable private Serializer serializer;
 
     public ConfigBuilderImpl(String namespace) {
@@ -18,7 +18,7 @@ public class ConfigBuilderImpl implements ConfigBuilder {
     }
     
     @Override
-    public ConfigBuilderImpl title(Text title) {
+    public ConfigBuilderImpl title(Component title) {
         this.title = title;
         return this;
     }
@@ -32,7 +32,7 @@ public class ConfigBuilderImpl implements ConfigBuilder {
     @Override
     public Config build() {
         if (title == null)
-            this.title = Text.translatable(NAMESPACE + ".title." + namespace);
+            this.title = Component.translatable(NAMESPACE + ".title." + namespace);
         return new ConfigImpl(namespace, title, serializer);
     }
 }

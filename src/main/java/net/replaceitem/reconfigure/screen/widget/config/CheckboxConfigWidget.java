@@ -1,31 +1,31 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.ScreenRect;
-import net.minecraft.client.gui.widget.CheckboxWidget;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.components.Checkbox;
+import net.minecraft.client.gui.navigation.ScreenRectangle;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
-public class CheckboxConfigWidget extends SimpleConfigWidget<CheckboxWidget, Boolean> {
+public class CheckboxConfigWidget extends SimpleConfigWidget<Checkbox, Boolean> {
     public CheckboxConfigWidget(ConfigWidgetList listWidget, PropertyImpl<Boolean> property, BaseSettings baseSettings) {
         super(listWidget, property, baseSettings);
-        setWidget(CheckboxWidget.builder(Text.empty(), this.parent.getTextRenderer()).callback((checkbox, checked) -> this.onValueChanged()).checked(property.get()).build());
+        setWidget(Checkbox.builder(Component.empty(), this.parent.getTextRenderer()).onValueChange((checkbox, checked) -> this.onValueChanged()).selected(property.get()).build());
     }
 
     @Override
-    protected ScreenRect getWidgetPos() {
-        int widgetSize = CheckboxWidget.getCheckboxSize(this.parent.getTextRenderer());
-        return new ScreenRect(getContentRightEnd() - INNER_PADDING - this.resetButtonWidget.getWidth() - INNER_PADDING - widgetSize, this.getContentY() + (this.getContentHeight()-widgetSize) / 2, widgetSize, widgetSize);
+    protected ScreenRectangle getWidgetPos() {
+        int widgetSize = Checkbox.getBoxSize(this.parent.getTextRenderer());
+        return new ScreenRectangle(getContentRight() - INNER_PADDING - this.resetButtonWidget.getWidth() - INNER_PADDING - widgetSize, this.getContentY() + (this.getContentHeight()-widgetSize) / 2, widgetSize, widgetSize);
     }
 
     @Override
     protected Boolean getSaveValue() {
-        return this.widget().isChecked();
+        return this.widget().selected();
     }
 
     @Override
     protected void loadValue(Boolean value) {
-        if(value != this.widget().isChecked()) this.widget().onPress(null);
+        if(value != this.widget().selected()) this.widget().onPress(null);
     }
 }

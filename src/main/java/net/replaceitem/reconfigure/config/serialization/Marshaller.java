@@ -8,7 +8,7 @@ import static net.replaceitem.reconfigure.config.serialization.IntermediaryType.
 
 /**
  * This class converts from a Serialization specific format
- * (e.g. {@link com.google.gson.JsonElement} or {@link net.minecraft.nbt.NbtElement})
+ * (e.g. {@link com.google.gson.JsonElement} or {@link net.minecraft.nbt.Tag})
  * to an {@link Intermediary} and back. Each Serializer has its own Marshaller.
  * The {@link net.replaceitem.reconfigure.config.serialization.serializer.JsonSerializer}
  * for example uses {@link com.google.gson.JsonElement}. The Marshaller for Json would thus

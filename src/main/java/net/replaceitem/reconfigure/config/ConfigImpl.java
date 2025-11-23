@@ -1,10 +1,10 @@
 package net.replaceitem.reconfigure.config;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.Reconfigure;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.ConfigTabBuilder;
@@ -15,7 +15,10 @@ import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 import net.replaceitem.reconfigure.screen.ConfigScreen;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
@@ -23,7 +26,7 @@ import java.util.*;
 
 public class ConfigImpl implements Config, SerializationTarget {
     private final String namespace;
-    private final Text title;
+    private final Component title;
     private final List<ConfigTabImpl> tabs = new ArrayList<>();
     private boolean hasSingleDefaultTab = false;
     @Nullable private final Serializer<?,?> serializer;
@@ -31,9 +34,9 @@ public class ConfigImpl implements Config, SerializationTarget {
     @Nullable
     private Timer saveTimer;
 
-    protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
+    protected final Map<ResourceLocation, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
-    protected ConfigImpl(String namespace, Text title, @Nullable Serializer<?,?> serializer) {
+    protected ConfigImpl(String namespace, Component title, @Nullable Serializer<?,?> serializer) {
         this.namespace = namespace;
         this.title = title;
         this.serializer = serializer;
@@ -55,7 +58,7 @@ public class ConfigImpl implements Config, SerializationTarget {
         return namespace;
     }
 
-    public Text getTitle() {
+    public Component getTitle() {
         return title;
     }
 
@@ -68,13 +71,13 @@ public class ConfigImpl implements Config, SerializationTarget {
     }
 
     @Override
-    public @Nullable PropertyHolder<?> getProperty(Identifier key) {
+    public @Nullable PropertyHolder<?> getProperty(ResourceLocation key) {
         return this.properties.get(key);
     }
 
     @Override
     public @Nullable PropertyHolder<?> getProperty(String key) {
-        return this.getProperty(Identifier.of(this.namespace, key));
+        return this.getProperty(ResourceLocation.fromNamespaceAndPath(this.namespace, key));
     }
 
     @Override
@@ -165,7 +168,7 @@ public class ConfigImpl implements Config, SerializationTarget {
 
     @Override
     public void scheduleSave(Duration duration) {
-        MinecraftClient client = MinecraftClient.getInstance();
+        Minecraft client = Minecraft.getInstance();
         if (saveTimer != null) {
             saveTimer.cancel();
         }
@@ -173,7 +176,7 @@ public class ConfigImpl implements Config, SerializationTarget {
         saveTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                client.send(ConfigImpl.this::saveIfDirty);
+                client.schedule(ConfigImpl.this::saveIfDirty);
             }
         }, duration.toMillis());
     }

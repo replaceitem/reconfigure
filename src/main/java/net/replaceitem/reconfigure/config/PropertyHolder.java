@@ -1,8 +1,9 @@
 package net.replaceitem.reconfigure.config;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
-import net.replaceitem.reconfigure.config.serialization.*;
+import net.replaceitem.reconfigure.config.serialization.SerializationTarget;
+import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
@@ -52,7 +53,7 @@ public class PropertyHolder<T> implements ConfigTabImpl.TabItem, SerializationTa
     }
 
     @Override
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return property.getId();
     }
 

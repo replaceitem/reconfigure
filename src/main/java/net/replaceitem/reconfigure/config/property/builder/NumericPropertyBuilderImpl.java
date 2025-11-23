@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.replaceitem.reconfigure.api.property.NumericPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import org.jetbrains.annotations.Nullable;
@@ -10,7 +10,7 @@ public abstract class NumericPropertyBuilderImpl<SELF extends NumericPropertyBui
     @Nullable protected T min;
     @Nullable protected T max;
 
-    public NumericPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, T defaultValue) {
+    public NumericPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id, T defaultValue) {
         super(propertyBuildContext, id, defaultValue);
     }
     

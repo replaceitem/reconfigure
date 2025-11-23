@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api.widget;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.Property;
 
 public interface WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
@@ -10,7 +10,7 @@ public interface WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
      * @param displayName The display name text
      * @return The builder for chaining
      */
-    SELF displayName(Text displayName);
+    SELF displayName(Component displayName);
 
     /**
      * Sets the tooltip text for the widget. This is shown when hovering over
@@ -18,7 +18,7 @@ public interface WidgetBuilder<SELF extends WidgetBuilder<SELF, T>, T> {
      * @param tooltip The tooltip text
      * @return The builder for chaining
      */
-    SELF tooltip(Text tooltip);
+    SELF tooltip(Component tooltip);
 
     /**
      * Enabled the tooltip for the widget. The text of the tooltip will default to

@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.widget.builder;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.widget.EditBoxWidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
@@ -17,6 +17,6 @@ public class EditBoxWidgetBuilderImpl extends AbstractTextFieldWidgetBuilderImpl
 
     @Override
     protected ConfigWidgetFactory<String> buildWidgetFactory(BaseSettings baseSettings) {
-        return (parent, property) -> new EditBoxConfigWidget(parent, property, baseSettings, Objects.requireNonNullElse(placeholder, Text.empty()));
+        return (parent, property) -> new EditBoxConfigWidget(parent, property, baseSettings, Objects.requireNonNullElse(placeholder, Component.empty()));
     }
 }

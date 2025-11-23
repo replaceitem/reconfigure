@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.widget.builder;
 
-import net.minecraft.text.Text;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.replaceitem.reconfigure.api.widget.SliderWidgetBuilder;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.PropertyHolder;
@@ -21,7 +21,7 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
     @Nullable protected T step;
     @Nullable private DoubleFunction<T> controlToValue;
     @Nullable private Function<T, Double> valueToControl;
-    @Nullable private Function<T, Text> valueToText;
+    @Nullable private Function<T, Component> valueToText;
 
     protected SliderWidgetBuilderImpl(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, T> propertyBuilder) {
         super(propertyBuildContext, propertyBuilder);
@@ -66,7 +66,7 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
 
     protected abstract DoubleFunction<T> defaultControlToNumber(T min, T max);
     protected abstract Function<T, Double> defaultNumberToControl(T min, T max);
-    protected abstract Function<T, Text> defaultNumberToText(T min, T max);
+    protected abstract Function<T, Component> defaultNumberToText(T min, T max);
     
     
     public static IntSliderWidgetBuilder createInt(PropertyBuildContext propertyBuildContext, PropertyBuilderImpl<?, Integer> propertyBuilder) {
@@ -92,12 +92,12 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
         @Override
         protected Function<Integer, Double> defaultNumberToControl(Integer min, Integer max) {
             int diff = max - min;
-            return value -> ((double) (MathHelper.clamp(value, min, max) - min)) / diff;
+            return value -> ((double) (Mth.clamp(value, min, max) - min)) / diff;
         }
 
         @Override
-        protected Function<Integer, Text> defaultNumberToText(Integer min, Integer max) {
-            return number -> Text.literal(number.toString());
+        protected Function<Integer, Component> defaultNumberToText(Integer min, Integer max) {
+            return number -> Component.literal(number.toString());
         }
     }
     public static class DoubleSliderWidgetBuilder extends SliderWidgetBuilderImpl<DoubleSliderWidgetBuilder, Double> {
@@ -121,14 +121,14 @@ public abstract class SliderWidgetBuilderImpl<SELF extends SliderWidgetBuilderIm
         @Override
         protected Function<Double, Double> defaultNumberToControl(Double min, Double max) {
             double diff = max - min;
-            return value -> (MathHelper.clamp(value, min, max) - min) / diff;
+            return value -> (Mth.clamp(value, min, max) - min) / diff;
         }
 
         @Override
-        protected Function<Double, Text> defaultNumberToText(Double min, Double max) {
+        protected Function<Double, Component> defaultNumberToText(Double min, Double max) {
             int decimalDigits = Math.max(1, RELEVANT_DIGITS - ((int) Math.floor(Math.log10(Math.max(Math.abs(min), Math.abs(max))))));
             String formatString = "%." + decimalDigits + "f";
-            return number -> Text.literal(String.format(formatString, number));
+            return number -> Component.literal(String.format(formatString, number));
         }
     }
     
