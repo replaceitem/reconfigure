@@ -21,6 +21,9 @@ public class HeadlineConfigWidget extends ConfigWidget {
         super.refreshPosition();
         int padding = (this.getContentHeight() - this.parent.getTextRenderer().fontHeight) / 2;
         this.textWidget.setMaxWidth(this.getContentWidth() - 2 * padding);
+        // For some reason, setMaxWidth doesn't set maxWidthDirty to true, even though it would need to be.
+        // Here the message is re-set to set it dirty.
+        this.textWidget.setMessage(this.textWidget.getMessage());
         this.textWidget.setHeight(this.getContentHeight() - 2 * padding);
         this.textWidget.setY(this.getContentY() + padding);
         this.textWidget.setX(this.getContentMiddleX() - this.textWidget.getWidth() / 2);
