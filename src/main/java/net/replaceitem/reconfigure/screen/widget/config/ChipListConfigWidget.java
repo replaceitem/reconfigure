@@ -54,6 +54,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
 
     private void addChipButtonClicked(Button buttonWidget) {
         this.addChip(this.editBox.getValue());
+        this.editBox.setValue("");
     }
     
     private static FlowWidget createFlowWidget() {
