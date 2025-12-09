@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.config.serialization.SerializationTarget;
 import net.replaceitem.reconfigure.config.serialization.TypeAdapter;
@@ -8,7 +8,7 @@ import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.config.ConfigWidget;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -53,7 +53,7 @@ public class PropertyHolder<T> implements ConfigTabImpl.TabItem, SerializationTa
     }
 
     @Override
-    public ResourceLocation getId() {
+    public Identifier getId() {
         return property.getId();
     }
 

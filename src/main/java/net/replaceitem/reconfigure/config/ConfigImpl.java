@@ -4,7 +4,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.Reconfigure;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.ConfigTabBuilder;
@@ -13,7 +13,7 @@ import net.replaceitem.reconfigure.config.serialization.Serializer;
 import net.replaceitem.reconfigure.config.widget.ConfigTabBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
 import net.replaceitem.reconfigure.screen.ConfigScreen;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,7 +34,7 @@ public class ConfigImpl implements Config, SerializationTarget {
     @Nullable
     private Timer saveTimer;
 
-    protected final Map<ResourceLocation, PropertyHolder<?>> properties = new LinkedHashMap<>();
+    protected final Map<Identifier, PropertyHolder<?>> properties = new LinkedHashMap<>();
 
     protected ConfigImpl(String namespace, Component title, @Nullable Serializer<?,?> serializer) {
         this.namespace = namespace;
@@ -71,13 +71,13 @@ public class ConfigImpl implements Config, SerializationTarget {
     }
 
     @Override
-    public @Nullable PropertyHolder<?> getProperty(ResourceLocation key) {
+    public @Nullable PropertyHolder<?> getProperty(Identifier key) {
         return this.properties.get(key);
     }
 
     @Override
     public @Nullable PropertyHolder<?> getProperty(String key) {
-        return this.getProperty(ResourceLocation.fromNamespaceAndPath(this.namespace, key));
+        return this.getProperty(Identifier.fromNamespaceAndPath(this.namespace, key));
     }
 
     @Override

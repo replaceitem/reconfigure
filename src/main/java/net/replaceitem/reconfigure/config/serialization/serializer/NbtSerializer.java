@@ -2,7 +2,7 @@ package net.replaceitem.reconfigure.config.serialization.serializer;
 
 import net.minecraft.nbt.*;
 import net.replaceitem.reconfigure.config.serialization.*;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.io.*;
 import java.util.ArrayList;

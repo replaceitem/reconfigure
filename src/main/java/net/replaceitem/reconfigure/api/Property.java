@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.api;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public interface Property<T> extends Bindable<T> {
     /**
@@ -57,5 +57,5 @@ public interface Property<T> extends Bindable<T> {
      * property with {@link ConfigTab}{@code .create???Property()}.
      * @return The identifier of the property.
      */
-    ResourceLocation getId();
+    Identifier getId();
 }

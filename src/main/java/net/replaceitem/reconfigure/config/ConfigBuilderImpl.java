@@ -4,7 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.Config;
 import net.replaceitem.reconfigure.api.ConfigBuilder;
 import net.replaceitem.reconfigure.config.serialization.Serializer;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 

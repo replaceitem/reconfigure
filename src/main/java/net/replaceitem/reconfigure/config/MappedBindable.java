@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config;
 
 import net.replaceitem.reconfigure.api.Bindable;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.function.Function;

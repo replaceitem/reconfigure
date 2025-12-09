@@ -5,7 +5,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.SpriteIconButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.Reconfigure;
 import net.replaceitem.reconfigure.api.ValidationResult;
 import net.replaceitem.reconfigure.config.BaseSettings;
@@ -21,7 +21,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     public static final int NAME_HEIGHT = BASIC_WIDGET_SIZE;
     public static final int DEFAULT_HEIGHT = NAME_HEIGHT + 2* INNER_PADDING;
     
-    private static final ResourceLocation RESET_ICON = Reconfigure.id("reconfigure/reset");
+    private static final Identifier RESET_ICON = Reconfigure.id("reconfigure/reset");
     
     protected final int textPadding;
 

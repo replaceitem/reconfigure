@@ -16,7 +16,7 @@ import net.replaceitem.reconfigure.screen.widget.ColorPreviewWidget;
 import net.replaceitem.reconfigure.screen.widget.GradientSlider;
 import net.replaceitem.reconfigure.util.ColorUtil;
 import net.replaceitem.reconfigure.util.ScopedThreadLocal;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

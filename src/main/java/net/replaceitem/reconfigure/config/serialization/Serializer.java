@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.serialization;
 
 import net.replaceitem.reconfigure.Reconfigure;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;

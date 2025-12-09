@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.property.BooleanPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.serialization.Intermediary;
@@ -9,7 +9,7 @@ import net.replaceitem.reconfigure.config.widget.builder.CheckboxWidgetBuilderIm
 import net.replaceitem.reconfigure.config.widget.builder.CyclingButtonWidgetBuilderImpl;
 
 public class BooleanPropertyBuilderImpl extends PropertyBuilderImpl<BooleanPropertyBuilder, Boolean> implements BooleanPropertyBuilder {
-    public BooleanPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id) {
+    public BooleanPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
         super(propertyBuildContext, id, false);
     }
 

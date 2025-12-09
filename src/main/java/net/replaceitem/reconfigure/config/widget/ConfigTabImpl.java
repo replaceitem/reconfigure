@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.widget;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.ConfigTab;
 import net.replaceitem.reconfigure.api.property.BooleanPropertyBuilder;
 import net.replaceitem.reconfigure.api.property.EnumPropertyBuilder;
@@ -40,7 +40,7 @@ public class ConfigTabImpl implements ConfigTab, PropertyBuildContext {
 
     @Override
     public Void createHeadline(String name) {
-        return createHeadline(Component.translatable(ResourceLocation.fromNamespaceAndPath(config.getNamespace(), name).toLanguageKey(NAMESPACE + ".headline")).withStyle(style -> style.withUnderlined(true)));
+        return createHeadline(Component.translatable(Identifier.fromNamespaceAndPath(config.getNamespace(), name).toLanguageKey(NAMESPACE + ".headline")).withStyle(style -> style.withUnderlined(true)));
     }
 
     @Override
@@ -49,8 +49,8 @@ public class ConfigTabImpl implements ConfigTab, PropertyBuildContext {
         return null;
     }
     
-    private ResourceLocation getPropertyId(String name) {
-        return ResourceLocation.fromNamespaceAndPath(this.config.getNamespace(), name);
+    private Identifier getPropertyId(String name) {
+        return Identifier.fromNamespaceAndPath(this.config.getNamespace(), name);
     }
 
     @Override

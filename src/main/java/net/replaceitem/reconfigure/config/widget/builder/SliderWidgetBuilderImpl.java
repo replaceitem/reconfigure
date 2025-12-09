@@ -9,7 +9,7 @@ import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.widget.config.SliderConfigWidget;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.DoubleFunction;
 import java.util.function.Function;

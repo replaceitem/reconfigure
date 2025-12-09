@@ -4,7 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.api.widget.AbstractTextFieldWidgetBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 

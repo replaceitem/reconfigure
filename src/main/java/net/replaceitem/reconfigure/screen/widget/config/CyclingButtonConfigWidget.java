@@ -18,10 +18,9 @@ public class CyclingButtonConfigWidget<P> extends SimpleConfigWidget<CycleButton
             Collection<P> values
     ) {
         super(listWidget, property, baseSettings);
-        setWidget(CycleButton.builder(valueToText)
+        setWidget(CycleButton.builder(valueToText, property.get())
                 .displayOnlyValue()
                 .withValues(values)
-                .withInitialValue(property.get())
                 .create(Component.empty(), (button, value) -> this.onValueChanged()));
     }
 

@@ -10,7 +10,7 @@ import net.replaceitem.reconfigure.config.property.builder.BooleanPropertyBuilde
 import net.replaceitem.reconfigure.config.property.builder.PropertyBuilderImpl;
 import net.replaceitem.reconfigure.config.widget.ConfigWidgetFactory;
 import net.replaceitem.reconfigure.screen.widget.config.CyclingButtonConfigWidget;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.List;

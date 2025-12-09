@@ -42,7 +42,7 @@ public class ColorPlanePickerWidget extends AbstractWidget {
                     context,
                     (float) Mth.lerp(colorX, colorRect.left(), colorRect.right()),
                     (float) Mth.lerp(colorY, colorRect.top(), colorRect.bottom()),
-                    ARGB.lerp(Mth.clamp((float) colorY * 2 - 1, 0, 1), CommonColors.BLACK, CommonColors.WHITE)
+                    ARGB.srgbLerp(Mth.clamp((float) colorY * 2 - 1, 0, 1), CommonColors.BLACK, CommonColors.WHITE)
             );
         }
     }

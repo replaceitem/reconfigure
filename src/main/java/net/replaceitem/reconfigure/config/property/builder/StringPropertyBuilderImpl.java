@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.property.StringPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.serialization.Intermediary;
@@ -9,7 +9,7 @@ import net.replaceitem.reconfigure.config.widget.builder.EditBoxWidgetBuilderImp
 import net.replaceitem.reconfigure.config.widget.builder.TextFieldWidgetBuilderImpl;
 
 public class StringPropertyBuilderImpl extends PropertyBuilderImpl<StringPropertyBuilder, String> implements StringPropertyBuilder {
-    public StringPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id) {
+    public StringPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id) {
         super(propertyBuildContext, id, "");
     }
 

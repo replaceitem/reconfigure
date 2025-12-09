@@ -3,7 +3,7 @@ package net.replaceitem.reconfigure.config.serialization.serializer;
 import com.google.gson.JsonParseException;
 import net.replaceitem.reconfigure.config.serialization.*;
 import net.replaceitem.reconfigure.util.OrderedProperties;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.io.*;
 import java.util.ArrayList;

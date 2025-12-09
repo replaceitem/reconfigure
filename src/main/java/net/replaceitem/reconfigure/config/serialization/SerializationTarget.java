@@ -1,12 +1,12 @@
 package net.replaceitem.reconfigure.config.serialization;
 
-import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Collection;
 
 public interface SerializationTarget {
-    @Nullable SerializationProperty<?> getProperty(ResourceLocation key);
+    @Nullable SerializationProperty<?> getProperty(Identifier key);
     @Nullable SerializationProperty<?> getProperty(String key);
     Collection<? extends SerializationProperty<?>> getProperties();
     String getNamespace();
@@ -16,6 +16,6 @@ public interface SerializationTarget {
         void setOrDefault(T value);
 
         T get();
-        ResourceLocation getId();
+        Identifier getId();
     }
 }

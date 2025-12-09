@@ -7,7 +7,7 @@ import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.DynamicEditBox;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class TextFieldConfigWidget extends SimpleConfigWidget<EditBox, String> {
     public TextFieldConfigWidget(

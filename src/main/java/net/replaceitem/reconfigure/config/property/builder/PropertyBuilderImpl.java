@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.Property;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.api.property.PropertyBuilder;
@@ -18,10 +18,10 @@ import java.util.function.Function;
 public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>, T> implements PropertyBuilder<SELF, T> {
     protected final PropertyBuildContext propertyBuildContext;
     protected T defaultValue;
-    protected final ResourceLocation id;
+    protected final Identifier id;
     protected final ValidatorList<T> validators = new ValidatorList<>();
 
-    protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id, T defaultValue) {
+    protected PropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, T defaultValue) {
         this.propertyBuildContext = propertyBuildContext;
         this.id = id;
         this.defaultValue = defaultValue;
@@ -51,7 +51,7 @@ public abstract class PropertyBuilderImpl<SELF extends PropertyBuilder<SELF, T>,
         return propertyHolder.getProperty();
     }
 
-    public ResourceLocation getId() {
+    public Identifier getId() {
         return id;
     }
 

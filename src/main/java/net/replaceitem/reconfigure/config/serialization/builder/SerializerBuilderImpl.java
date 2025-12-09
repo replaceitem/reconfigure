@@ -2,7 +2,7 @@ package net.replaceitem.reconfigure.config.serialization.builder;
 
 import net.replaceitem.reconfigure.api.serializer.SerializerBuilder;
 import net.replaceitem.reconfigure.config.serialization.Serializer;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.Consumer;
 

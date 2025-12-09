@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.property;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.config.ValidatorList;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PropertyImplTest {
-    private final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath("test", "dummy");
+    private final Identifier ID = Identifier.fromNamespaceAndPath("test", "dummy");
     
     static ValidatorList<String> shortStringValidationList() {
         ValidatorList<String> validatorList = new ValidatorList<>();

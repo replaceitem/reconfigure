@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.property.builder;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.property.EnumPropertyBuilder;
 import net.replaceitem.reconfigure.config.property.PropertyBuildContext;
 import net.replaceitem.reconfigure.config.serialization.Intermediary;
@@ -17,7 +17,7 @@ import static net.replaceitem.reconfigure.Reconfigure.NAMESPACE;
 public class EnumPropertyBuilderImpl<T> extends PropertyBuilderImpl<EnumPropertyBuilder<T>, T> implements EnumPropertyBuilder<T> {
     private final Collection<T> values;
 
-    public EnumPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, ResourceLocation id, Collection<T> values) {
+    public EnumPropertyBuilderImpl(PropertyBuildContext propertyBuildContext, Identifier id, Collection<T> values) {
         super(propertyBuildContext, id, values.stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("EnumProperty " + id + " cannot have no values, must be at least one."))

@@ -3,7 +3,7 @@ package net.replaceitem.reconfigure.api;
 import net.minecraft.client.gui.screens.Screen;
 import net.replaceitem.reconfigure.config.ConfigBuilderImpl;
 import net.replaceitem.reconfigure.screen.ConfigScreen;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.time.Duration;
 

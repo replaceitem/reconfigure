@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.util;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

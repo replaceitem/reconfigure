@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.config.serialization;
 
 import com.google.gson.JsonParseException;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

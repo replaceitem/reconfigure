@@ -1,7 +1,7 @@
 package net.replaceitem.reconfigure.screen.widget;
 
+import com.mojang.blaze3d.platform.cursor.CursorTypes;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.navigation.ScreenAxis;
@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.CommonColors;
 import net.minecraft.util.Mth;
+import net.replaceitem.reconfigure.mixin.AbstractSliderButtonAccessor;
 import net.replaceitem.reconfigure.util.ColoredAxisQuadGuiElementRenderState;
 import net.replaceitem.reconfigure.util.DrawUtil;
 import net.replaceitem.reconfigure.util.HueGradientQuadGuiElementRenderState;
@@ -44,32 +45,33 @@ public class GradientSlider extends AbstractSliderButton {
     }
 
     @Override
-    public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        Minecraft minecraftClient = Minecraft.getInstance();
-        context.fill(getX(), getY(), getRight(), getBottom(), CommonColors.BLACK);
+    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        guiGraphics.fill(getX(), getY(), getRight(), getBottom(), CommonColors.BLACK);
         if(ARGB.alpha(colorSupplier.get(0)) < 255 || ARGB.alpha(colorSupplier.get(1)) < 255) {
-            context.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, CommonColors.WHITE);
-            DrawUtil.drawCheckerboard(context, getX()+1, getY()+1, getRight()-1, getBottom()-1, 3, CommonColors.LIGHT_GRAY);
+            guiGraphics.fill(getX()+1, getY()+1, getRight()-1, getBottom()-1, CommonColors.WHITE);
+            DrawUtil.drawCheckerboard(guiGraphics, getX()+1, getY()+1, getRight()-1, getBottom()-1, 3, CommonColors.LIGHT_GRAY);
         }
 
         ScreenRectangle colorRect = this.getColorRect();
         if(isHsv) {
-            context.guiRenderState.submitGuiElement(HueGradientQuadGuiElementRenderState.draw(
-                    context, colorRect.left(), colorRect.top(), colorRect.right(), colorRect.bottom()
+            guiGraphics.guiRenderState.submitGuiElement(HueGradientQuadGuiElementRenderState.draw(
+                    guiGraphics, colorRect.left(), colorRect.top(), colorRect.right(), colorRect.bottom()
             ));
         } else {
             int colorA = colorSupplier.get(0);
             int colorB = colorSupplier.get(1);
-            context.guiRenderState.submitGuiElement(ColoredAxisQuadGuiElementRenderState.draw(
-                    context, colorRect.left(), colorRect.top(), colorRect.right(), colorRect.bottom(), colorA, colorB, ScreenAxis.HORIZONTAL
+            guiGraphics.guiRenderState.submitGuiElement(ColoredAxisQuadGuiElementRenderState.draw(
+                    guiGraphics, colorRect.left(), colorRect.top(), colorRect.right(), colorRect.bottom(), colorA, colorB, ScreenAxis.HORIZONTAL
             ));
         }
 
         int handleX = this.getX() + (int) (this.value * (double) (this.width - 8));
-        DrawUtil.renderRectOutline(context, handleX, getY(), handleX+8-1, getBottom()-1, ARGB.color(ARGB.as8BitChannel(this.alpha), this.isHovered ? CommonColors.WHITE : CommonColors.LIGHT_GRAY));
-        
-        int i = this.active ? 16777215 : 10526880;
-        this.renderScrollingString(context, minecraftClient.font, 2, i | Mth.ceil(this.alpha * 255.0F) << 24);
+        DrawUtil.renderRectOutline(guiGraphics, handleX, getY(), handleX+8-1, getBottom()-1, ARGB.color(ARGB.as8BitChannel(this.alpha), this.isHovered ? CommonColors.WHITE : CommonColors.LIGHT_GRAY));
+
+        this.renderScrollingStringOverContents(guiGraphics.textRendererForWidget(this, GuiGraphics.HoveredTextEffects.NONE), this.getMessage(), 2);
+        if (this.isHovered()) {
+            guiGraphics.requestCursor(((AbstractSliderButtonAccessor) this).isDragging() ? CursorTypes.RESIZE_EW : CursorTypes.POINTING_HAND);
+        }
     }
 
     private ScreenRectangle getColorRect() {
