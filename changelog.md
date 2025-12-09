@@ -1,3 +1,5 @@
-* Fixed null pointer exception when hovering headlines [#2](https://github.com/replaceitem/reconfigure/issues/2)
-* Fixed headline text not being centered when overflowing
-* Migrated to mojang mappings
+* Updated to Minecraft 1.21.11
+* Used JSpecify annotations
+* The save button is now disabled and shows a tooltip if there are invalid config options
+* The chip list input is now cleared when adding a new entry
+* The chip list entry delete button now has a pointer cursor
