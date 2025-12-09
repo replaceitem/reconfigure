@@ -2,6 +2,7 @@ package net.replaceitem.reconfigure.config.property;
 
 import net.minecraft.resources.Identifier;
 import net.replaceitem.reconfigure.api.Property;
+import net.replaceitem.reconfigure.api.ValidationException;
 import net.replaceitem.reconfigure.api.ValidationResult;
 import net.replaceitem.reconfigure.config.AbstractBindable;
 import net.replaceitem.reconfigure.config.ValidatorList;
@@ -38,7 +39,7 @@ public class PropertyImpl<T> extends AbstractBindable<T> implements Property<T> 
     @Override
     public void set(T value) {
         ValidationResult result = this.validate(value);
-        if(result.isInvalid()) throw new IllegalArgumentException("Cannot set property " + id + " to " + value + ": " + result.getMessage());
+        if(result.isInvalid()) throw new ValidationException(this, value, result);
         this.setInternal(value);
     }
     

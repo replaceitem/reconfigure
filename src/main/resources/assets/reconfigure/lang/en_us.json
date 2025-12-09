@@ -1,4 +1,5 @@
 {
     "reconfigure.save": "Save",
-    "reconfigure.cancel": "Cancel"
+    "reconfigure.cancel": "Cancel",
+    "reconfigure.save.tooltip.disabled": "There are errors in the configuration"
 }

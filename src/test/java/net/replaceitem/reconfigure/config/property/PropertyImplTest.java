@@ -2,6 +2,7 @@ package net.replaceitem.reconfigure.config.property;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.replaceitem.reconfigure.api.ValidationException;
 import net.replaceitem.reconfigure.api.Validator;
 import net.replaceitem.reconfigure.config.ValidatorList;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class PropertyImplTest {
         PropertyImpl<String> property = new PropertyImpl<>(ID, "", shortStringValidationList());
         assertDoesNotThrow(() -> property.set("shrt"), "Expected no error to be thrown when setting a value satisfies the validators");
         assertEquals("shrt", property.get());
-        assertThrows(IllegalArgumentException.class, () -> property.set("too long"), "Expected an error when setting a invalid value");
+        assertThrows(ValidationException.class, () -> property.set("too long"), "Expected an error when setting a invalid value");
         assertEquals("shrt", property.get());
     }
     

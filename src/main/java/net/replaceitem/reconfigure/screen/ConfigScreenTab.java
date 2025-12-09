@@ -44,7 +44,18 @@ public class ConfigScreenTab implements Tab {
         this.list.updateSizeAndPosition(tabArea.width(), tabArea.height(), tabArea.left(), tabArea.top());
     }
 
+    public boolean allValid() {
+        return this.list.allValid();
+    }
+
     public void onSave() {
         this.list.children().forEach(ConfigWidget::onSave);
+    }
+
+    public void addWidgetChangedListener(Runnable runnable) {
+        this.list.addWidgetChangedListener(runnable);
+    }
+    public void removeWidgetChangedListener(Runnable runnable) {
+        this.list.removeWidgetChangedListener(runnable);
     }
 }

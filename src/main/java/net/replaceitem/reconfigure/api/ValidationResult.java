@@ -54,4 +54,9 @@ public class ValidationResult {
     public Component getMessage() {
         return message;
     }
+
+    @Override
+    public String toString() {
+        return isValid() ? "Valid" : getMessage().getString();
+    }
 }

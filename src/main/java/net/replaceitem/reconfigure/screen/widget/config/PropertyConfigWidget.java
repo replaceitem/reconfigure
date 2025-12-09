@@ -29,7 +29,7 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
     private final BaseSettings baseSettings;
 
     protected ValidationResult validationResult = ValidationResult.valid();
-    
+
     protected final TooltippedStringWidget nameWidget;
     protected final Button resetButtonWidget;
 
@@ -81,12 +81,17 @@ public abstract class PropertyConfigWidget<P> extends ConfigWidget {
         this.validate(saveValue);
         this.setNameText(saveValue);
         this.resetButtonWidget.active = !this.property.isDefault(saveValue);
+        this.parent.onConfigWidgetChanged();
     }
 
     private void validate(P saveValue) {
         this.validationResult = this.property.validate(saveValue);
     }
-    
+
+    public ValidationResult getValidationResult() {
+        return validationResult;
+    }
+
     private void setNameText(P saveValue) {
         boolean wasChanged = !Objects.equals(saveValue, this.property.get());
         this.nameWidget.setMessage(baseSettings.displayName().copy().withStyle(style -> {
