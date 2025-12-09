@@ -1,5 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
+import com.mojang.blaze3d.platform.cursor.CursorTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -143,8 +144,12 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
             super.renderWidget(context, mouseX, mouseY, delta);
             context.drawCenteredString(this.textRenderer, REMOVE_TEXT, getRight() - height/2, getY() + height/2 - textRenderer.lineHeight/2, 0xFFFFFFFF);
-            int backgroundColor = ARGB.color(removeButtonHovered(mouseX, mouseY) ? 128 : 64, 255, 255, 255);
+            boolean removeHovered = removeButtonHovered(mouseX, mouseY);
+            int backgroundColor = ARGB.color(removeHovered ? 128 : 64, 255, 255, 255);
             context.fill(getRight() - height/2 - REMOVE_BUTTON_SIZE/2, getY() + height/2 - REMOVE_BUTTON_SIZE/2, getRight() - height/2 + REMOVE_BUTTON_SIZE/2, getY() + height/2 + REMOVE_BUTTON_SIZE/2, backgroundColor);
+            if(removeHovered) {
+                context.requestCursor(CursorTypes.POINTING_HAND);
+            }
         }
         
         public boolean removeButtonHovered(int mouseX, int mouseY) {
