@@ -2,11 +2,11 @@ package net.replaceitem.reconfigure.util;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.gui.render.TextureSetup;
-import net.minecraft.client.gui.render.state.GuiElementRenderState;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.state.gui.GuiElementRenderState;
 import org.jspecify.annotations.Nullable;
 import org.joml.Matrix3x2f;
 
@@ -50,9 +50,9 @@ public record HueGradientQuadGuiElementRenderState(
         return scissorArea != null ? scissorArea.intersection(screenRect) : screenRect;
     }
 
-    public static HueGradientQuadGuiElementRenderState draw(GuiGraphics context, int x0, int y0, int x1, int y1) {
+    public static HueGradientQuadGuiElementRenderState draw(GuiGraphicsExtractor graphics, int x0, int y0, int x1, int y1) {
         return new HueGradientQuadGuiElementRenderState(
-                RenderPipelines.GUI, TextureSetup.noTexture(), new Matrix3x2f(context.pose()), x0, y0, x1, y1, context.scissorStack.peek()
+                RenderPipelines.GUI, TextureSetup.noTexture(), new Matrix3x2f(graphics.pose()), x0, y0, x1, y1, graphics.scissorStack.peek()
         );
     }
 }

@@ -54,8 +54,8 @@ public class ConfigScreen extends Screen {
             this.addRenderableWidget(headline);
         }
         LinearLayout directionalLayoutWidget = this.threePartsLayoutWidget.addToFooter(LinearLayout.horizontal().spacing(8));
-        directionalLayoutWidget.addChild(Button.builder(Component.translatable("reconfigure.cancel"), button -> onClose()).build());
-        this.saveButton = directionalLayoutWidget.addChild(Button.builder(Component.translatable("reconfigure.save"), button -> saveAndClose()).build());
+        directionalLayoutWidget.addChild(Button.builder(Component.translatable("reconfigure.cancel"), _ -> onClose()).build());
+        this.saveButton = directionalLayoutWidget.addChild(Button.builder(Component.translatable("reconfigure.save"), _ -> saveAndClose()).build());
 
         this.threePartsLayoutWidget.visitWidgets(this::addRenderableWidget);
 
@@ -85,13 +85,13 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void onClose() {
-        if(this.minecraft != null) this.minecraft.setScreen(parent);
+        this.minecraft.setScreen(parent);
     }
 
     @Override
     protected void repositionElements() {
         if (this.tabNavigation != null) {
-            this.tabNavigation.setWidth(this.width);
+            this.tabNavigation.updateWidth(this.width);
             this.tabNavigation.arrangeElements();
             if(headline != null) {
                 this.headline.setHeight(this.tabNavigation.getRectangle().height());

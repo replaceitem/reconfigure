@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget.config;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -40,13 +40,13 @@ public abstract class ConfigWidget extends PositioningSelectionListEntry<ConfigW
     }
 
     @Override
-    public void renderContent(GuiGraphics context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
-        context.fill(this.getContentX(), this.getContentY(), getContentRight(), getContentBottom(), ARGB.color(60, CommonColors.BLACK));
+    public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
+        graphics.fill(this.getContentX(), this.getContentY(), this.getContentRight(), this.getContentBottom(), ARGB.color(60, CommonColors.BLACK));
         for (AbstractWidget child : children) {
-            child.render(context, mouseX, mouseY, deltaTicks);
+            child.extractRenderState(graphics, mouseX, mouseY, a);
         }
     }
-    
+
     public void onSave() {
         
     }

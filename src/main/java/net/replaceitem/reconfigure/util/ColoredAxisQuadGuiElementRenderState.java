@@ -2,15 +2,15 @@ package net.replaceitem.reconfigure.util;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenAxis;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.gui.render.TextureSetup;
-import net.minecraft.client.gui.render.state.GuiElementRenderState;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.state.gui.GuiElementRenderState;
 import net.minecraft.util.Mth;
-import org.jspecify.annotations.Nullable;
 import org.joml.Matrix3x2f;
+import org.jspecify.annotations.Nullable;
 
 public record ColoredAxisQuadGuiElementRenderState(
         RenderPipeline pipeline,
@@ -46,7 +46,7 @@ public record ColoredAxisQuadGuiElementRenderState(
         return scissorArea != null ? scissorArea.intersection(screenRect) : screenRect;
     }
 
-    public static ColoredAxisQuadGuiElementRenderState draw(GuiGraphics context, float x0, float y0, float x1, float y1, int col1, int col2, ScreenAxis axis) {
+    public static ColoredAxisQuadGuiElementRenderState draw(GuiGraphicsExtractor context, float x0, float y0, float x1, float y1, int col1, int col2, ScreenAxis axis) {
         return new ColoredAxisQuadGuiElementRenderState(
                 RenderPipelines.GUI, TextureSetup.noTexture(), new Matrix3x2f(context.pose()), x0, y0, x1, y1, col1, col2, axis, context.scissorStack.peek()
         );

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.cursor.CursorTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.layouts.GridLayout;
@@ -134,24 +134,24 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
             this.setValue(value);
             this.moveCursorTo(0, false);
             this.setEditable(chipsEditable);
-            this.setResponder(s -> ChipListConfigWidget.this.onValueChanged());
+            this.setResponder(_ -> ChipListConfigWidget.this.onValueChanged());
         }
         
         private static final Component REMOVE_TEXT = Component.literal("x").withStyle(style -> style.withColor(ChatFormatting.RED));
         public static final int REMOVE_BUTTON_SIZE = 10;
 
         @Override
-        public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
-            super.renderWidget(context, mouseX, mouseY, delta);
-            context.drawCenteredString(this.textRenderer, REMOVE_TEXT, getRight() - height/2, getY() + height/2 - textRenderer.lineHeight/2, 0xFFFFFFFF);
+        public void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+            super.extractWidgetRenderState(graphics, mouseX, mouseY, a);
+            graphics.centeredText(this.textRenderer, REMOVE_TEXT, getRight() - height/2, getY() + height/2 - textRenderer.lineHeight/2, 0xFFFFFFFF);
             boolean removeHovered = removeButtonHovered(mouseX, mouseY);
             int backgroundColor = ARGB.color(removeHovered ? 128 : 64, 255, 255, 255);
-            context.fill(getRight() - height/2 - REMOVE_BUTTON_SIZE/2, getY() + height/2 - REMOVE_BUTTON_SIZE/2, getRight() - height/2 + REMOVE_BUTTON_SIZE/2, getY() + height/2 + REMOVE_BUTTON_SIZE/2, backgroundColor);
+            graphics.fill(getRight() - height/2 - REMOVE_BUTTON_SIZE/2, getY() + height/2 - REMOVE_BUTTON_SIZE/2, getRight() - height/2 + REMOVE_BUTTON_SIZE/2, getY() + height/2 + REMOVE_BUTTON_SIZE/2, backgroundColor);
             if(removeHovered) {
-                context.requestCursor(CursorTypes.POINTING_HAND);
+                graphics.requestCursor(CursorTypes.POINTING_HAND);
             }
         }
-        
+
         public boolean removeButtonHovered(int mouseX, int mouseY) {
             return mouseX >= getRight() - height / 2 - REMOVE_BUTTON_SIZE / 2 &&
                     mouseY >= getY() + height / 2 - REMOVE_BUTTON_SIZE / 2 &&

@@ -25,9 +25,9 @@
     ],
     "accessWidener": "reconfigure.accesswidener",
     "depends": {
-        "fabricloader": ">=0.16.10",
+        "fabricloader": ">=0.18.4",
         "fabric-api": ">=0.127.0",
-        "minecraft": ">=1.21.9"
+        "minecraft": ">=26.1"
     },
     "custom": {
         "modmenu": {
@@ -35,6 +35,8 @@
                 "modmenu.discord": "https://discord.gg/etTDQAVSgt"
             }
         },
-        "badges": [ "library" ]
+        "badges": [
+            "library"
+        ]
     }
 }

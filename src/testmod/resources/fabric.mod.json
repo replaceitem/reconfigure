@@ -22,10 +22,10 @@
         "reconfigure-testmod.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.16.10",
+        "fabricloader": ">=0.18.4",
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
-        "reconfigure":  "${version}"
+        "reconfigure": "${version}"
     },
     "custom": {
         "modmenu": {

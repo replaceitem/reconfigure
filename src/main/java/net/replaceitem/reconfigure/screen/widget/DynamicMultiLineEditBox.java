@@ -40,7 +40,7 @@ public class DynamicMultiLineEditBox extends MultiLineEditBox {
     public void setWidth(int width) {
         if(this.totalWidth == width) return;
         this.totalWidth = width;
-        int scrollbarWidth = scrollbarVisible() ? SCROLLBAR_WIDTH : 0;
+        int scrollbarWidth = scrollable() ? SCROLLBAR_WIDTH : 0;
         super.setWidth(width - scrollbarWidth);
         MultilineTextFieldAccessor textField = (MultilineTextFieldAccessor) ((MultiLineEditBoxAccessor) this).getTextField();
         textField.setWidth(width - totalInnerPadding() - scrollbarWidth);

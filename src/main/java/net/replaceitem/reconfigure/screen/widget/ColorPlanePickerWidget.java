@@ -1,6 +1,6 @@
 package net.replaceitem.reconfigure.screen.widget;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.navigation.ScreenAxis;
@@ -33,13 +33,13 @@ public class ColorPlanePickerWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        context.fill(getX(), getY(), getRight(), getBottom(), CommonColors.LIGHT_GRAY);
-        renderHsvGradient(context);
+    protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+        graphics.fill(getX(), getY(), getRight(), getBottom(), CommonColors.LIGHT_GRAY);
+        renderHsvGradient(graphics);
         if (hasSelection) {
             ScreenRectangle colorRect = getColorRect();
             this.renderRectOutline(
-                    context,
+                    graphics,
                     (float) Mth.lerp(colorX, colorRect.left(), colorRect.right()),
                     (float) Mth.lerp(colorY, colorRect.top(), colorRect.bottom()),
                     ARGB.srgbLerp(Mth.clamp((float) colorY * 2 - 1, 0, 1), CommonColors.BLACK, CommonColors.WHITE)
@@ -47,25 +47,25 @@ public class ColorPlanePickerWidget extends AbstractWidget {
         }
     }
 
-    private void renderRectOutline(GuiGraphics context, float cx, float cy, int color) {
-        context.pose().pushMatrix();
-        context.pose().translate(cx, cy);
-        DrawUtil.renderRectOutline(context, -3, -3, 3, 3, color);
-        context.pose().popMatrix();
+    private void renderRectOutline(GuiGraphicsExtractor graphics, float cx, float cy, int color) {
+        graphics.pose().pushMatrix();
+        graphics.pose().translate(cx, cy);
+        DrawUtil.renderRectOutline(graphics, -3, -3, 3, 3, color);
+        graphics.pose().popMatrix();
     }
 
 
-    private void renderHsvGradient(GuiGraphics context) {
+    private void renderHsvGradient(GuiGraphicsExtractor graphics) {
         ScreenRectangle colorRect = getColorRect();
         float yCenter = colorRect.getCenterInAxis(ScreenAxis.VERTICAL);
-        context.guiRenderState.submitGuiElement(HueGradientQuadGuiElementRenderState.draw(
-            context, colorRect.left(), colorRect.top(), colorRect.right(), colorRect.bottom()
+        graphics.guiRenderState.addGuiElement(HueGradientQuadGuiElementRenderState.draw(
+                graphics, colorRect.left(), colorRect.top(), colorRect.right(), colorRect.bottom()
         ));
-        context.guiRenderState.submitGuiElement(ColoredAxisQuadGuiElementRenderState.draw(
-                context, colorRect.left(), colorRect.top(), colorRect.right(), yCenter, 0xFFFFFFFF, 0x00FFFFFF, ScreenAxis.VERTICAL
+        graphics.guiRenderState.addGuiElement(ColoredAxisQuadGuiElementRenderState.draw(
+                graphics, colorRect.left(), colorRect.top(), colorRect.right(), yCenter, 0xFFFFFFFF, 0x00FFFFFF, ScreenAxis.VERTICAL
         ));
-        context.guiRenderState.submitGuiElement(ColoredAxisQuadGuiElementRenderState.draw(
-                context, colorRect.left(), yCenter, colorRect.right(), colorRect.bottom(), 0x00000000, 0xFF000000, ScreenAxis.VERTICAL
+        graphics.guiRenderState.addGuiElement(ColoredAxisQuadGuiElementRenderState.draw(
+                graphics, colorRect.left(), yCenter, colorRect.right(), colorRect.bottom(), 0x00000000, 0xFF000000, ScreenAxis.VERTICAL
         ));
     }
 

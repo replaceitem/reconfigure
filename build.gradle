@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
     id "com.modrinth.minotaur" version "2.+"
 }
@@ -23,7 +23,6 @@ sourceSets {
 
 loom {
     accessWidenerPath = file("src/main/resources/reconfigure.accesswidener")
-    createRemapConfigurations(sourceSets.testmod)
     runs {
         testmod {
             client()
@@ -41,12 +40,11 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    modTestmodCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+    testmodCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
     
     testmodImplementation sourceSets.main.output
 
@@ -67,7 +65,7 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
@@ -118,7 +116,7 @@ modrinth {
     projectId = "QHmQeeNt"
     versionNumber = project.mod_version // You don't need to set this manually. Will fail if Modrinth has this version already
     versionType = "beta" // This is the default
-    uploadFile = remapJar // With Fabric Loom or Architectury Loom, this MUST be set to `remapJar` instead of `jar`!
+    uploadFile = jar // With Fabric Loom or Architectury Loom, this MUST be set to `remapJar` instead of `jar`!
     loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Fabric Loom or ForgeGradle
     dependencies = [
             // fabric api needed

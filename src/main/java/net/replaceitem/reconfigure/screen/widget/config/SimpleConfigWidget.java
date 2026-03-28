@@ -21,7 +21,6 @@ public abstract class SimpleConfigWidget<W extends AbstractWidget, P> extends Pr
         this(listWidget, DEFAULT_HEIGHT, property, baseSettings);
     }
 
-    // TODO maybe this can be removed when JEP 447 (Statements before super) is usable in JDK 22+ https://openjdk.org/jeps/447
     protected void setWidget(W widget) {
         if(this.widget != null) throw new RuntimeException("Widget already assigned");
         this.widget = widget;
