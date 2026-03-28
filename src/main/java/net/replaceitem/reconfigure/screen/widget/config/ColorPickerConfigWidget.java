@@ -10,12 +10,12 @@ import net.minecraft.util.ARGB;
 import net.minecraft.util.FormattedCharSequence;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
+import net.replaceitem.reconfigure.mixin.AbstractSliderButtonAccessor;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.ColorPlanePickerWidget;
 import net.replaceitem.reconfigure.screen.widget.ColorPreviewWidget;
 import net.replaceitem.reconfigure.screen.widget.GradientSlider;
 import net.replaceitem.reconfigure.util.ColorUtil;
-import net.replaceitem.reconfigure.util.ScopedThreadLocal;
 import org.jspecify.annotations.Nullable;
 
 import java.util.regex.Matcher;
@@ -54,7 +54,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         }
     }
     
-    private final ScopedThreadLocal<Boolean> update = new ScopedThreadLocal<>();
+    private static final ScopedValue<Boolean> preventUpdate = ScopedValue.newInstance();
 
     public ColorPickerConfigWidget(ConfigWidgetList listWidget, PropertyImpl<Integer> property, BaseSettings baseSettings) {
         super(listWidget, DEFAULT_HEIGHT, property, baseSettings);
@@ -68,7 +68,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         };
         this.textField = new EditBox(listWidget.getTextRenderer(), 70, NAME_HEIGHT, Component.empty());
         this.textField.setResponder(this::setColorFromTextField);
-        this.textField.addFormatter((string, firstCharacterIndex) -> FormattedCharSequence.forward(
+        this.textField.addFormatter((string, _) -> FormattedCharSequence.forward(
                 string, isInvalid ? Style.EMPTY.withColor(ChatFormatting.RED) : Style.EMPTY
         ));
         
@@ -129,27 +129,27 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
     }
     
     private void setColor(BiFormatColor color, @Nullable UpdateTargets excludeUpdate) {
-        if(update.get() == Boolean.FALSE) return;
+        if(preventUpdate.orElse(false)) return;
         
         this.color = color.argb();
         this.colorPreviewWidget.setColor(color.argb());
         
-        try(var ignored = update.with(false)) {
-            ColorUtil.HSVColor hsv = color.hsv();
+        ScopedValue.where(preventUpdate, true).run(() -> {
+                ColorUtil.HSVColor hsv = color.hsv();
 
-            if(excludeUpdate != UpdateTargets.PLANE) {
-                this.colorPlanePickerWidget.setFromHsv(hsv.hue(), hsv.saturation(), hsv.value());
-            }
-            if(excludeUpdate != UpdateTargets.SLIDERS) {
-                this.hueSlider.setValue(hsv.hue());
-                this.saturationSlider.setValue(hsv.saturation());
-                this.valueSlider.setValue(hsv.value());
-                this.alphaSlider.setValue(color.alpha());
-            }
-            if(excludeUpdate != UpdateTargets.TEXT_FIELD) {
-                this.textField.setValue(String.format("#%08X", color.argb()));
-            }
-        }
+                if(excludeUpdate != UpdateTargets.PLANE) {
+                    this.colorPlanePickerWidget.setFromHsv(hsv.hue(), hsv.saturation(), hsv.value());
+                }
+                if(excludeUpdate != UpdateTargets.SLIDERS) {
+                    ((AbstractSliderButtonAccessor) this.hueSlider).callSetValue(hsv.hue());
+                    ((AbstractSliderButtonAccessor) this.saturationSlider).callSetValue(hsv.saturation());
+                    ((AbstractSliderButtonAccessor) this.valueSlider).callSetValue(hsv.value());
+                    ((AbstractSliderButtonAccessor) this.alphaSlider).callSetValue(color.alpha());
+                }
+                if(excludeUpdate != UpdateTargets.TEXT_FIELD) {
+                    this.textField.setValue(String.format("#%08X", color.argb()));
+                }
+        });
         this.onValueChanged();
     }
     
