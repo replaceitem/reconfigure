@@ -5,6 +5,7 @@ import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
+import net.replaceitem.reconfigure.extensions.CheckboxAccess;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 
 public class CheckboxConfigWidget extends SimpleConfigWidget<Checkbox, Boolean> {
@@ -26,6 +27,6 @@ public class CheckboxConfigWidget extends SimpleConfigWidget<Checkbox, Boolean> 
 
     @Override
     protected void loadValue(Boolean value) {
-        if(value != this.widget().selected()) this.widget().onPress(null);
+        ((CheckboxAccess) this.widget()).reconfigure$setSelected(value);
     }
 }

@@ -8,9 +8,10 @@
         "defaultRequire": 1
     },
     "client": [
-        "MultilineTextFieldAccessor",
-        "MultiLineEditBoxAccessor",
         "AbstractSliderButtonAccessor",
+        "CheckboxMixin",
+        "MultiLineEditBoxAccessor",
+        "MultilineTextFieldAccessor",
         "StringWidgetAccessor"
     ]
 }
