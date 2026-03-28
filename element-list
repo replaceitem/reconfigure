@@ -11,6 +11,7 @@ net.replaceitem.reconfigure.config.serialization.builder
 net.replaceitem.reconfigure.config.serialization.serializer
 net.replaceitem.reconfigure.config.widget
 net.replaceitem.reconfigure.config.widget.builder
+net.replaceitem.reconfigure.extensions
 net.replaceitem.reconfigure.mixin
 net.replaceitem.reconfigure.screen
 net.replaceitem.reconfigure.screen.widget
