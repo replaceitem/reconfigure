@@ -3,8 +3,8 @@ package net.replaceitem.reconfigure.screen;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.components.tabs.MenuTabBar;
 import net.minecraft.client.gui.components.tabs.TabManager;
-import net.minecraft.client.gui.components.tabs.TabNavigationBar;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
@@ -22,7 +22,7 @@ public class ConfigScreen extends Screen {
     @Nullable private final Screen parent;
     private final ConfigImpl config;
     @Nullable private StringWidget headline;
-    @Nullable private TabNavigationBar tabNavigation;
+    @Nullable private MenuTabBar tabNavigation;
     private final TabManager tabManager = new TabManager(this::addRenderableWidget, this::removeWidget);
     private final HeaderAndFooterLayout threePartsLayoutWidget = new HeaderAndFooterLayout(this);
     @Nullable
@@ -43,7 +43,7 @@ public class ConfigScreen extends Screen {
         for (ConfigScreenTab tab : this.tabs) {
             tab.addWidgetChangedListener(this::anyWidgetChanged);
         }
-        this.tabNavigation = TabNavigationBar.builder(this.tabManager, this.width)
+        this.tabNavigation = MenuTabBar.builder(this.tabManager, this.width)
                 .addTabs(tabs)
                 .build();
         this.tabNavigation.selectTab(0, false);
@@ -85,14 +85,13 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void onClose() {
-        this.minecraft.setScreen(parent);
+        this.minecraft.setScreenAndShow(parent);
     }
 
     @Override
     protected void repositionElements() {
         if (this.tabNavigation != null) {
-            this.tabNavigation.updateWidth(this.width);
-            this.tabNavigation.arrangeElements();
+            this.tabNavigation.arrangeElements(this.width);
             if(headline != null) {
                 this.headline.setHeight(this.tabNavigation.getRectangle().height());
                 this.headline.setX(this.width / 2 - this.headline.getWidth() / 2);

@@ -3,6 +3,8 @@ package net.replaceitem.reconfigure.screen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.tabs.Tab;
+import net.minecraft.client.gui.layouts.Layout;
+import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
 import net.replaceitem.reconfigure.config.widget.ConfigTabImpl;
@@ -42,6 +44,11 @@ public class ConfigScreenTab implements Tab {
     @Override
     public void doLayout(ScreenRectangle tabArea) {
         this.list.updateSizeAndPosition(tabArea.width(), tabArea.height(), tabArea.left(), tabArea.top());
+    }
+
+    @Override
+    public Layout getLayout() {
+        return LinearLayout.vertical(); // Dummy layout. In the future, the ConfigWidgetList could be refactored to use Layouts (check FriendsTab for modern reference) instead of the (seemingly) old AbstractSelectionList.
     }
 
     public boolean allValid() {

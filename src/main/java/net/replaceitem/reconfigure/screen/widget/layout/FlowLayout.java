@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class FlowWidget extends AbstractLayout {
+public class FlowLayout extends AbstractLayout {
 
     private final List<LayoutElement> children = new ArrayList<>();
     private final List<Element> elements = new ArrayList<>();
@@ -18,11 +18,11 @@ public class FlowWidget extends AbstractLayout {
     private int wrapSpacing = 0;
     private final DisplayAxis flowAxis;
 
-    public FlowWidget(DisplayAxis flowAxis) {
+    public FlowLayout(DisplayAxis flowAxis) {
         this(0, 0, 0, 0, flowAxis);
     }
 
-    public FlowWidget(int x, int y, int width, int height, DisplayAxis flowAxis) {
+    public FlowLayout(int x, int y, int width, int height, DisplayAxis flowAxis) {
         super(x, y, width, height);
         this.flowAxis = flowAxis;
     }
@@ -93,6 +93,11 @@ public class FlowWidget extends AbstractLayout {
             case HORIZONTAL -> this.height = wrapAxisPos + maxWrapAxisSize;
             case VERTICAL -> this.width = wrapAxisPos + maxWrapAxisSize;
         }
+    }
+
+    @Override
+    public void removeChildren() {
+        children.clear();
     }
 
     public LayoutSettings copyPositioner() {

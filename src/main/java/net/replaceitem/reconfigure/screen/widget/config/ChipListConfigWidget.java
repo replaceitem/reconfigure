@@ -16,7 +16,7 @@ import net.replaceitem.reconfigure.config.BaseSettings;
 import net.replaceitem.reconfigure.config.property.PropertyImpl;
 import net.replaceitem.reconfigure.screen.ConfigWidgetList;
 import net.replaceitem.reconfigure.screen.widget.DynamicEditBox;
-import net.replaceitem.reconfigure.screen.widget.layout.FlowWidget;
+import net.replaceitem.reconfigure.screen.widget.layout.FlowLayout;
 import net.replaceitem.reconfigure.screen.widget.layout.SocketWidget;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     private final GridLayout grid = new GridLayout();
     private final Button addButton;
     private final List<Chip> chips = new ArrayList<>();
-    private final SocketWidget<FlowWidget> flowSocket = new SocketWidget<>(createFlowWidget());
+    private final SocketWidget<FlowLayout> flowSocket = new SocketWidget<>(createFlowWidget());
     private final boolean chipsEditable;
 
     public ChipListConfigWidget(ConfigWidgetList listWidget, PropertyImpl<List<String>> property, BaseSettings baseSettings, boolean chipsEditable) {
@@ -58,11 +58,11 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
         this.editBox.setValue("");
     }
     
-    private static FlowWidget createFlowWidget() {
-        FlowWidget flowWidget = new FlowWidget(FlowWidget.DisplayAxis.HORIZONTAL);
-        flowWidget.setFlowSpacing(1);
-        flowWidget.setWrapSpacing(2);
-        return flowWidget;
+    private static FlowLayout createFlowWidget() {
+        FlowLayout flowLayout = new FlowLayout(FlowLayout.DisplayAxis.HORIZONTAL);
+        flowLayout.setFlowSpacing(1);
+        flowLayout.setWrapSpacing(2);
+        return flowLayout;
     }
 
     private void addChip(String value) {
@@ -81,10 +81,10 @@ public class ChipListConfigWidget extends PropertyConfigWidget<List<String>> {
     }
 
     private void refreshChips() {
-        FlowWidget flowWidget = createFlowWidget();
-        this.flowSocket.setInner(flowWidget);
+        FlowLayout flowLayout = createFlowWidget();
+        this.flowSocket.setInner(flowLayout);
         for (Chip c : chips) {
-            flowWidget.add(c);
+            flowLayout.add(c);
         }
 
         this.parent.reposition();

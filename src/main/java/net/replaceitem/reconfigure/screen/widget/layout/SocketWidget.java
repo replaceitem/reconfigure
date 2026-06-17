@@ -63,6 +63,11 @@ public class SocketWidget<T extends Layout> implements Layout {
     }
 
     @Override
+    public void removeChildren() {
+
+    }
+
+    @Override
     public void visitChildren(Consumer<LayoutElement> consumer) {
         inner.visitChildren(consumer);
     }
