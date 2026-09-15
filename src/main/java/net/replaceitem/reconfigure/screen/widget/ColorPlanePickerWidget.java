@@ -71,16 +71,12 @@ public class ColorPlanePickerWidget extends AbstractWidget {
 
     @Override
     public void onClick(MouseButtonEvent click, boolean doubled) {
-        if(click.button() == 0) {
-            this.setColorAtMouse(click.x(), click.y());
-        }
+        this.setColorAtMouse(click.x(), click.y());
     }
 
     @Override
     protected void onDrag(MouseButtonEvent click, double offsetX, double offsetY) {
-        if(click.button() == 0) {
-            this.setColorAtMouse(click.x(), click.y());
-        }
+        this.setColorAtMouse(click.x(), click.y());
     }
 
     private void setColorAtMouse(double mouseX, double mouseY) {

@@ -61,9 +61,7 @@ public class ColorPickerConfigWidget extends PropertyConfigWidget<Integer> {
         this.colorPreviewWidget = new ColorPreviewWidget(0, 0, BASIC_WIDGET_SIZE, BASIC_WIDGET_SIZE) {
             @Override
             public void onClick(MouseButtonEvent click, boolean doubled) {
-                if(click.button() == 0) {
-                    setOpen(!isOpen);
-                }
+                setOpen(!isOpen);
             }
         };
         this.textField = new EditBox(listWidget.getTextRenderer(), 70, NAME_HEIGHT, Component.empty());
